@@ -1,0 +1,17 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol id="icon-search" viewBox="0 0 32 32">
+      <path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round"
+        stroke-miterlimit="4" stroke-width="2.6667"
+        d="M14.675 25.347c5.894 0 10.672-4.778 10.672-10.672s-4.778-10.672-10.672-10.672v0c-5.894 0-10.672 4.778-10.672 10.672s4.778 10.672 10.672 10.672v0zM28.015 28.015l-5.803-5.803">
+      </path>
+    </symbol>
+    <symbol id="icon-film" viewBox="0 0 32 32">
+      <path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round"
+        stroke-miterlimit="4" stroke-width="2.6667"
+        d="M26.43 2.667h-20.856c-1.606 0-2.907 1.302-2.907 2.907v0 20.856c0 1.606 1.302 2.907 2.907 2.907v0h20.856c1.606 0 2.907-1.302 2.907-2.907v0-20.856c0-1.606-1.302-2.907-2.907-2.907v0zM9.335 2.667v26.671M22.67 2.667v26.671M2.667 16.002h26.671M2.667 9.335h6.668M2.667 22.67h6.668M22.67 22.67h6.668M22.67 9.335h6.668">
+      </path>
+    </symbol>
+  </defs>
+</svg>
