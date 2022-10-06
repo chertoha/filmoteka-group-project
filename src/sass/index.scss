@@ -1,2 +1,14 @@
-@import './common';
-@import './example';
+@import './base/base';
+@import './base/common';
+@import './base/container';
+@import './base/reset-styles';
+
+@import './components/button';
+@import './components/logo';
+@import './components/movieCard';
+
+@import './layouts/footer';
+@import './layouts/gallery';
+@import './layouts/libraryHeader';
+@import './layouts/mainPageHeader';
+@import './layouts/movieCardModal';
