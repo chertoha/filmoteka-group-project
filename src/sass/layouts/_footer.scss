@@ -1,0 +1,25 @@
+.footer{
+    
+    padding-bottom: 30px;
+    padding-top: 30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.19;
+
+    background-color: var(--secondary-bgc);
+    color: var(--secondary);
+}
+
+.footer__groop {
+    // display: flex;
+    text-align: center;
+    margin: auto;
+    max-width: 482px;
+}
+.footer__text{
+    display: inline-block;
+}
+.footer__link{
+    text-decoration-line: underline;
+}
