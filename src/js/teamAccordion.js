@@ -2,19 +2,8 @@ const accordionRef = document.querySelector('#accordion');
 
 accordionRef.addEventListener('click', onBtnClick);
 
-console.log(accordionRef);
-
 function onBtnClick(event) {
-  Array.from(accordionRef.children).forEach(item => {
-    console.log(item);
-    // item.setAttribute('aria-expanded', 'false');
-
-    if (item !== event.target.closest('li')) {
-      item.classList.remove('is-shown');
-      item.setAttribute('aria-expanded', 'false');
-    }
-  });
-
+  // open current item
   if (
     event.target.nodeName === 'BUTTON' ||
     event.target.closest('[data-accordion-btn]')
