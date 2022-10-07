@@ -1,3 +1,25 @@
 .header {
-    background-color: aqua;
+    background-image: url(../images/header-background.jpg);
+   height: 230px;
+   padding: 40px 20px 92px 20px;
+}
+.header-container {
+   display: flex; 
+}
+.search-form {
+
+border-bottom: 0.5px;
+}
+.menu {
+display: flex;
+}
+
+.menu-item:last-child {
+margin-left: 40px;
+}
+
+.menu-item__link {
+    color: var(--white);
+    font-family: var(--main-font);
+    font-weight: 500;
 }
