@@ -1,0 +1,141 @@
+.gallery {
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  @include mq('tablet') {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.gallery__list {
+  @include mq('tablet') {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+}
+
+.gallery__item {
+  // display: flex;
+  // flex-direction: column;
+  padding: 10px 10px 24px 10px;
+
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  @include mq('mobile-only') {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  @include mq('tablet') {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+
+  @include mq('desktop') {
+    flex-basis: calc((100% - 66px) / 3);
+  }
+}
+
+//Anton
+.movie-card {
+  background-color: var(--white-color);
+
+  @include default-transition(scale);
+
+  &:hover {
+    scale: 1.02;
+  }
+}
+
+.movie-card__link {
+  display: block;
+}
+
+.movie-card__image {
+  display: block;
+  border-radius: 5px;
+}
+
+.movie-card__meta {
+  margin-top: 10px;
+
+  @include mq('tablet') {
+    margin-top: 8px;
+  }
+
+  @include mq('desktop') {
+    margin-top: 12px;
+  }
+}
+
+.movie-card__title {
+  line-height: 1.167;
+
+  @include mq('tablet') {
+    line-height: 1.333;
+  }
+
+  @include mq('desktop') {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.movie-card__description {
+  display: inline-block;
+  margin-right: 5px;
+
+  line-height: 1.333;
+  color: var(--accent);
+
+  @include mq('desktop') {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.movie-card__genre {
+  &:not(:last-child)::after {
+    content: ',';
+  }
+}
+
+.movie-card__year {
+}
+
+.rating-label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  // width: 36px;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 16px;
+
+  font-size: 12px;
+  line-height: 1.177;
+
+  border-radius: 5px;
+
+  &--accent {
+    color: var(--white);
+    background-color: var(--accent);
+  }
+
+  &--default {
+    color: var(--main-text);
+    background-color: var(--secondary-background-color);
+  }
+
+  @include mq('desktop') {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 20px;
+  }
+}
