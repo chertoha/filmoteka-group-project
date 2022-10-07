@@ -4,3 +4,5 @@
 //Anton's temporary test code----------------------------
 import './js/temp/antonTempTest';
 //Anton's temporary test code----------------------------
+
+import './js/classes/spinner';
