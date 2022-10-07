@@ -2,8 +2,8 @@
   width: 100%;
   padding: 10px 10px 24px 10px;
 
-  // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-  //   0px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   text-align: center;
 
@@ -16,11 +16,99 @@
   margin-bottom: 16px;
 }
 
-.customer-review__description {
-  margin-bottom: 30px;
+.accordion-item {
+  border-bottom: 1px solid var(--secondary);
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-  color: tomato;
+.accordion-button {
+  position: relative;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 1em 30px 1em 0;
+  color: var(--main-text);
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  background: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: var(--accent);
+
+    &::after {
+      cursor: pointer;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+  }
+
+  .accordion-title {
+    padding: 1em 1.5em 1em 0;
+  }
+
+  .icon {
+    display: inline-block;
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid;
+    border-radius: 22px;
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 9px;
+      left: 5px;
+      width: 10px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 5px;
+      left: 9px;
+      width: 2px;
+      height: 10px;
+      background: currentColor;
+    }
+  }
+}
+
+.accordion-button[aria-expanded='true'] {
+  color: var(--accent);
+  .icon {
+    &::after {
+      width: 0;
+    }
+  }
+}
+
+.accordion-content {
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing),
+    max-height 250ms var(--transition-timing);
+}
+
+.accordion-item.is-shown .accordion-content {
+  padding: 20px 10px 40px 10px;
+  opacity: 1;
+  max-height: 100%;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing),
+    max-height 250ms var(--transition-timing);
 }

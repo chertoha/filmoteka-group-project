@@ -17,6 +17,10 @@
     visibility 250ms var(--transition-timing);
   overflow-y: scroll;
 
+  @media screen and (min-width: 768px) {
+    padding: 40px;
+  }
+
   &.is-hidden {
     opacity: 0;
     pointer-events: none;

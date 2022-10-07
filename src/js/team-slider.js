@@ -1,25 +1,32 @@
-import Swiper, { Pagination, EffectCoverflow, Navigation } from 'swiper';
-import 'swiper/swiper-bundle.min.css';
+const accordionRef = document.querySelector('#accordion');
 
-const teamSlider = document.querySelector('.js-gallery-swiper');
+accordionRef.addEventListener('click', onBtnClick);
 
-const sliderParams = {
-  modules: [Pagination, Navigation, EffectCoverflow],
+console.log(accordionRef);
 
-  loop: true,
-  effect: 'coverflow',
-  grabCursor: true,
-  lazy: true,
+function onBtnClick(event) {
+  Array.from(accordionRef.children).forEach(item => {
+    console.log(item);
+    // item.setAttribute('aria-expanded', 'false');
 
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
+    if (item !== event.target.closest('li')) {
+      item.classList.remove('is-shown');
+      item.setAttribute('aria-expanded', 'false');
+    }
+  });
 
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-};
+  if (
+    event.target.nodeName === 'BUTTON' ||
+    event.target.closest('[data-accordion-btn]')
+  ) {
+    const toggledBtnRef = event.target.closest('[data-accordion-btn]');
 
-const swiper = new Swiper(teamSlider, sliderParams);
+    const attributeToSet =
+      toggledBtnRef.getAttribute('aria-expanded') === 'false'
+        ? 'true'
+        : 'false';
+
+    toggledBtnRef.setAttribute('aria-expanded', `${attributeToSet}`);
+    event.target.closest('li').classList.toggle('is-shown');
+  }
+}
