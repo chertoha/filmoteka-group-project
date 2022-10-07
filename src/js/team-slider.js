@@ -1,24 +1,24 @@
-import Swiper, { Pagination, Autoplay, EffectCoverflow } from 'swiper';
+import Swiper, { Pagination, EffectCoverflow, Navigation } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 
-const gallerySlider = document.querySelector('.js-gallery-swiper');
+const teamSlider = document.querySelector('.js-gallery-swiper');
 
 const sliderParams = {
-  modules: [Pagination, Autoplay, EffectCoverflow],
+  modules: [Pagination, Navigation, EffectCoverflow],
 
   loop: true,
   effect: 'coverflow',
   grabCursor: true,
   lazy: true,
 
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
-  },
-
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
 };
 
