@@ -3,10 +3,14 @@
   --main-font: 'Roboto', sans-serif;
 
   // COLORS
-  --main-text: #333333;
+  --main-background-color: #f5f4fa;
+  --secondary-background-color: #f7f7f7;
+  --secondary-bgc: #f7f7f7;
+  --main-text: #000000;
   --accent: #ff6b08;
   --secondary: #545454;
   --white: #ffffff;
   --attention: #ff001b;
-  --secondary-bgc:#F7F7F7
+
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
