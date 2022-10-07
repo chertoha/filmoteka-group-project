@@ -10,21 +10,50 @@
     margin-right: 112px;
 }
 .header-container {
+    outline: solid 1 tomato;
    display: flex; 
 }
-.search-form {
+
+.search-form {   
 
 border-bottom: 0.5px;
 }
-.menu {
-display: flex;
+
+.search-input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: var(--white);
+    font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+}
+.submit-btn {
+background-color: transparent;
 }
 
-.menu-item:last-child {
+.menu {
+display: flex;
+
+}
+
+.menu-item {
+    outline: solid 1 tomato;
+    align-self: center;
+    
+    
+}
+
+.menu-item:last-child {   
 margin-left: 40px;
+
 }
 
 .menu-item__link {
+    // outline: solid 1 tomato;
+   
+    align-items: center;
     color: var(--white);
     font-family: var(--main-font);
     font-weight: 500;
