@@ -1,7 +1,13 @@
 .header {
-    background-image: url(../images/header-background.jpg);
+    background-image: url(../images/header-background-mob.jpg);
+    background-position: center;
+        background-size: cover;
    height: 230px;
    padding: 40px 20px 92px 20px;
+    // margin: 0 auto 0 auto;
+}
+.logo {
+    margin-right: 112px;
 }
 .header-container {
    display: flex; 
