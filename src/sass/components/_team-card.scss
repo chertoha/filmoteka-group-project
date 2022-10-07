@@ -1,0 +1,113 @@
+.team-card {
+  width: 100%;
+  padding: 10px 10px 24px 10px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.team-image {
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.accordion-button {
+  position: relative;
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 1em 30px 1em 0;
+  color: var(--main-text);
+  font-size: 1.15rem;
+  font-weight: 400;
+  border: none;
+  background: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: var(--accent);
+
+    &::after {
+      cursor: pointer;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+  }
+
+  .accordion-title {
+    padding: 1em 1.5em 1em 0;
+  }
+
+  .icon {
+    display: inline-block;
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid;
+    border-radius: 22px;
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 9px;
+      left: 5px;
+      width: 10px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      content: '';
+      top: 5px;
+      left: 9px;
+      width: 2px;
+      height: 10px;
+      background: currentColor;
+    }
+  }
+}
+
+.accordion-button[aria-expanded='true'] {
+  color: var(--accent);
+  .icon {
+    &::after {
+      width: 0;
+    }
+  }
+}
+
+.accordion-content {
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing),
+    max-height 250ms var(--transition-timing);
+}
+
+.accordion-item.is-shown .accordion-content {
+  padding: 20px 10px 40px 10px;
+  opacity: 1;
+  max-height: 275px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing),
+    max-height 250ms var(--transition-timing);
+}
