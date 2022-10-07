@@ -11,4 +11,4 @@ import './js/modal';
 import './js/searchingForm';
 
 import './js/classes/spinner';
-import './js/team-slider';
+// import './js/team-slider';
