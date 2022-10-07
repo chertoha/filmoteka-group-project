@@ -17,15 +17,14 @@
 }
 
 .gallery__item {
-
   // display: flex;
   // flex-direction: column;
-  // padding: 10px 10px 24px 10px;
+  padding: 10px 10px 24px 10px;
 
-  // border-radius: 5px;
-  // box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
-  // 23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
-  // text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
 
   @include mq('mobile-only') {
     &:not(:last-child) {
@@ -42,20 +41,19 @@
   }
 }
 
-
-//Anton 
+//Anton
 .movie-card {
   background-color: var(--white-color);
-}
-
-.movie-card__link {
-  display: block;
 
   @include default-transition(scale);
 
   &:hover {
     scale: 1.02;
   }
+}
+
+.movie-card__link {
+  display: block;
 }
 
 .movie-card__image {
@@ -89,13 +87,11 @@
 }
 
 .movie-card__description {
-
   display: inline-block;
   margin-right: 5px;
 
   line-height: 1.333;
   color: var(--accent);
-
 
   @include mq('desktop') {
     font-size: 20px;
@@ -109,7 +105,8 @@
   }
 }
 
-.movie-card__year {}
+.movie-card__year {
+}
 
 .rating-label {
   display: inline-flex;
@@ -141,6 +138,4 @@
     padding-right: 10px;
     height: 20px;
   }
-
-
 }
