@@ -17,7 +17,7 @@ import './js/classes/Modal';
 import './js/classes/ModalBtn';
 import './js/classes/Pagination';
 import './js/classes/SearchingForm';
-import './js/classes/Spinner';
+import './js/classes/spinner';
 
 import './js/teamAccordion';
 import './js/galleryHandler';
