@@ -3,6 +3,7 @@
 
 //Anton's temporary test code----------------------------
 // import './js/temp/antonTempTest';
+import './js/temp/antonTempPaginTest';
 //Anton's temporary test code----------------------------
 
 import './js/API';

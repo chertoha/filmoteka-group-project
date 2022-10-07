@@ -2,6 +2,8 @@
   padding-top: 20px;
   padding-bottom: 40px;
 
+  background-color: var(--white);
+
   @include mq('tablet') {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -105,8 +107,7 @@
   }
 }
 
-.movie-card__year {
-}
+.movie-card__year {}
 
 .rating-label {
   display: inline-flex;
