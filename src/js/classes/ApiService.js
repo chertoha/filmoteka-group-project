@@ -13,8 +13,8 @@ export default class ApiService {
     page: 1,
   };
 
-  constructor() { }
-  
+  constructor() {}
+
   //в залежності від типу запиту змінювати остаточний вигляд посилання
   //можна зробити через тернарний оператор
 
@@ -23,7 +23,7 @@ export default class ApiService {
     Подумати як реалізувати фетч по імені та
     фетч популярних фільмів по умові
     */
-    
+
     //фетч популярних фільмів
     const response = await axios.get(
       `${this.#BASE_URL}?api_key=${this.#API_KEY}&page=${
