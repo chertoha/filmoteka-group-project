@@ -37,7 +37,7 @@ async function testMovieCardsTemplate(page = 1) {
     const trendings = await axios.get(url_trendings + '&page=' + page);
     const movies = trendings.data.results;
     const totalMovies = trendings.data.total_results;
-    console.log(trendings.data);
+    // console.log(trendings.data);
 
     //Update movies genres_id with genres_name
     addGenreNamesToMovies(genres, movies);
@@ -54,7 +54,7 @@ async function testMovieCardsTemplate(page = 1) {
 }
 //Test API----------------------------------------------------------
 
-// ////////////////=============IMPORTANT CODE PART================/////////////////////////////
+////////////////=============IMPORTANT CODE PART================/////////////////////////////
 
 function tempRenderCards(movies) {
   const container = document.querySelector('.gallery__list');
@@ -66,7 +66,7 @@ function tempRenderCards(movies) {
 
 function addGenreNamesToMovies(genres, movies) {
   movies.forEach(movie => {
-    console.log(movie.release_date);
+    // console.log(movie.release_date);
 
     //Movies genres check
     movie.genres = [];

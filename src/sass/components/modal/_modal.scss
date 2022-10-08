@@ -14,7 +14,7 @@
   }
 }
 
-.backdrop.is-hidden .modal {
+.team-backdrop.is-hidden .team-modal {
   transform: scale(0.3);
 
   @media screen and (min-width: 480px) and (orientation: portrait) {
