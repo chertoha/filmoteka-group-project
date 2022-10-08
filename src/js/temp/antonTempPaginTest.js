@@ -1,18 +1,18 @@
-import Pagination from '../classes/pagination';
+// import Pagination from '../classes/pagination';
 
-const container = document.querySelector('.pag');
-const pagination = new Pagination(container);
+// const container = document.querySelector('.pag');
+// const pagination = new Pagination(container);
 
-pagination.pageChangeHandler(event => {
-  console.log(event.page);
-});
+// pagination.pageChangeHandler(event => {
+//   console.log(event.page);
+// });
 
-// console.log(pagination);
+// // console.log(pagination);
 
-pagination.updateTotalItems(19981);
-pagination.goToPage(4);
+// pagination.updateTotalItems(19981);
+// pagination.goToPage(4);
 
-pagination.render();
+// pagination.render();
 
 // let pageClickEvent = new Event('pageclick');
 
