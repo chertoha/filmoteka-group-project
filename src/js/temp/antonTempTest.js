@@ -58,14 +58,30 @@ async function testMovieCardsTemplate(page = 1) {
 
 function tempRenderCards(movies) {
   const container = document.querySelector('.gallery__list');
-  container.innerHTML = movieCardTemplate(movies);
+
+  //library = false if render gallery
+  //library = true if render library
+  container.innerHTML = movieCardTemplate({ movies, library: true });
 }
 
 function addGenreNamesToMovies(genres, movies) {
   movies.forEach(movie => {
-    movie.genre_ids.forEach((val, i) => {
-      movie.genre_ids[i] = getGenreNameById(genres, val);
-    });
+    console.log(movie.release_date);
+
+    //Movies genres check
+    movie.genres = [];
+    for (let i = 0; i < movie.genre_ids.length; i++) {
+      if (i === 3) {
+        movie.genres[i - 1] = 'Others';
+        break;
+      }
+      movie.genres.push(getGenreNameById(genres, movie.genre_ids[i]));
+    }
+
+    //Year check
+    if (movie.release_date) {
+      movie.date = movie.release_date;
+    }
   });
 }
 
