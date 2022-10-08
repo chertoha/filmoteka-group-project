@@ -1,4 +1,4 @@
-class GalleryHandler {
+export default class GalleryHandler {
   galleryRef = document.querySelector('#gallery');
 
   addGalleryHandler() {
@@ -21,6 +21,3 @@ class GalleryHandler {
     }
   };
 }
-
-// const galleryHandler = new GalleryHandler();
-// galleryHandler.addGalleryHandler();
