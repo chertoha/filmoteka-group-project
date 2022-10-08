@@ -11,7 +11,7 @@
   opacity: 1;
 
   transition: opacity 250ms var(--transition-timing),
-    visibility 250ms var(--transition-timing);
+  visibility 250ms var(--transition-timing);
   overflow-y: scroll;
 }
 
@@ -28,6 +28,7 @@
   padding: 40px 12px;
   width: 100%;
   max-width: 806px;
+  background-color: var(--white);
 }
 
 .modal__close-button {
@@ -38,7 +39,7 @@
 
   width: 30px;
   height: 30px;
-  color: var(--black);
+  color: var(--main-text);
 }
 
 .modal__img {
@@ -46,11 +47,11 @@
   height: 100%;
 }
 
-.molal__name {
+.modal__name {
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
-  color: var(--black);
+  color: var(--main-text);
   font-size: 30px;
   line-height: 35px;
 
@@ -60,21 +61,21 @@
   }
 }
 
-.molal__table {
+.modal__table {
   margin-bottom: 20px;
 }
-.molal__table-name {
+.modal__table-name {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: #8c8c8c;
 }
 
-.molal__table-description {
+.modal__table-description {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  color: var(--black);
+  color: var(--main-text);
 }
 
 .modal__text-about {
@@ -82,7 +83,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  color: var(--black);
+  color: var(--main-text);
 }
 
 .modal__text {
@@ -92,5 +93,5 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
-  color: var(--black);
+  color: var(--main-text);
 }
