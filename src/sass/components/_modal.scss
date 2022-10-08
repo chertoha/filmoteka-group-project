@@ -9,6 +9,8 @@
   background: rgba(44, 42, 42, 0.25);
 
   opacity: 1;
+  pointer-events: all;
+  visibility: visible;
 
   transition: opacity 250ms var(--transition-timing),
     visibility 250ms var(--transition-timing);
@@ -22,6 +24,7 @@
 }
 
 .modal {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,60 +1,60 @@
-
 .finfo-moviecard__img {
   display: block;
   border-radius: 5px;
 
-  @include mq('mobile-only'){
-  margin-bottom: 20px;
+  @include mq('mobile-only') {
+    margin-bottom: 20px;
   }
 }
 
 .finfo-moviecard__name {
-    margin-bottom: 20px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
-    color: var(--main-text);
-  
-    @include mq('desktop') {
-      font-size: 30px;
-      line-height: 35px;
-    }
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: var(--main-text);
+
+  @include mq('desktop') {
+    font-size: 30px;
+    line-height: 35px;
   }
+}
 
 .finfo-moviecard__info {
   margin-bottom: 20px;
 }
 
-.finfo-moviecard__tabel-title {
+.finfo-moviecard__table {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: #8c8c8c;
 }
 
-.finfo-moviecard__tabel-description {
+.finfo-moviecard__table-title {
+}
+
+.finfo-moviecard__table-description {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: var(--main-text);
 }
 
-.finfo-moviecard__text-about {
-    margin-bottom: 8px;
+.finfo-moviecard__about {
+  margin-bottom: 8px;
 
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--main-text);
-  }
-
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--main-text);
+}
 
 .finfo-moviecard__text {
-    margin-bottom: 20px;
-  
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 20px;
-    color: var(--main-text);
-  }
-  
+  margin-bottom: 20px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--main-text);
+}
