@@ -25,10 +25,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 12px;
+  padding: 48px 20px 40px 20px;
   width: 100%;
-  max-width: 806px;
+  max-width: 940px;
   background-color: var(--white);
+
+  @include mq('tablet') {
+    padding: 40px 72px 40px 36px;
+    width: 100%;
+    max-width: 552px;
+  }
+
+  @include mq('desktop') {
+    padding: 40px 12px;
+    width: 100%;
+    max-width: 558px;
+  }
 }
 
 .btn-close {
