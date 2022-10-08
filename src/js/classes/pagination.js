@@ -67,22 +67,38 @@ export default class Pagination {
       afterCurPage2: currentPage + 2,
       dotsPrev: currentPage - 4,
       dotsNext: currentPage + 4,
+      // preCurPage3: currentPage - 3,
+      // afterCurPage3: currentPage + 3,
     };
 
-    if (currentPage === 4) {
-      data.prevBtnPage = 0;
-      data.dotsPrev = 0;
-    }
+    // if (currentPage !== 4) {
+    //   data.preCurPage3 = 0;
+    // }
+    // if (currentPage <= 4) {
+    //   data.prevBtnPage = 0;
+    //   data.dotsPrev = 0;
+    //   data.firstPage = 0;
+    // }
+    // if (currentPage === 1) {
+    //   data.preCurPage = 0;
+    //   data.preCurPage2 = 0;
+    //   data.preCurPage3 = 0;
+    // }
 
-    if (currentPage < 4) {
-      data.prevBtnPage = 0;
-      data.dotsPrev = 0;
-      data.firstPage = 0;
-    }
+    // if (currentPage === 4) {
+    //   data.prevBtnPage = 0;
+    //   data.dotsPrev = 0;
+    // }
 
-    if (currentPage === 1) {
-      data.preCurPage2 = 0;
-    }
+    // if (currentPage < 4) {
+    //   data.prevBtnPage = 0;
+    //   data.dotsPrev = 0;
+    //   data.firstPage = 0;
+    // }
+
+    // if (currentPage === 1) {
+    //   data.preCurPage2 = 0;
+    // }
 
     //--------------
 
