@@ -1,25 +1,32 @@
 .footer{
     
-    padding-bottom: 30px;
-    padding-top: 30px;
+    padding: 30px 0;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.19;
+    line-height: 1.36;
 
-    background-color: var(--secondary-bgc);
+    background-color: var(--secondary-background-color);
     color: var(--secondary);
+
+    @include mq('mobile'){
+        font-size: 16px;
+
+    }
 }
 
-.footer__groop {
-    // display: flex;
+.footer-groop {
     text-align: center;
-    margin: auto;
-    max-width: 482px;
+    margin: 0 auto;
+
 }
-.footer__text{
-    display: inline-block;
+
+.footer__icon{
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
 .footer__link{
     text-decoration-line: underline;
+    cursor: pointer;
 }

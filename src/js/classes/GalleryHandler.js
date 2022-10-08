@@ -22,5 +22,5 @@ class GalleryHandler {
   };
 }
 
-const galleryHandler = new GalleryHandler();
-galleryHandler.addGalleryHandler();
+// const galleryHandler = new GalleryHandler();
+// galleryHandler.addGalleryHandler();
