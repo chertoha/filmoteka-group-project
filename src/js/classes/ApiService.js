@@ -22,7 +22,7 @@ export default class ApiService {
       api_key: this.#API_KEY,
     },
   };
-  constructor() { }
+  constructor() {}
 
   async fetchGenres() {
     try {
@@ -37,7 +37,6 @@ export default class ApiService {
       //   console.log(genre.name);
       //   localStorage.setItem(genre.id, genre.name);
       // }
-      
     } catch (error) {
       console.error(error);
     }

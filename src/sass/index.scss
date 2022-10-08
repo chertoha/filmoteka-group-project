@@ -1,6 +1,7 @@
 @import './utils/fonts';
 @import './utils/mixin';
 @import './utils/variables';
+@import './utils/placeholders';
 @import './utils/visually-hidden';
 
 @import './base/base';
@@ -12,6 +13,7 @@
 @import './components/logo';
 @import './components/movieCard';
 @import './components/spinner';
+@import './components/pagination';
 @import './components/team-card';
 @import './components/socials';
 @import './components/modal/backdrop';
