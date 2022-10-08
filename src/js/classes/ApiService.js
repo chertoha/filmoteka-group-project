@@ -85,6 +85,3 @@ export default class ApiService {
     return response.data.results;
   }
 }
-
-const t = new ApiService();
-t.fetchGenres();
