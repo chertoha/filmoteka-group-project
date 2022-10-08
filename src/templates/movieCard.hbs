@@ -1,0 +1,33 @@
+{{#each this}}
+  <li class='gallery__item movie-card'>
+    <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
+      <img
+        class='movie-card__image'
+        src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+        alt='{{original__title}}'
+        width='500'
+      />
+      <div class='movie-card__meta'>
+        <h2 class='movie-card__title'>{{original_title}}</h2>
+        <p class='movie-card__description'>
+          <span>
+            {{#each genre_ids}}
+              <span class='movie-card__genre'>
+                {{this}}
+              </span>
+            {{/each}}
+          </span>
+          {{! <span class="movie-card__genre">Drama, Action</span> | }}
+
+          <span class='movie-card__year'>{{dateFormat
+              release_date
+              'YYYY'
+            }}</span>
+        </p>
+
+        {{!-- <p class="rating-label rating-label--accent">{{toFixed vote_average 1}}</p> --}}
+
+      </div>
+    </a>
+  </li>
+{{/each}}

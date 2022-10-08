@@ -8,26 +8,31 @@
       @content;
     }
   }
+
   @if $type == 'mobile' {
     @media screen and (min-width: $mobile) {
       @content;
     }
   }
+
   @if $type == 'tablet-only' {
     @media screen and (min-width: $tablet) and (max-width: #{$desktop - 0.02}) {
       @content;
     }
   }
+
   @if $type == 'tablet' {
     @media screen and (min-width: $tablet) {
       @content;
     }
   }
+
   @if $type == 'not-desktop' {
     @media screen and (max-width: #{$desktop - 0.02}) {
       @content;
     }
   }
+
   @if $type == 'desktop' {
     @media screen and (min-width: $desktop) {
       @content;
@@ -41,4 +46,15 @@
       @content;
     }
   }
+}
+
+//Default transition 250ms -cubic-bezier (Anton)
+@mixin default-transition($property) {
+  transition: $property 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin circle($diameter) {
+  width: $diameter;
+  height: $diameter;
+  border-radius: 50%;
 }
