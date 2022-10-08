@@ -1,13 +1,27 @@
+.finfo-moviecard{
+  @include mq('tablet') {
+   display: flex;
+  }
+}
 
 .finfo-moviecard__img {
   display: block;
   border-radius: 5px;
   width: 240px;
   height: 100%;
+  margin: 0;
 
   @include mq('mobile-only'){
   margin-bottom: 20px;
   }
+
+  @include mq('tablet'){
+    margin-right: 68px;
+    }
+
+  @include mq('desktop'){
+    margin-right: 16px;
+    }
 }
 
 .finfo-moviecard__name {
@@ -25,20 +39,34 @@
 
 .finfo-moviecard__info {
   margin-bottom: 20px;
+
 }
 
-.finfo-moviecard__tabel-title {
+.finfo-moviecard__table-title {
+  padding-right: 39px;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: #8c8c8c;
+
+  @include mq('desktop') {
+    padding-right: 83px;
+  }
 }
 
-.finfo-moviecard__tabel-description {
+.finfo-moviecard__table-description {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   color: var(--main-text);
+}
+
+.finfo-moviecard__table-accent {
+  width: 36px;
+  height: 16px;
+  background-color: var(--accent);
+  color: var(--white);
+  border-radius: 5px;
 }
 
 .finfo-moviecard__text-about {
@@ -49,7 +77,6 @@
     line-height: 16px;
     color: var(--main-text);
   }
-
 
 .finfo-moviecard__text {
     margin-bottom: 20px;
