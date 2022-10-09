@@ -1,6 +1,8 @@
 export default class GalleryHandler {
   galleryRef = document.querySelector('#gallery');
 
+  // this.currentOpenedModalFilm = записать открытый в модалке  фильм
+
   addGalleryHandler() {
     this.galleryRef.addEventListener('click', this.onMovieCardClick);
   }
@@ -17,6 +19,8 @@ export default class GalleryHandler {
       console.log('itemToFindId', itemToFindId);
 
       // render картки по id із localStorage.itemsOnCurrentPage.
+      // modalBtn.modalBtnClick(currentBtnClass, film)
+      // передать modalBtn.modalBtnClick('.queue-js', this.currentOpenedModalFilm)
       // modal.openModal();
     }
   };
