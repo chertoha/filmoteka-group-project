@@ -5,6 +5,13 @@
    height: 230px;
    padding: 40px 20px 92px 20px;
     // margin: 0 auto 0 auto;
+     @include mq('tablet') {
+     background-image: url(../images/header-background-tab.jpg);
+    }
+        
+    @include mq('desktop') {
+    background-image: url(../images/header-background-desk.jpg);
+    }
 }
 .header-container {
     height: 98px;
