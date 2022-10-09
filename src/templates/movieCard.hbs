@@ -4,8 +4,8 @@
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
         <img
           class='movie-card__image'
-          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-          alt='{{original__title}}'
+          src='{{poster_path}}'
+          alt='{{original_title}}'
           width='500'
         />
         <div class='movie-card__meta'>
@@ -20,7 +20,10 @@
             </span>
             {{! <span class="movie-card__genre">Drama, Action</span> | }}
             {{#if date}}
-              |
+               {{#if genres}} 
+                |
+                {{/if}}
+
               <span class='movie-card__year'>{{dateFormat date 'YYYY'}}</span>
             {{/if}}
           </p>
@@ -42,7 +45,7 @@
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
         <img
           class='movie-card__image'
-          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+          src='{{poster_path}}'
           alt='{{original__title}}'
           width='500'
         />

@@ -19,7 +19,7 @@ pagination.on('beforemove', event => {
 
 //--Variables-------------------------------------------------------
 const API_KEY_TEST = '1936ce94882661ecfd75d2c22e8905aa';
-const url_trendings = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY_TEST}`;
+const url_trendings = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY_TEST}&language=en-US`;
 const url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY_TEST}`;
 //--Variables-------------------------------------------------------
 
@@ -37,10 +37,10 @@ async function testMovieCardsTemplate(page = 1) {
     const trendings = await axios.get(url_trendings + '&page=' + page);
     const movies = trendings.data.results;
     const totalMovies = trendings.data.total_results;
-    // console.log(trendings.data);
+    console.log(trendings.data);
 
     //Update movies genres_id with genres_name
-    addGenreNamesToMovies(genres, movies);
+    moviesDataUpdate(genres, movies);
 
     //Render template
     tempRenderCards(movies);
@@ -64,10 +64,8 @@ function tempRenderCards(movies) {
   container.innerHTML = movieCardTemplate({ movies, library: true });
 }
 
-function addGenreNamesToMovies(genres, movies) {
+function moviesDataUpdate(genres, movies) {
   movies.forEach(movie => {
-    // console.log(movie.release_date);
-
     //Movies genres check
     movie.genres = [];
     for (let i = 0; i < movie.genre_ids.length; i++) {
@@ -81,6 +79,24 @@ function addGenreNamesToMovies(genres, movies) {
     //Year check
     if (movie.release_date) {
       movie.date = movie.release_date;
+    }
+
+    //Images check
+    if (movie.poster_path && movie.poster_path !== '') {
+      const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
+      movie.poster_path = imageBaseUrl + movie.poster_path;
+    } else {
+      const imgUrl = new URL(
+        '../../images/movie-card-plug.jpg',
+        import.meta.url
+      );
+      movie.poster_path = imgUrl;
+    }
+
+    //Check name
+
+    if (!movie.original_title) {
+      console.log('name', movie.id);
     }
   });
 }

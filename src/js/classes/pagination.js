@@ -1,8 +1,6 @@
 // import paginationTemplate from '../../templates/pagination.hbs';
 
 export default class Pagination {
-  // #pageChangeHadler;
-  // #handler;
   #handlerBeforeMove;
   #handlerAfterMove;
   #page;
@@ -12,17 +10,11 @@ export default class Pagination {
   constructor(container) {
     this.refs = {
       container: container,
-      // prevBtn: document.querySelector('.pag__btn--prev'),
-      // nextBtn: document.querySelector('.pag__btn--next'),
-      // prevDots: document.querySelector('.pag__btn--dots-prev'),
-      // nextDots: document.querySelector('.pag__btn--dots-next'),
     };
 
     this.#totalItems = 1;
     this.#perPage = 20;
     this.#page = 1;
-
-    // this.#handler = null;
 
     this.refs.container.addEventListener('click', this.#onPageClick.bind(this));
   }
@@ -33,10 +25,6 @@ export default class Pagination {
     if (!e.target.classList.contains('pag__page')) {
       return;
     }
-
-    // if (!this.#handler) {
-    //   return;
-    // }
 
     const newPage = e.target.dataset.value;
     if (this.#page == newPage) {
@@ -54,17 +42,7 @@ export default class Pagination {
     if (this.#handlerAfterMove) {
       this.#handlerAfterMove({ page: this.#page });
     }
-
-    // if (this.#handler) {
-    //   this.#handler({ page: this.#page });
-    // }
-    // this.#handler({ page: this.#page });
   }
-
-  // pageChangeHandler(handler) {
-  //   //Throw error if not function here
-  //   this.#handler = handler;
-  // }
 
   on(type, handler) {
     if (type === 'beforemove') {
@@ -129,13 +107,13 @@ export default class Pagination {
       }"></a>`;
     }
 
-    // console.log(string);
     this.refs.container.innerHTML = string;
-    // this.refs.container.innerHTML = paginationTemplate(data);
   }
 
   goToPage(page) {
-    //Check if page is integer Number here,
+    if (!Number.isInteger(Number(page))) {
+      throw new Error('Page must be integer!');
+    }
 
     if (page < 1 || page > this.getLastPageNumber()) {
       return;
@@ -154,12 +132,4 @@ export default class Pagination {
   getLastPageNumber() {
     return Math.ceil(Number(this.#totalItems) / Number(this.#perPage));
   }
-
-  // #checkPaginationRender(page) {
-  //   const { prevBtn, nextBtn, prevDots, nextDots } = this.refs;
-
-  //   console.log(prevDots);
-  //   if (page === 4) {
-  //   }
-  // }
 }
