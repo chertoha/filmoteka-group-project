@@ -42,9 +42,6 @@ async function testApiPopMovies(page = 1) {
     const genres = response.data.genres;
     // console.log(genres);
 
-    //Add genres to temp LocalStorage
-    // localStorage.setItem(GENRES_TEMP, JSON.stringify(genres));
-
     //Get movies list
     const trendings = await axios.get(url_trendings + '&page=' + page);
     const movies = trendings.data.results;
@@ -52,8 +49,6 @@ async function testApiPopMovies(page = 1) {
     console.log(trendings.data);
 
     //Update movies genres_id with genres_name
-    // moviesDataUpdate(genres, movies);
-
     checkMovies.update(movies, genres);
 
     //Render template
@@ -102,7 +97,7 @@ async function testApiMovieDetails(movieId) {
   console.log(url);
   const response = await axios.get(url);
 
-  console.log(response.data);
+  // console.log(response.data);
 
   renderMovieDetailsModal(response.data);
 }
