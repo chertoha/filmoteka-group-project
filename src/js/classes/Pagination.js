@@ -6,7 +6,6 @@ export default class Pagination {
   #page;
   #totalItems;
   #perPage;
-
   constructor(container) {
     this.refs = {
       container: container,
@@ -17,6 +16,15 @@ export default class Pagination {
     this.#page = 1;
 
     this.refs.container.addEventListener('click', this.#onPageClick.bind(this));
+
+    window
+      .matchMedia('(min-width: 480px)')
+      .addEventListener('change', this.#onViewportChange.bind(this));
+  }
+
+  #onViewportChange() {
+    // console.log(window.innerWidth);
+    this.render();
   }
 
   #onPageClick(e) {
@@ -68,6 +76,13 @@ export default class Pagination {
     let string = '';
     const end = lastPageNumber;
 
+    const windowInnerWidth = window.innerWidth;
+    // console.log();
+    let nearbyQtyPages = 2;
+    if (windowInnerWidth < 480) {
+      nearbyQtyPages = 1;
+    }
+
     if (currentPage > 4) {
       string += `<a class="pag__page pag__btn pag__btn--prev" href="#" data-value="${
         currentPage - 1
@@ -80,21 +95,26 @@ export default class Pagination {
         continue;
       }
 
-      if (i > 1 && i < currentPage - 2) {
+      if (i > 1 && i < currentPage - nearbyQtyPages) {
         string += `<a class="pag__page pag__page--dots pag__btn--dots-prev" href="#" data-value="${
           currentPage - 4
         }"></a>`;
 
-        i = currentPage - 3;
+        i = currentPage - nearbyQtyPages - 1;
         continue;
       }
 
-      if (i > currentPage + 2 && i <= end - 1) {
+      if (i > currentPage + nearbyQtyPages && i <= end - 1) {
         string += `<a class="pag__page pag__page--dots pag__btn--dots-next" href="#" data-value="${
           currentPage + 4
         }"></a>`;
 
         i = end - 1;
+        continue;
+      }
+
+      if (i === end && end > 9999) {
+        string += `<a class="pag__page" href="#" data-value="${i}">Last page</a>`;
         continue;
       }
 
