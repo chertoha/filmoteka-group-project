@@ -1,5 +1,5 @@
 const refs = {
-  closeModalBtn: document.querySelector('[data-question-form-modal-close]'),
+  closeModalBtn: document.querySelector('[data-modal-close]'),
   modal: document.querySelector('[data-modal]'),
 };
 
