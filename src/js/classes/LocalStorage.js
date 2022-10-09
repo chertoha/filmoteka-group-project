@@ -28,6 +28,7 @@ export default class LocalStorage {
     this.setFilms(currentRemoveKey, currentArray);
   }
   setFilms(keyName, value) {
+    // localStorage.removeItem(keyName);
     localStorage.setItem(keyName, JSON.stringify(value));
   }
 
