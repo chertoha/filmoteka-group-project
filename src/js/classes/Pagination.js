@@ -1,30 +1,30 @@
 // import paginationTemplate from '../../templates/pagination.hbs';
 
 export default class Pagination {
-  // #pageChangeHadler;
-  // #handler;
   #handlerBeforeMove;
   #handlerAfterMove;
   #page;
   #totalItems;
   #perPage;
-
   constructor(container) {
     this.refs = {
       container: container,
-      // prevBtn: document.querySelector('.pag__btn--prev'),
-      // nextBtn: document.querySelector('.pag__btn--next'),
-      // prevDots: document.querySelector('.pag__btn--dots-prev'),
-      // nextDots: document.querySelector('.pag__btn--dots-next'),
     };
 
     this.#totalItems = 1;
     this.#perPage = 20;
     this.#page = 1;
 
-    // this.#handler = null;
-
     this.refs.container.addEventListener('click', this.#onPageClick.bind(this));
+
+    window
+      .matchMedia('(min-width: 480px)')
+      .addEventListener('change', this.#onViewportChange.bind(this));
+  }
+
+  #onViewportChange() {
+    // console.log(window.innerWidth);
+    this.render();
   }
 
   #onPageClick(e) {
@@ -33,10 +33,6 @@ export default class Pagination {
     if (!e.target.classList.contains('pag__page')) {
       return;
     }
-
-    // if (!this.#handler) {
-    //   return;
-    // }
 
     const newPage = e.target.dataset.value;
     if (this.#page == newPage) {
@@ -54,17 +50,7 @@ export default class Pagination {
     if (this.#handlerAfterMove) {
       this.#handlerAfterMove({ page: this.#page });
     }
-
-    // if (this.#handler) {
-    //   this.#handler({ page: this.#page });
-    // }
-    // this.#handler({ page: this.#page });
   }
-
-  // pageChangeHandler(handler) {
-  //   //Throw error if not function here
-  //   this.#handler = handler;
-  // }
 
   on(type, handler) {
     if (type === 'beforemove') {
@@ -90,6 +76,13 @@ export default class Pagination {
     let string = '';
     const end = lastPageNumber;
 
+    const windowInnerWidth = window.innerWidth;
+    // console.log();
+    let nearbyQtyPages = 2;
+    if (windowInnerWidth < 480) {
+      nearbyQtyPages = 1;
+    }
+
     if (currentPage > 4) {
       string += `<a class="pag__page pag__btn pag__btn--prev" href="#" data-value="${
         currentPage - 1
@@ -102,21 +95,26 @@ export default class Pagination {
         continue;
       }
 
-      if (i > 1 && i < currentPage - 2) {
+      if (i > 1 && i < currentPage - nearbyQtyPages) {
         string += `<a class="pag__page pag__page--dots pag__btn--dots-prev" href="#" data-value="${
           currentPage - 4
         }"></a>`;
 
-        i = currentPage - 3;
+        i = currentPage - nearbyQtyPages - 1;
         continue;
       }
 
-      if (i > currentPage + 2 && i <= end - 1) {
+      if (i > currentPage + nearbyQtyPages && i <= end - 1) {
         string += `<a class="pag__page pag__page--dots pag__btn--dots-next" href="#" data-value="${
           currentPage + 4
         }"></a>`;
 
         i = end - 1;
+        continue;
+      }
+
+      if (i === end && end > 9999) {
+        string += `<a class="pag__page" href="#" data-value="${i}">Last page</a>`;
         continue;
       }
 
@@ -129,13 +127,13 @@ export default class Pagination {
       }"></a>`;
     }
 
-    // console.log(string);
     this.refs.container.innerHTML = string;
-    // this.refs.container.innerHTML = paginationTemplate(data);
   }
 
   goToPage(page) {
-    //Check if page is integer Number here,
+    if (!Number.isInteger(Number(page))) {
+      throw new Error('Page must be integer!');
+    }
 
     if (page < 1 || page > this.getLastPageNumber()) {
       return;
@@ -154,12 +152,4 @@ export default class Pagination {
   getLastPageNumber() {
     return Math.ceil(Number(this.#totalItems) / Number(this.#perPage));
   }
-
-  // #checkPaginationRender(page) {
-  //   const { prevBtn, nextBtn, prevDots, nextDots } = this.refs;
-
-  //   console.log(prevDots);
-  //   if (page === 4) {
-  //   }
-  // }
 }
