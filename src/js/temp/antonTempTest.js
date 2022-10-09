@@ -35,6 +35,7 @@ const checkMovies = new CheckMovies();
 // testApiPopMovies();
 
 //Test API----------------------------------------------------------
+
 // async function testApiPopMovies(page = 1) {
 //   try {
 //     //Get genres
@@ -68,6 +69,7 @@ const checkMovies = new CheckMovies();
 //     console.error(error);
 //   }
 // }
+
 //Test API----------------------------------------------------------
 
 // function tempRenderCards(movies) {
@@ -102,7 +104,7 @@ async function testApiMovieDetails(movieId) {
   console.log(url);
   const response = await axios.get(url);
 
-  console.log(response.data);
+  // console.log(response.data);
 
   renderMovieDetailsModal(response.data);
 }

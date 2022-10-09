@@ -2,7 +2,7 @@ import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
 export default class ModalBtn {
-  onModalBtnClick(btn, film) {
+  onModalBtnClick(btn) {
     if (
       !btn.classList.contains('queue-js') &&
       !btn.classList.contains('watch-js')
@@ -20,6 +20,6 @@ export default class ModalBtn {
       currentArray = localStorageFilms.watchedItems;
       currentKey = 'watch';
     }
-    localStorageFilms.addItemToKeyStorage(currentKey, currentArray, film);
+    localStorageFilms.addItemToKeyStorage(currentKey, currentArray);
   }
 }

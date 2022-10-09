@@ -3,28 +3,28 @@ export default class LocalStorage {
     this.watchedItems = [];
     this.queueItems = [];
     this.itemsOnCurrentPage = [];
+    this.currentFilm = null;
   }
-  addItemToKeyStorage(keyName, dataName, film) {
-    // console.log('message');
+  addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
-    dataName.push(film);
+    dataName.push(this.currentFilm);
     this.setFilms(keyName, dataName);
   }
   getItemFromKeyStorage(key) {
     return localStorage.getItem(JSON.parse(key));
   }
-  removeItemFromKeyStorage(btn, filmRemove) {
+  removeItemFromKeyStorage(btn) {
     let currentArray = null;
     let currentRemoveKey = null;
-    if (btn.classList.contain('remove-watch-js')) {
+    if (btn.classList.contains('remove-watch-js')) {
       currentArray = this.watchedItems;
       currentRemoveKey = 'watch';
     }
-    if (btn.classList.contain('remove-queue-js')) {
+    if (btn.classList.contains('remove-queue-js')) {
       currentArray = this.queueItems;
       currentRemoveKey = 'queue';
     }
-    currentArray = currentArray.filter(film => film.id !== filmRemove.id);
+    currentArray = currentArray.filter(film => film.id !== this.currentFilm.id);
     this.setFilms(currentRemoveKey, currentArray);
   }
   setFilms(keyName, value) {
