@@ -1,42 +1,83 @@
-{{#each movie}}
-  <img
+  {{!-- <img
     class='finfo-moviecard__img'
-    src='./images/poster_1-400x600.3f7ae794.jpg'
-    alt='image movie'
+    src='{{poster_path}}'
+    alt='{{title}}'
     width='150'
     height='250'
     loading='lazy'
   />
   <div class='finfo-moviecard__container'>
-    <h2 class='finfo-moviecard__name'>A FISTFUL OF LEAD</h2>
+    <h2 class='finfo-moviecard__name'>{{original_title}}</h2>
     <table class='finfo-moviecard__info'>
       <tr class='finfo-moviecard__table'>
         <th class='finfo-moviecard__table-title'>Vote / Votes</th>
         <td class='finfo-moviecard__table-description'>
-          <span>7.3</span>
-          / 1260</td>
+          <span>{{toFixed vote_average 1}}</span>
+          / {{vote_count}}</td>
       </tr>
       <tr class='finfo-moviecard__table'>
         <td class='finfo-moviecard__table-title'>Popularity</td>
-        <td class='finfo-moviecard__table-description'>100.2</td>
+        <td class='finfo-moviecard__table-description'>{{toFixed popularity 1}}</td>
       </tr>
       <tr class='finfo-moviecard__table'>
         <td class='finfo-moviecard__table-title'>Original Title</td>
-        <td class='finfo-moviecard__table-description'>A FISTFUL OF LEAD</td>
+        <td class='finfo-moviecard__table-description'>{{original_title
+}}</td>
       </tr>
       <tr class='finfo-moviecard__table'>
         <td class='finfo-moviecard__table-title'>Genre</td>
-        <td class='finfo-moviecard__table-description'>Western</td>
+        <td class='finfo-moviecard__table-description'>
+
+            {{#each genres}}
+            {{name}}
+            {{/each}}
+
+        </td>
       </tr>
     </table>
     <p class='finfo-moviecard__text-about'>ABOUT</p>
-    <p class='finfo-moviecard__text'>Four of the West’s most infamous outlaws
-      assemble to steal a huge stash of gold from the most corrupt settlement of
-      the gold rush towns. But not all goes to plan one is killed and the other
-      three escapes with bags of gold hide out in the abandoned gold mine where
-      they happen across another gang of three – who themselves were planning to
-      hit the very same bank! As tensions rise, things go from bad to worse as
-      they realise the bags of gold are filled with lead... they’ve been double
-      crossed – but by who and how?</p>
+    <p class='finfo-moviecard__text'>{{overview}}</p>
+  </div> --}}
+
+
+<div class='finfo-moviecard'>
+  <img class="finfo-moviecard__img" src="{{poster_path}}" alt="{{title}}" width="150"
+    height="250" loading="lazy">
+  <div class="finfo-moviecard__container">
+    <h2 class="finfo-moviecard__name">{{title}}</h2>
+    <table class="finfo-moviecard__info">
+
+      <tr class="finfo-moviecard__table">
+        <td class="finfo-moviecard__table-title">Vote / Votes</td>
+        <td class="finfo-moviecard__table-description"> <span class="finfo-moviecard__table-accent">{{toFixed vote_average 1}}</span> / {{vote_count}}
+        </td>
+      </tr>
+      <tr class="finfo-moviecard__table">
+        <td class="finfo-moviecard__table-title">Popularity</td>
+        <td class="finfo-moviecard__table-description">{{toFixed popularity 1}}</td>
+      </tr>
+      <tr class="finfo-moviecard__table">
+        <td class="finfo-moviecard__table-title">Original Title</td>
+        <td class="finfo-moviecard__table-description">{{original_title}}</td>
+      </tr>
+      <tr class="finfo-moviecard__table">
+        <td class="finfo-moviecard__table-title">Genre</td>
+        <td class="finfo-moviecard__table-description">
+
+          {{#each genres}}
+          {{name}}
+          {{/each}}
+
+        </td>
+      </tr>
+
+    </table>
+    <p class="finfo-moviecard__text-about">ABOUT</p>
+    <p class="finfo-moviecard__text">{{overview}}</p>
   </div>
-{{/each}}
+</div>
+<div>
+  <button class="button button--light-mode watch-js" type="button" data-movie-id="{{id}}">ADD TO WATCHED</button>
+  <button class="button button--light-mode queue-js" type="button" data-movie-id="{{id}}">ADD TO QUEUE</button>
+</div>
+</div>

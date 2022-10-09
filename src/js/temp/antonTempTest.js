@@ -1,7 +1,8 @@
 //Anton's temporary code
 const axios = require('axios').default;
-import '../utils/handlebars-helpers';
+// import '../utils/handlebars-helpers';
 import movieCardTemplate from '../../templates/movieCard.hbs';
+import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
 
 //Pagination init---------------------------------------------
 import Pagination from '../classes/Pagination';
@@ -10,7 +11,7 @@ const pagination = new Pagination(container);
 pagination.on('aftermove', event => {
   console.log('page after move:', event.page);
   //here could be your code - api fetch movie with chosern page
-  testMovieCardsTemplate(event.page);
+  testApiPopMovies(event.page);
 });
 pagination.on('beforemove', event => {
   console.log('page before move:', event.page);
@@ -21,17 +22,25 @@ pagination.on('beforemove', event => {
 const API_KEY_TEST = '1936ce94882661ecfd75d2c22e8905aa';
 const url_trendings = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY_TEST}&language=en-US`;
 const url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY_TEST}`;
+const url_movie_details = `https://api.themoviedb.org/3/movie`;
+
+const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+
+// const GENRES_TEMP = 'genres_temp';
 //--Variables-------------------------------------------------------
 
-testMovieCardsTemplate();
+testApiPopMovies();
 
 //Test API----------------------------------------------------------
-async function testMovieCardsTemplate(page = 1) {
+async function testApiPopMovies(page = 1) {
   try {
     //Get genres
     const response = await axios.get(url_genres);
     const genres = response.data.genres;
     // console.log(genres);
+
+    //Add genres to temp LocalStorage
+    // localStorage.setItem(GENRES_TEMP, JSON.stringify(genres));
 
     //Get movies list
     const trendings = await axios.get(url_trendings + '&page=' + page);
@@ -66,15 +75,7 @@ function tempRenderCards(movies) {
 
 function moviesDataUpdate(genres, movies) {
   movies.forEach(movie => {
-    //Movies genres check
-    movie.genres = [];
-    for (let i = 0; i < movie.genre_ids.length; i++) {
-      if (i === 3) {
-        movie.genres[i - 1] = 'Others';
-        break;
-      }
-      movie.genres.push(getGenreNameById(genres, movie.genre_ids[i]));
-    }
+    checkGenres(movie, genres, 3);
 
     //Year check
     if (movie.release_date) {
@@ -82,26 +83,75 @@ function moviesDataUpdate(genres, movies) {
     }
 
     //Images check
-    if (movie.poster_path && movie.poster_path !== '') {
-      const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
-      movie.poster_path = imageBaseUrl + movie.poster_path;
-    } else {
-      const imgUrl = new URL(
-        '../../images/movie-card-plug.jpg',
-        import.meta.url
-      );
-      movie.poster_path = imgUrl;
-    }
-
-    //Check name
-
-    if (!movie.original_title) {
-      console.log('name', movie.id);
-    }
+    checkMoviePoster(movie);
   });
+}
+
+function checkGenres(movie, genres, maxGenres = 3) {
+  movie.genres = [];
+  for (let i = 0; i < movie.genre_ids.length; i++) {
+    if (i === maxGenres) {
+      movie.genres[i - 1] = 'Others';
+      break;
+    }
+    movie.genres.push(getGenreNameById(genres, movie.genre_ids[i]));
+  }
+}
+
+function checkMoviePoster(movie) {
+  if (movie.poster_path && movie.poster_path !== '') {
+    movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
+  } else {
+    const imgUrl = new URL('../../images/movie-card-plug.jpg', import.meta.url);
+    movie.poster_path = imgUrl;
+  }
 }
 
 function getGenreNameById(genres, genreId) {
   return genres.find(genre => genre.id === genreId).name;
 }
 ////////////////////=============IMPORTANT CODE================/////////////////////////////
+
+////////////////////============Modal window movie card==============/////////////////////
+const modalMovieDetails = document.querySelector('.backdrop');
+const galleryRef = document.querySelector('.gallery');
+
+galleryRef.addEventListener('click', onGalleryClickTest);
+
+function onGalleryClickTest(e) {
+  e.preventDefault();
+
+  const cardRef = e.target.closest('.movie-card__link');
+  if (!cardRef) {
+    return;
+  }
+
+  const movieId = cardRef.dataset.movieId;
+
+  testApiMovieDetails(movieId);
+}
+
+async function testApiMovieDetails(movieId) {
+  const url = url_movie_details + '/' + movieId + '?api_key=' + API_KEY_TEST;
+  console.log(url);
+  const response = await axios.get(url);
+
+  console.log(response.data);
+
+  renderMovieDetailsModal(response.data);
+}
+
+function renderMovieDetailsModal(movie) {
+  modalMovieDetails.classList.toggle('is-hidden', false);
+
+  //Check Poster Image
+  checkMoviePoster(movie);
+
+  //Check genres
+  // const genres = localStorage.getItem(GENRES_TEMP);
+  // checkGenres(movie, genres, 3);
+
+  const modalContent = modalMovieDetails.querySelector('.finfo-moviecard');
+  modalContent.innerHTML = modalMovieDetailsTemplate(movie);
+}
+////////////////////============Modal window movie card==============/////////////////////
