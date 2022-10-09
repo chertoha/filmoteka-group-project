@@ -6,7 +6,7 @@ export default class GalleryHandler {
   }
 
   onMovieCardClick = event => {
-    if (event.target.hasAttribute('data-movie-id')) event.preventDefault();
+    event.preventDefault();
 
     if (
       event.target.hasAttribute('data-movie-id') ||

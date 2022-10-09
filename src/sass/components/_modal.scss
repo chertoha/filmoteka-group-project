@@ -1,10 +1,16 @@
 .backdrop {
+  display: flex;
   position: fixed;
-
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 0;
 
   background: rgba(44, 42, 42, 0.25);
 
@@ -15,6 +21,24 @@
   transition: opacity 250ms var(--transition-timing),
     visibility 250ms var(--transition-timing);
   overflow-y: scroll;
+
+  // @include mq('mobile') {
+  //   max-width: 480px;
+  // }
+
+  @include mq('tablet') {
+    // max-width: 768px;
+    padding-top: 219px;
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  @include mq('desktop') {
+    // max-width: 1280px;
+    padding-top: 150px;
+    padding-right: 237px;
+    padding-left: 237px;
+  }
 }
 
 .backdrop.is-hidden {
@@ -25,22 +49,24 @@
 
 .modal {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // align-items: center;
+  // justify-content: center;
   padding: 48px 20px 40px 20px;
-  width: 100%;
-  max-width: 940px;
+  // max-width: 100%;
   background-color: var(--white);
+
+  @include mq('mobile-only') {
+    max-width: 280px;
+  }
 
   @include mq('tablet') {
     padding: 40px 72px 40px 36px;
-    max-width: 552px;
+    max-width: 704px;
   }
 
   @include mq('desktop') {
     padding: 40px 12px;
-    max-width: 558px;
+    max-width: 806px;
   }
 }
 
