@@ -4,7 +4,7 @@ import '../utils/handlebars-helpers';
 import movieCardTemplate from '../../templates/movieCard.hbs';
 
 //Pagination init---------------------------------------------
-import Pagination from '../classes/pagination';
+import Pagination from '../classes/Pagination';
 const container = document.querySelector('.pag');
 const pagination = new Pagination(container);
 pagination.on('aftermove', event => {
