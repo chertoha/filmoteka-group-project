@@ -13,3 +13,5 @@ const teamModal = new Modal({
 
 movieCardModal.addHandler();
 teamModal.addHandler();
+
+export { movieCardModal };
