@@ -14,20 +14,20 @@ export default class LocalStorage {
   removeItemFromKeyStorage(btn, filmRemove) {
     let currentArray = null;
     let currentRemoveKey = null;
-    if (btn.classList.contain('remove-watch-js')) {
+    if (btn.classList.contains('remove-watch-js')) {
       currentArray = this.watchedItems;
       currentRemoveKey = 'watch';
     }
-    if (btn.classList.contain('remove-queue-js')) {
+    if (btn.classList.contains('remove-queue-js')) {
       currentArray = this.queueItems;
       currentRemoveKey = 'queue';
     }
       currentArray = currentArray.filter(film => film.id !== filmRemove.id);
       this.setFilms(currentRemoveKey, currentArray);
   }
-  addItemsOnCurrentPage(keyName, films) {
+  addItemsOnCurrentPage(films) {
     this.itemsOnCurrentPage = [...films];
-    this.setFilms(keyName, this.itemsOnCurrentPage);
+    this.setFilms('filmsOnCurrentPage', this.itemsOnCurrentPage);
   } 
   setFilms(keyName, value) {
     localStorage.setItem(keyName, JSON.stringify(value));
