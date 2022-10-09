@@ -6,9 +6,7 @@ export default class ApiService {
   #BASE_GENRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
   #BASE_TRENDS_URL = 'https://api.themoviedb.org/3/trending/movie/day';
   #BASE_BY_NAME_URL = 'https://api.themoviedb.org/3/search/movie';
-  #popularMoviesSearchParams = {
-    params: { api_key: this.#API_KEY, page: 1 },
-  };
+ 
   #moviesByNameSearchParams = {
     params: {
       api_key: this.#API_KEY,
@@ -31,7 +29,7 @@ export default class ApiService {
         this.#genresSearchParams
       );
       const genres = response.data.genres;
-      console.log(genres);
+      return genres;
       // for (const genre of genres) {
       //   console.log(genre.id);
       //   console.log(genre.name);
@@ -42,11 +40,14 @@ export default class ApiService {
     }
   }
 
-  async fetchTrendingMovies() {
+  async fetchTrendingMovies(page =1) {
+    const  popularMoviesSearchParams = {
+      params: { api_key: this.#API_KEY, page },
+    };
     try {
       const response = await axios.get(
         this.#BASE_TRENDS_URL,
-        this.#popularMoviesSearchParams
+        popularMoviesSearchParams
       );
       return response;
     } catch (error) {
@@ -66,14 +67,15 @@ export default class ApiService {
     }
   }
 
-  async getPopularMovies() {
-    try {
-      const response = await this.fetchTrendingMovies();
-      console.log(response.data.results);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async getPopularMovies() {
+  //   try {
+  //     const response = await this.fetchTrendingMovies();
+  //     return response.data;
+  //   }
+  //   catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   async getMoviesByName(query) {
     if (query) {
@@ -83,4 +85,5 @@ export default class ApiService {
     const response = await this.fetchMoviesByName();
     return response.data.results;
   }
+
 }
