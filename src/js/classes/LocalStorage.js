@@ -4,7 +4,8 @@ export default class LocalStorage {
     this.queueItems = [];
     this.itemsOnCurrentPage = [];
   }
-  addItemToKeyStorage(keyName, dataName, film) {//dataName- массив, куда нужно пушить объект с фильмом
+  addItemToKeyStorage(keyName, dataName, film) {
+    //dataName- массив, куда нужно пушить объект с фильмом
     dataName.push(film);
     this.setFilms(keyName, dataName);
   }
@@ -22,14 +23,17 @@ export default class LocalStorage {
       currentArray = this.queueItems;
       currentRemoveKey = 'queue';
     }
-      currentArray = currentArray.filter(film => film.id !== filmRemove.id);
-      this.setFilms(currentRemoveKey, currentArray);
+    currentArray = currentArray.filter(film => film.id !== filmRemove.id);
+    this.setFilms(currentRemoveKey, currentArray);
   }
-  addItemsOnCurrentPage(films) {
-    this.itemsOnCurrentPage = [...films];
-    this.setFilms('filmsOnCurrentPage', this.itemsOnCurrentPage);
-  } 
   setFilms(keyName, value) {
+    localStorage.removeItem(keyName);
     localStorage.setItem(keyName, JSON.stringify(value));
+  }
+
+  addItemsOnCurrentPage(keyName, films) {
+    console.log('is in addStorage');
+    this.itemsOnCurrentPage = [...films];
+    this.setFilms(keyName, this.itemsOnCurrentPage);
   }
 }

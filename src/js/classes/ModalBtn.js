@@ -3,6 +3,9 @@ export const localStorageFilms = new LocalStorage();
 
 export default class ModalBtn {
   onModalBtnClick(btn, film) {
+    if (!btn.classList.contains('queue-js') || !btn.classList.contains('watch-js')) {
+      return;
+    }
     let currentArray = null;
     let currentKey = null;
     if (btn.classList.contains('queue-js')) {
