@@ -1,6 +1,5 @@
 import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
-export let currentFilm = null;
 
 export default class ModalBtn {
   onModalBtnClick(btn) {
@@ -21,6 +20,6 @@ export default class ModalBtn {
       currentArray = localStorageFilms.watchedItems;
       currentKey = 'watch';
     }
-    localStorageFilms.addItemToKeyStorage(currentKey, currentArray, currentFilm);
+    localStorageFilms.addItemToKeyStorage(currentKey, currentArray);
   }
 }
