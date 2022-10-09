@@ -1,4 +1,4 @@
-// import Pagination from './classes/pagination';
+// import Pagination from './classes/Pagination';
 import ApiService from './classes/ApiService';
 
 import Spinner from './classes/spinner';
