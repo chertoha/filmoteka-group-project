@@ -19,6 +19,15 @@
 .movie-card__image {
   display: block;
   border-radius: 5px;
+
+  @include mq('tablet') {
+    height: 455px;
+  }
+
+  @include mq('desktop') {
+    height: 574px;
+  }
+
 }
 
 .movie-card__meta {
@@ -65,8 +74,7 @@
   }
 }
 
-.movie-card__year {
-}
+.movie-card__year {}
 
 .rating-label {
   display: inline-flex;

@@ -4,9 +4,9 @@
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
         <img
           class='movie-card__image'
-          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-          alt='{{original__title}}'
-          width='500'
+          src='{{poster_path}}'
+          alt='{{title}}'
+          {{!-- width='500' --}}
         />
         <div class='movie-card__meta'>
           <h2 class='movie-card__title'>{{original_title}}</h2>
@@ -20,7 +20,10 @@
             </span>
             {{! <span class="movie-card__genre">Drama, Action</span> | }}
             {{#if date}}
-              |
+               {{#if genres}} 
+                |
+                {{/if}}
+
               <span class='movie-card__year'>{{dateFormat date 'YYYY'}}</span>
             {{/if}}
           </p>
@@ -42,9 +45,9 @@
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
         <img
           class='movie-card__image'
-          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-          alt='{{original__title}}'
-          width='500'
+          src='{{poster_path}}'
+          alt='{{title}}'
+          {{!-- width='500' --}}
         />
         <div class='movie-card__meta'>
           <h2 class='movie-card__title'>{{original_title}}</h2>
