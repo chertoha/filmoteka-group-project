@@ -27,11 +27,12 @@ export default class GalleryHandler {
       );
       this.currentFilmOpened = itemToFind;
       console.log('itemToFind', this.currentFilmOpened);
+      // modalButtons.currentyOpenedMovie = this.currentFilmOpened;
 
       movieCardModal.openModal();
-      movieCardModal.refs.modal.addEventListener('click', event =>
-        modalButtons.onModalBtnClick(event.target, this.currentFilmOpened)
-      );
+      // movieCardModal.refs.modal.addEventListener('click', event =>
+      //   modalButtons.onModalBtnClick(event.target, this.currentFilmOpened)
+      // );
     }
   };
 }

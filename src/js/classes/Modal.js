@@ -22,6 +22,7 @@ export default class Modal {
     this.refs.modal.addEventListener('click', event =>
       this.onBackdropClick(event)
     );
+    // this.refs.modal.addEventListener('click', this.onModalBtnClick);
   }
 
   openModal() {
@@ -50,4 +51,10 @@ export default class Modal {
       closeModal();
     };
   }
+
+  // onModalBtnClick(event) {
+  //   console.log('event.target', event.target);
+  //   console.log('galleryHandler', galleryHandler);
+  //   return modalButtons.onModalBtnClick(event.target);
+  // }
 }
