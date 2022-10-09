@@ -5,7 +5,7 @@ export default class LocalStorage {
     this.itemsOnCurrentPage = [];
   }
   addItemToKeyStorage(keyName, dataName, film) {
-    console.log('message');
+    // console.log('message');
     //dataName- массив, куда нужно пушить объект с фильмом
     dataName.push(film);
     this.setFilms(keyName, dataName);
@@ -28,7 +28,7 @@ export default class LocalStorage {
     this.setFilms(currentRemoveKey, currentArray);
   }
   setFilms(keyName, value) {
-    // localStorage.removeItem(keyName);
+    localStorage.removeItem(keyName);
     localStorage.setItem(keyName, JSON.stringify(value));
   }
 
