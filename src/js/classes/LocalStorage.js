@@ -1,3 +1,6 @@
+import { currentFilm } from "./ModalBtn"; //импорт текущего фильма для метода remove
+
+
 export default class LocalStorage {
   constructor() {
     this.watchedItems = [];
@@ -5,7 +8,6 @@ export default class LocalStorage {
     this.itemsOnCurrentPage = [];
   }
   addItemToKeyStorage(keyName, dataName, film) {
-    // console.log('message');
     //dataName- массив, куда нужно пушить объект с фильмом
     dataName.push(film);
     this.setFilms(keyName, dataName);
@@ -13,18 +15,18 @@ export default class LocalStorage {
   getItemFromKeyStorage(key) {
     return localStorage.getItem(JSON.parse(key));
   }
-  removeItemFromKeyStorage(btn, filmRemove) {
+  removeItemFromKeyStorage(btn) {
     let currentArray = null;
     let currentRemoveKey = null;
-    if (btn.classList.contain('remove-watch-js')) {
+    if (btn.classList.contains('remove-watch-js')) {
       currentArray = this.watchedItems;
       currentRemoveKey = 'watch';
     }
-    if (btn.classList.contain('remove-queue-js')) {
+    if (btn.classList.contains('remove-queue-js')) {
       currentArray = this.queueItems;
       currentRemoveKey = 'queue';
     }
-    currentArray = currentArray.filter(film => film.id !== filmRemove.id);
+    currentArray = currentArray.filter(film => film.id !== currentFilm.id);
     this.setFilms(currentRemoveKey, currentArray);
   }
   setFilms(keyName, value) {
