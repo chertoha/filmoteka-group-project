@@ -6,6 +6,8 @@ import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
 
 import { localStorageFilms } from '../classes/ModalBtn';
 
+import CheckMovies from '../classes/CheckMovies';
+
 //Pagination init---------------------------------------------
 import Pagination from '../classes/Pagination';
 const container = document.querySelector('.pag');
@@ -26,10 +28,9 @@ const url_trendings = `https://api.themoviedb.org/3/trending/movie/week?api_key=
 const url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY_TEST}`;
 const url_movie_details = `https://api.themoviedb.org/3/movie`;
 
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
-
-// const GENRES_TEMP = 'genres_temp';
 //--Variables-------------------------------------------------------
+
+const checkMovies = new CheckMovies();
 
 testApiPopMovies();
 
@@ -51,7 +52,9 @@ async function testApiPopMovies(page = 1) {
     console.log(trendings.data);
 
     //Update movies genres_id with genres_name
-    moviesDataUpdate(genres, movies);
+    // moviesDataUpdate(genres, movies);
+
+    checkMovies.update(movies, genres);
 
     //Render template
     tempRenderCards(movies);
@@ -67,8 +70,6 @@ async function testApiPopMovies(page = 1) {
 }
 //Test API----------------------------------------------------------
 
-////////////////=============IMPORTANT CODE PART================/////////////////////////////
-
 function tempRenderCards(movies) {
   const container = document.querySelector('.gallery__list');
 
@@ -76,45 +77,6 @@ function tempRenderCards(movies) {
   //library = true if render library
   container.innerHTML = movieCardTemplate({ movies, library: true });
 }
-
-function moviesDataUpdate(genres, movies) {
-  movies.forEach(movie => {
-    checkGenres(movie, genres, 3);
-
-    //Year check
-    if (movie.release_date) {
-      movie.date = movie.release_date;
-    }
-
-    //Images check
-    checkMoviePoster(movie);
-  });
-}
-
-function checkGenres(movie, genres, maxGenres = 3) {
-  movie.genres = [];
-  for (let i = 0; i < movie.genre_ids.length; i++) {
-    if (i === maxGenres) {
-      movie.genres[i - 1] = 'Others';
-      break;
-    }
-    movie.genres.push(getGenreNameById(genres, movie.genre_ids[i]));
-  }
-}
-
-function checkMoviePoster(movie) {
-  if (movie.poster_path && movie.poster_path !== '') {
-    movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
-  } else {
-    const imgUrl = new URL('../../images/movie-card-plug.jpg', import.meta.url);
-    movie.poster_path = imgUrl;
-  }
-}
-
-function getGenreNameById(genres, genreId) {
-  return genres.find(genre => genre.id === genreId).name;
-}
-////////////////////=============IMPORTANT CODE================/////////////////////////////
 
 ////////////////////============Modal window movie card==============/////////////////////
 const modalMovieDetails = document.querySelector('.backdrop');
@@ -149,7 +111,8 @@ function renderMovieDetailsModal(movie) {
   modalMovieDetails.classList.toggle('is-hidden', false);
 
   //Check Poster Image
-  checkMoviePoster(movie);
+  // checkMoviePoster(movie);
+  checkMovies.checkMoviePoster(movie);
 
   //Check genres
   // const genres = localStorage.getItem(GENRES_TEMP);
