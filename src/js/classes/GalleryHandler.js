@@ -1,7 +1,11 @@
+import { localStorageFilms } from './ModalBtn';
+import { movieCardModal } from '../modal';
+import ModalBtn from './ModalBtn';
+const modalButtons = new ModalBtn();
+
 export default class GalleryHandler {
   galleryRef = document.querySelector('#gallery');
-
-  // this.currentOpenedModalFilm = записать открытый в модалке  фильм
+  currentFilmOpened = {};
 
   addGalleryHandler() {
     this.galleryRef.addEventListener('click', this.onMovieCardClick);
@@ -18,10 +22,16 @@ export default class GalleryHandler {
       const itemToFindId = event.target.closest('a').dataset.movieId;
       console.log('itemToFindId', itemToFindId);
 
-      // render картки по id із localStorage.itemsOnCurrentPage.
-      // modalBtn.modalBtnClick(currentBtnClass, film)
-      // передать modalBtn.modalBtnClick('.queue-js', this.currentOpenedModalFilm)
-      // modal.openModal();
+      const itemToFind = localStorageFilms.itemsOnCurrentPage.find(
+        item => item.id === +itemToFindId
+      );
+      this.currentFilmOpened = itemToFind;
+      console.log('itemToFind', this.currentFilmOpened);
+
+      movieCardModal.openModal();
+      movieCardModal.refs.modal.addEventListener('click', event =>
+        modalButtons.onModalBtnClick(event.target, this.currentFilmOpened)
+      );
     }
   };
 }

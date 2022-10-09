@@ -1,19 +1,27 @@
-import LocalStorage from "./LocalStorage";
+import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
 export default class ModalBtn {
   onModalBtnClick(btn, film) {
+    console.log('btn inside ModalBtn', btn);
+    console.log('inside', film);
+    if (
+      !btn.classList.contains('queue-js') ||
+      !btn.classList.contains('watch-js')
+    ) {
+      return;
+    }
     let currentArray = null;
     let currentKey = null;
-    if (btn.classList.contain('queue-js')) {
+    if (btn.classList.contains('queue-js')) {
       currentArray = localStorageFilms.queueItems;
       currentKey = 'queue';
     }
-    
-    if (btn.classList.contain('watch-js')) {
+
+    if (btn.classList.contains('watch-js')) {
       currentArray = localStorageFilms.watchedItems;
       currentKey = 'watch';
-  }
-  localStorageFilms.addItemToKeyStorage(currentKey, currentArray, film);
     }
+    localStorageFilms.addItemToKeyStorage(currentKey, currentArray, film);
+  }
 }

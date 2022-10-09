@@ -3,6 +3,8 @@ const axios = require('axios').default;
 import '../utils/handlebars-helpers';
 import movieCardTemplate from '../../templates/movieCard.hbs';
 
+import { localStorageFilms } from '../classes/ModalBtn';
+
 //Pagination init---------------------------------------------
 import Pagination from '../classes/pagination';
 const container = document.querySelector('.pag');
@@ -44,6 +46,8 @@ async function testMovieCardsTemplate(page = 1) {
 
     //Render template
     tempRenderCards(movies);
+
+    localStorageFilms.addItemsOnCurrentPage('itemsOnCurrentPage', movies);
 
     //Render Pagination
     pagination.updateTotalItems(totalMovies);
