@@ -9,17 +9,17 @@ import { localStorageFilms } from '../classes/ModalBtn';
 import CheckMovies from '../classes/CheckMovies';
 
 //Pagination init---------------------------------------------
-import Pagination from '../classes/Pagination';
-const container = document.querySelector('.pag');
-const pagination = new Pagination(container);
-pagination.on('aftermove', event => {
-  console.log('page after move:', event.page);
-  //here could be your code - api fetch movie with chosern page
-  testApiPopMovies(event.page);
-});
-pagination.on('beforemove', event => {
-  console.log('page before move:', event.page);
-});
+// import Pagination from '../classes/Pagination';
+// const container = document.querySelector('.pag');
+// const pagination = new Pagination(container);
+// pagination.on('aftermove', event => {
+//   console.log('page after move:', event.page);
+//   //here could be your code - api fetch movie with chosern page
+//   testApiPopMovies(event.page);
+// });
+// pagination.on('beforemove', event => {
+//   console.log('page before move:', event.page);
+// });
 //Pagination init---------------------------------------------
 
 //--Variables-------------------------------------------------------
@@ -32,46 +32,53 @@ const url_movie_details = `https://api.themoviedb.org/3/movie`;
 
 const checkMovies = new CheckMovies();
 
-testApiPopMovies();
+// testApiPopMovies();
 
 //Test API----------------------------------------------------------
-async function testApiPopMovies(page = 1) {
-  try {
-    //Get genres
-    const response = await axios.get(url_genres);
-    const genres = response.data.genres;
-    // console.log(genres);
 
-    //Get movies list
-    const trendings = await axios.get(url_trendings + '&page=' + page);
-    const movies = trendings.data.results;
-    const totalMovies = trendings.data.total_results;
-    console.log(trendings.data);
+// async function testApiPopMovies(page = 1) {
+//   try {
+//     //Get genres
+//     const response = await axios.get(url_genres);
+//     const genres = response.data.genres;
+//     // console.log(genres);
 
-    //Update movies genres_id with genres_name
-    checkMovies.update(movies, genres);
+//     //Add genres to temp LocalStorage
+//     // localStorage.setItem(GENRES_TEMP, JSON.stringify(genres));
 
-    //Render template
-    tempRenderCards(movies);
+//     //Get movies list
+//     const trendings = await axios.get(url_trendings + '&page=' + page);
+//     const movies = trendings.data.results;
+//     const totalMovies = trendings.data.total_results;
+//     console.log(trendings.data);
 
-    localStorageFilms.addItemsOnCurrentPage('itemsOnCurrentPage', movies);
+//     //Update movies genres_id with genres_name
+//     // moviesDataUpdate(genres, movies);
 
-    //Render Pagination
-    pagination.updateTotalItems(totalMovies);
-    pagination.render();
-  } catch (error) {
-    console.error(error);
-  }
-}
+//     checkMovies.update(movies, genres);
+
+//     //Render template
+//     tempRenderCards(movies);
+
+//     localStorageFilms.addItemsOnCurrentPage('itemsOnCurrentPage', movies);
+
+//     //Render Pagination
+//     pagination.updateTotalItems(totalMovies);
+//     pagination.render();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
 //Test API----------------------------------------------------------
 
-function tempRenderCards(movies) {
-  const container = document.querySelector('.gallery__list');
+// function tempRenderCards(movies) {
+//   const container = document.querySelector('.gallery__list');
 
-  //library = false if render gallery
-  //library = true if render library
-  container.innerHTML = movieCardTemplate({ movies, library: true });
-}
+//   //library = false if render gallery
+//   //library = true if render library
+//   container.innerHTML = movieCardTemplate({ movies, library: true });
+// }
 
 ////////////////////============Modal window movie card==============/////////////////////
 const modalMovieDetails = document.querySelector('.backdrop');
