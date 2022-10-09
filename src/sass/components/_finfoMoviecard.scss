@@ -25,12 +25,6 @@
   }
 }
 
-.finfo-moviecard__container {
-  @include mq('mobile-only') {
-    margin-bottom: 20px;
-  }
-}
-
 .finfo-moviecard__name {
   margin-bottom: 20px;
   font-weight: 500;
@@ -93,6 +87,8 @@
 }
 
 .finfo-moviecard__text {
+  margin-bottom: 20px;
+
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
