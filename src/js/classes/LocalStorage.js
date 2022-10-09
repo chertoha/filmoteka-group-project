@@ -33,7 +33,6 @@ export default class LocalStorage {
   }
 
   addItemsOnCurrentPage(keyName, films) {
-    console.log('is in addStorage');
     this.itemsOnCurrentPage = [...films];
     this.setFilms(keyName, this.itemsOnCurrentPage);
   }

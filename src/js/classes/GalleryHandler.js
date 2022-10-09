@@ -18,9 +18,9 @@ export default class GalleryHandler {
       event.target?.hasAttribute('data-movie-id') ||
       event.target?.closest('a')?.hasAttribute('data-movie-id')
     ) {
-      console.log(event.target.closest('a'));
+      // console.log(event.target.closest('a'));
       const itemToFindId = event.target.closest('a').dataset.movieId;
-      console.log('itemToFindId', itemToFindId);
+      // console.log('itemToFindId', itemToFindId);
 
       const itemToFind = localStorageFilms.itemsOnCurrentPage.find(
         item => item.id === +itemToFindId
