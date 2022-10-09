@@ -20,3 +20,5 @@ import './js/modal';
 import './js/searchingForm';
 import './js/gallery';
 import './js/teamAccordion';
+
+import './js/modal-button';
