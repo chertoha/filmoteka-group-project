@@ -12,13 +12,16 @@
 @import './components/button';
 @import './components/logo';
 @import './components/movieCard';
+@import './components/modal.scss';
+@import './components/finfoMoviecard';
 @import './components/spinner';
 @import './components/pagination';
 @import './components/team-card';
 @import './components/socials';
-@import './components/modal/backdrop';
-@import './components/modal/modal';
-@import './components/modal/btn-close';
+@import './components/team-modal/backdrop';
+@import './components/team-modal/modal';
+@import './components/team-modal/btn-close';
+@import './components/button-up';
 
 @import './layouts/header';
 @import './layouts/footer';

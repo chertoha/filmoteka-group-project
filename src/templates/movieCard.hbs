@@ -1,73 +1,74 @@
 {{#if library}}
-{{#each movies}}
-  <li class='gallery__item movie-card'>
-    <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
-      <img
-        class='movie-card__image'
-        src='https://image.tmdb.org/t/p/w500{{poster_path}}'
-        alt='{{original__title}}'
-        width='500'
-      />
-      <div class='movie-card__meta'>
-        <h2 class='movie-card__title'>{{original_title}}</h2>
-        <p class='movie-card__description'>
-          <span>
-            {{#each genres}}
-              <span class='movie-card__genre'>
-                {{this}}
-              </span>
-            {{/each}}
-          </span>
-          {{! <span class="movie-card__genre">Drama, Action</span> | }}
-          {{#if date}}
-          |
-          <span class='movie-card__year'>{{dateFormat
-            date
-            'YYYY'
-            }}</span>
-          {{/if}}
-        </p>       
-          
-            <p class="rating-label rating-label--accent">{{toFixed vote_average 1}}</p>
-        
-      </div>
-    </a>
-  </li>
-{{/each}}
+  {{#each movies}}
+    <li class='gallery__item movie-card'>
+      <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
+        <img
+          class='movie-card__image'
+          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+          alt='{{original__title}}'
+          width='500'
+        />
+        <div class='movie-card__meta'>
+          <h2 class='movie-card__title'>{{original_title}}</h2>
+          <p class='movie-card__description'>
+            <span>
+              {{#each genres}}
+                <span class='movie-card__genre'>
+                  {{this}}
+                </span>
+              {{/each}}
+            </span>
+            {{! <span class="movie-card__genre">Drama, Action</span> | }}
+            {{#if date}}
+              |
+              <span class='movie-card__year'>{{dateFormat date 'YYYY'}}</span>
+            {{/if}}
+          </p>
+
+          <p class='rating-label rating-label--accent'>{{toFixed
+              vote_average
+              1
+            }}</p>
+
+        </div>
+      </a>
+    </li>
+  {{/each}}
 {{/if}}
 
 {{#unless library}}
-{{#each movies}}
-<li class='gallery__item movie-card'>
-  <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
-    <img class='movie-card__image' src='https://image.tmdb.org/t/p/w500{{poster_path}}' alt='{{original__title}}'
-      width='500' />
-    <div class='movie-card__meta'>
-      <h2 class='movie-card__title'>{{original_title}}</h2>
-      <p class='movie-card__description'>
-        <span>
-          {{#each genres}}
-          <span class='movie-card__genre'>
-            {{this}}
-          </span>
-          {{/each}}
-        </span>
-        {{! <span class="movie-card__genre">Drama, Action</span> | }}
+  {{#each movies}}
+    <li class='gallery__item movie-card'>
+      <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
+        <img
+          class='movie-card__image'
+          src='https://image.tmdb.org/t/p/w500{{poster_path}}'
+          alt='{{original__title}}'
+          width='500'
+        />
+        <div class='movie-card__meta'>
+          <h2 class='movie-card__title'>{{original_title}}</h2>
+          <p class='movie-card__description'>
+            <span>
+              {{#each genres}}
+                <span class='movie-card__genre'>
+                  {{this}}
+                </span>
+              {{/each}}
+            </span>
+            {{! <span class="movie-card__genre">Drama, Action</span> | }}
 
-        {{#if date}}
-        |
-        <span class='movie-card__year'>{{dateFormat
-          date
-          'YYYY'
-          }}</span>
-        {{/if}}
+            {{#if date}}
+              |
+              <span class='movie-card__year'>{{dateFormat date 'YYYY'}}</span>
+            {{/if}}
 
-      </p>
+          </p>
 
-      {{!-- <p class="rating-label rating-label--accent">{{toFixed vote_average 1}}</p> --}}
+          {{!-- <p class="rating-label rating-label--accent">{{toFixed vote_average 1}}</p> --}}
 
-    </div>
-  </a>
-</li>
-{{/each}}
+        </div>
+      </a>
+    </li>
+  {{/each}}
 {{/unless}}
