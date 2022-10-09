@@ -1,6 +1,8 @@
 export default class GalleryHandler {
   galleryRef = document.querySelector('#gallery');
 
+  // this.currentOpenedModalFilm = записать открытый в модалке  фильм
+
   addGalleryHandler() {
     this.galleryRef.addEventListener('click', this.onMovieCardClick);
   }
@@ -9,14 +11,16 @@ export default class GalleryHandler {
     event.preventDefault();
 
     if (
-      event.target.hasAttribute('data-movie-id') ||
-      event.target.closest('a').hasAttribute('data-movie-id')
+      event.target?.hasAttribute('data-movie-id') ||
+      event.target?.closest('a')?.hasAttribute('data-movie-id')
     ) {
       console.log(event.target.closest('a'));
       const itemToFindId = event.target.closest('a').dataset.movieId;
       console.log('itemToFindId', itemToFindId);
 
       // render картки по id із localStorage.itemsOnCurrentPage.
+      // modalBtn.modalBtnClick(currentBtnClass, film)
+      // передать modalBtn.modalBtnClick('.queue-js', this.currentOpenedModalFilm)
       // modal.openModal();
     }
   };
