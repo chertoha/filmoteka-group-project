@@ -11,7 +11,7 @@ export default class LocalStorage {
   getItemFromKeyStorage(key) {
     return localStorage.getItem(JSON.parse(key));
   }
-  removeItemFromKeyStorage(btn, filmRemove, keyName) {
+  removeItemFromKeyStorage(btn, filmRemove) {
     let currentArray = null;
     let currentRemoveKey = null;
     if (btn.classList.contain('remove-watch-js')) {
