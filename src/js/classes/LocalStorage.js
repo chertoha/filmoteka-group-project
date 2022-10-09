@@ -25,6 +25,10 @@ export default class LocalStorage {
       currentArray = currentArray.filter(film => film.id !== filmRemove.id);
       this.setFilms(currentRemoveKey, currentArray);
   }
+  addItemsOnCurrentPage(keyName, films) {
+    this.itemsOnCurrentPage = [...films];
+    this.setFilms(keyName, this.itemsOnCurrentPage);
+  } 
   setFilms(keyName, value) {
     localStorage.setItem(keyName, JSON.stringify(value));
   }
