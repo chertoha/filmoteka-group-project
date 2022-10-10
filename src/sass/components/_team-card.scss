@@ -1,13 +1,37 @@
+.team-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--backdrop-color);
+
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+
+  transition: opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing);
+  overflow-y: scroll;
+
+  &.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
 .team {
   position: absolute;
-  top: -4%;
+  bottom: 0;
   left: 50%;
   width: 90%;
   background-color: var(--team-modal-background);
   padding: 40px 40px;
   opacity: 1;
-  max-height: 600px;
-  transform: translate(-50%, -100%) scale(1);
+  max-height: 500px;
+  transform: translate(-50%, -22%) scale(1);
   overflow-y: scroll;
   opacity: 1;
   visibility: visible;
@@ -17,13 +41,13 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
 
-  &.is-hidden {
-    padding: 0;
+  .team-backdrop.is-hidden & {
+    // padding: 0;
     opacity: 0;
     visibility: hidden;
     overflow: hidden;
     pointer-events: none;
-    transform: translate(-50%, -80%) scale(0.9);
+    transform: translate(-50%, 0%) scale(0.9);
     transition: transform 250ms var(--transition-timing),
       opacity 250ms var(--transition-timing),
       visibility 250ms var(--transition-timing);
@@ -43,7 +67,7 @@
 }
 
 .team-card {
-  width: 100%;
+  max-width: 100%;
   padding: 10px 10px 24px 10px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
@@ -150,7 +174,7 @@
   padding: 20px 10px 40px 10px;
   opacity: 1;
   max-height: 280px;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   opacity: 1;
   visibility: visible;
   transition: opacity 250ms var(--transition-timing),
