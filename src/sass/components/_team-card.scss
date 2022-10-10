@@ -41,6 +41,10 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
 
+  @include mq('tablet') {
+    width: 550px;
+  }
+
   .team-backdrop.is-hidden & {
     // padding: 0;
     opacity: 0;
@@ -67,8 +71,11 @@
 }
 
 .team-card {
-  max-width: 100%;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
   padding: 10px 10px 24px 10px;
+  margin-bottom: 20px;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -77,11 +84,39 @@
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: 480px) {
+    flex-direction: row;
+  }
 }
 
 .team-image {
   margin: 0 auto;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+
+  --s: 5px; /* control the size */
+  padding: var(--s);
+  border: calc(2 * var(--s)) solid #0000;
+  outline: 1px solid var(--accent);
+  outline-offset: calc(-1 * var(--s));
+  background: conic-gradient(from 90deg at 1px 1px, #0000 25%, var(--accent) 0);
+}
+
+.team-card__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include mq('tablet') {
+    width: 60%;
+  }
+}
+
+.team-card__description {
+  font-size: 18px;
+  @include mq('tablet') {
+    font-size: 24px;
+  }
 }
 
 .accordion-item {
@@ -114,6 +149,7 @@
 
   .accordion-title {
     padding: 1em 1.5em 1em 0;
+    font-size: 20px;
   }
 
   .icon {
@@ -171,13 +207,16 @@
 }
 
 .accordion-item.is-shown .accordion-content {
-  padding: 20px 10px 40px 10px;
+  padding: 20px 10px;
   opacity: 1;
-  max-height: 280px;
-  overflow-y: scroll;
+  max-height: 230px;
   opacity: 1;
   visibility: visible;
   transition: opacity 250ms var(--transition-timing),
     visibility 250ms var(--transition-timing),
     max-height 250ms var(--transition-timing);
+
+  @include mq('tablet') {
+    max-height: 200px;
+  }
 }
