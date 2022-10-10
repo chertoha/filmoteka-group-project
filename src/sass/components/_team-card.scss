@@ -1,3 +1,37 @@
+.team {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 90%;
+  background-color: var(--team-modal-background);
+  padding: 40px 40px;
+  opacity: 1;
+  max-height: 600px;
+  transform: translate(-50%, -100%);
+  overflow-y: scroll;
+  opacity: 1;
+  visibility: visible;
+  transition: transition 250ms var(--transition-timing),
+    opacity 250ms var(--transition-timing),
+    visibility 250ms var(--transition-timing),
+    max-height 250ms var(--transition-timing);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
+
+  &.is-hidden {
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    transition: transition 250ms var(--transition-timing),
+      opacity 250ms var(--transition-timing),
+      visibility 250ms var(--transition-timing),
+      max-height 300ms var(--transition-timing);
+  }
+}
+
 .team-card {
   width: 100%;
   padding: 10px 10px 24px 10px;
@@ -104,7 +138,8 @@
 .accordion-item.is-shown .accordion-content {
   padding: 20px 10px 40px 10px;
   opacity: 1;
-  max-height: 275px;
+  max-height: 280px;
+  // overflow-y: scroll;
   opacity: 1;
   visibility: visible;
   transition: opacity 250ms var(--transition-timing),
