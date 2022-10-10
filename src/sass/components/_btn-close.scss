@@ -7,9 +7,8 @@
   padding: 0;
   margin: 0;
 
-  // @include circle(30px);
-  // border: 1px solid var(--white);
-  border: none;
+  @include circle(30px);
+  border: 1px solid var(--white);
 
   font-size: 0;
   display: inline-block;
