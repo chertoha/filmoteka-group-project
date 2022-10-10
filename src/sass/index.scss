@@ -1,6 +1,7 @@
 @import './utils/fonts';
 @import './utils/mixin';
 @import './utils/variables';
+@import './utils/placeholders';
 @import './utils/visually-hidden';
 
 @import './base/base';
@@ -11,7 +12,14 @@
 @import './components/button';
 @import './components/logo';
 @import './components/movieCard';
+@import './components/modal.scss';
+@import './components/finfoMoviecard';
 @import './components/spinner';
+@import './components/pagination';
+@import './components/team-card';
+@import './components/socials';
+@import './components/btn-close';
+@import './components/button-up';
 
 @import './layouts/header';
 @import './layouts/footer';

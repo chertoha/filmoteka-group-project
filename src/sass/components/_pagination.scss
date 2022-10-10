@@ -1,0 +1,80 @@
+.pagination {
+    padding-bottom: 40px;
+    background-color: var(--white);
+}
+
+.pag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3px;
+
+    font-size: 12px;
+    line-height: 1.333;
+
+    background-color: var(--white);
+
+    @include mq('tablet') {
+        // padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.pag__btn {
+
+    background-color: var(--secondary-background-color);
+    background-position: center;
+    background-repeat: no-repeat;
+
+
+    &--prev {
+
+        background-image: url('../images/arrow-left.svg');
+    }
+
+    &--next {
+        background-image: url('../images/arrow-right.svg');
+    }
+
+    &--dots-prev {}
+
+    &--dots-next {}
+
+    &--dots-prev,
+    &--dots-next {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('../images/dots.svg');
+    }
+}
+
+.pag__page {
+    @extend %flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+
+    color: var(--main-text);
+    text-decoration: none;
+
+    &--current-number {
+        flex-shrink: 0;
+
+        color: var(--white);
+        background-color: var(--accent);
+    }
+
+    &--dots,
+    &--first-number,
+    &--last-number {
+
+        @include mq('mobile-only') {
+            // display: none;
+        }
+    }
+}
+
+.pag__icon {
+    fill: none;
+    stroke: var(--main-text);
+}

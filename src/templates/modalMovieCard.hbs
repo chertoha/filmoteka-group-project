@@ -1,0 +1,46 @@
+<img class="finfo-moviecard__img" src="{{poster_path}}" alt="{{title}}" width="150"
+  height="250" loading="lazy">
+<div class="finfo-moviecard__container">
+  <h2 class="finfo-moviecard__name">{{title}}</h2>
+  <table class="finfo-moviecard__info">
+
+    <tr class="finfo-moviecard__table">
+      <th class="finfo-moviecard__table-title">Vote / Votes</td>
+      <td class="finfo-moviecard__table-description"> 
+
+          <span class="rating-label rating-label--accent">{{toFixed vote_average 1}}</span>
+          /
+          <span class="rating-label rating-label--default ">{{vote_count}}</span>
+
+
+        </td>
+    </tr>
+    <tr class="finfo-moviecard__table">
+      <th class="finfo-moviecard__table-title">Popularity</th>
+      <td class="finfo-moviecard__table-description">{{toFixed popularity 1}}</td>
+    </tr>
+    <tr class="finfo-moviecard__table">
+      <th class="finfo-moviecard__table-title">Original Title</th>
+      <td class="finfo-moviecard__table-description">{{original_title}}</td>
+    </tr>
+    <tr class="finfo-moviecard__table">
+      <th class="finfo-moviecard__table-title">Genre</th>
+      <td class="finfo-moviecard__table-description">
+
+          {{#each genres}}
+          <span class='movie-card__genre'>
+             {{name}}
+            </span>
+          {{/each}}
+
+      </td>
+    </tr>
+
+  </table>
+  <p class="finfo-moviecard__text-about">ABOUT</p>
+  <p class="finfo-moviecard__text">{{overview}}</p>
+  <div>
+    <button class="button button--light-mode watch-js" type="button" data-movie-id="{{id}}">ADD TO WATCHED</button>
+    <button class="button button--light-mode queue-js" type="button" data-movie-id="{{id}}">ADD TO QUEUE</button>
+  </div>
+</div>
