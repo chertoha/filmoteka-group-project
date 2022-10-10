@@ -1,12 +1,25 @@
 .loader {
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
   width: 32px;
   height: 32px;
   position: relative;
   border-radius: 50%;
-  color: var(--accent);
+  color: #ff3d00;
   animation: fill 1s ease-in infinite alternate;
+
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transition: visibility 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.is-hidden {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
+
 .loader::before,
 .loader::after {
   content: '';
