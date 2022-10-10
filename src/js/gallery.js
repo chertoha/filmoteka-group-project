@@ -38,3 +38,5 @@ async function fetchMovies(page = 1) {
 }
 
 const spinner = new Spinner();
+
+export { apiService, gallery };
