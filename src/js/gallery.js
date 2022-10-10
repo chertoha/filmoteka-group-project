@@ -14,6 +14,7 @@ const gallery = new Gallery(containerGallery, template);
 
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
+const spinner = new Spinner('.js-spinner');
 
 pagination.on('aftermove', event => {
   console.log(event.page);
@@ -24,9 +25,10 @@ pagination.on('aftermove', event => {
 fetchMovies();
 
 async function fetchMovies(page = 1) {
+  spinner.show();
   try {
     const movies = await gallery.getPopularMovies(page);
-
+    spinner.hide();
     console.log(movies);
     gallery.renderCards(movies.results);
 
@@ -36,7 +38,5 @@ async function fetchMovies(page = 1) {
     console.error(error);
   }
 }
-
-const spinner = new Spinner();
 
 export { apiService, gallery };
