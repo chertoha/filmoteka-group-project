@@ -17,17 +17,20 @@ export default class Modal {
   }
 
   addHandler() {
-    this.refs.openModalBtn?.addEventListener('click', () => this.openModal());
-    this.refs.closeModalBtn.addEventListener('click', () => this.closeModal());
-    this.refs.modal.addEventListener('click', event =>
+    this.refs.openModalBtn?.addEventListener('click', event =>
+      this.openModal(event)
+    );
+    this.refs.closeModalBtn?.addEventListener('click', () => this.closeModal());
+    this.refs.modal?.addEventListener('click', event =>
       this.onBackdropClick(event)
     );
-    this.refs.modal.addEventListener('click', event =>
+    this.refs.modal?.addEventListener('click', event =>
       modalButtons.onModalBtnClick(event.target)
     );
   }
 
-  openModal() {
+  openModal(event) {
+    event.preventDefault();
     this.refs.modal.classList.remove('is-hidden');
     document.body.classList.add('modal-open');
     document.addEventListener(

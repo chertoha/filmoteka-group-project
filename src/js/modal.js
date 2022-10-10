@@ -8,7 +8,7 @@ const movieCardModal = new Modal({
 const teamModal = new Modal({
   openModalBtn: '[data-team-modal-open]',
   closeModalBtn: '[data-team-modal-close]',
-  modal: '[data-team-modal-modal]',
+  modal: '[data-team-modal]',
 });
 
 movieCardModal.addHandler();
