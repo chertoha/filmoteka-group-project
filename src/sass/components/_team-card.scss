@@ -1,20 +1,19 @@
 .team {
   position: absolute;
-  top: 0;
+  top: -4%;
   left: 50%;
   width: 90%;
   background-color: var(--team-modal-background);
   padding: 40px 40px;
   opacity: 1;
   max-height: 600px;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%) scale(1);
   overflow-y: scroll;
   opacity: 1;
   visibility: visible;
-  transition: transition 250ms var(--transition-timing),
+  transition: transform 250ms var(--transition-timing),
     opacity 250ms var(--transition-timing),
-    visibility 250ms var(--transition-timing),
-    max-height 250ms var(--transition-timing);
+    visibility 250ms var(--transition-timing);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
 
@@ -22,13 +21,24 @@
     padding: 0;
     opacity: 0;
     visibility: hidden;
-    max-height: 0;
     overflow: hidden;
-    transform: translate(-50%, -50%);
-    transition: transition 250ms var(--transition-timing),
+    pointer-events: none;
+    transform: translate(-50%, -80%) scale(0.9);
+    transition: transform 250ms var(--transition-timing),
       opacity 250ms var(--transition-timing),
-      visibility 250ms var(--transition-timing),
-      max-height 300ms var(--transition-timing);
+      visibility 250ms var(--transition-timing);
+  }
+}
+
+.btn-close.team__btn-close {
+  border-color: var(--main);
+  transition: color 250ms var(--transition-timing),
+    border-color 250ms var(--transition-timing);
+
+  &:hover,
+  &:focus {
+    color: var(--accent);
+    border-color: var(--accent);
   }
 }
 
@@ -39,6 +49,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   text-align: center;
+  background-color: var(--white);
 
   display: flex;
   flex-direction: column;
@@ -65,7 +76,7 @@
   border: none;
   background: none;
   outline: none;
-
+  transition: color 250ms var(--transition-timing);
   &:hover,
   &:focus {
     color: var(--accent);
