@@ -8,7 +8,7 @@ export default class LocalStorage {
       itemsOnCurrentPage: 'itemsOnCurrentPage',
       watch: 'watch',
       queue: 'queue',
-    }
+    };
   }
   addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
@@ -16,14 +16,19 @@ export default class LocalStorage {
     this.setFilms(keyName, dataName);
   }
   getItemFromKeyStorage(key) {
-    return localStorage.getItem(JSON.parse(key));
+    return JSON.parse(localStorage.getItem(key));
   }
-  saveItemsForArrayAfterReload() { //метод должен вызываться при загрузке страницы
+  saveItemsForArrayAfterReload() {
+    //метод должен вызываться при загрузке страницы
     if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.watch))) {
-      this.watchedItems = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.watch));
+      this.watchedItems = JSON.parse(
+        localStorage.getItem(this.LOCAL_STORAGE_KEYS.watch)
+      );
     }
     if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue))) {
-      this.queueItems = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue));
+      this.queueItems = JSON.parse(
+        localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue)
+      );
     }
   }
   removeItemFromKeyStorage(btn) {
@@ -47,6 +52,9 @@ export default class LocalStorage {
 
   addItemsOnCurrentPage(films) {
     this.itemsOnCurrentPage = [...films];
-    this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
+    this.setFilms(
+      this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage,
+      this.itemsOnCurrentPage
+    );
   }
 }

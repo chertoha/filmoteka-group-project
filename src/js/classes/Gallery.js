@@ -1,6 +1,7 @@
 import ApiService from './ApiService';
-import CheckMovies from './CheckMovies'
-import movieCardTemplate from '../../templates/movieCard.hbs';
+import CheckMovies from './CheckMovies';
+// import movieCardTemplate from '../../templates/movieCard.hbs';
+import { localStorageFilms } from './ModalBtn';
 
 const api = new ApiService();
 const checkMovies = new CheckMovies();
@@ -9,24 +10,23 @@ export default class Gallery {
   #galleryContainer;
   #cardsTemplate;
 
-  constructor(container, template) { 
+  constructor(container, template) {
     this.#galleryContainer = container;
     this.#cardsTemplate = template;
     this.currentQuery = '';
     this.genres = null;
   }
-  
-   // render на головну сторінку
+
+  // render на головну сторінку
   // render на кожну наступну сторінку
 
-
-    async getPopularMovies(page) {
-      this.genres = await api.fetchGenres();
-      const response = await api.fetchTrendingMovies(page);
+  async getPopularMovies(page) {
+    this.genres = await api.fetchGenres();
+    const response = await api.fetchTrendingMovies(page);
 
     return response.data;
   }
-   
+
   // moviesDataUpdate(genres, movies) {
   //   movies.forEach(movie => {
   //     //Movies genres check
@@ -38,12 +38,12 @@ export default class Gallery {
   //       }
   //       movie.genres.push(getGenreNameById(genres, movie.genre_ids[i]));
   //     }
-  
+
   //     //Year check
   //     if (movie.release_date) {
   //       movie.date = movie.release_date;
   //     }
-  
+
   //     //Images check
   //     if (movie.poster_path && movie.poster_path !== '') {
   //       const imageBaseUrl = 'https://image.tmdb.org/t/p/w500';
@@ -55,10 +55,10 @@ export default class Gallery {
   //         import.meta.url
   //       );
   //       movie.poster_path = imgUrl;
-  //     }  
+  //     }
   //   });
   // }
-  
+
   // getGenreNameById(genres, genreId) {
   //   return genres.find(genre => genre.id === genreId).name;
   // }
@@ -69,5 +69,6 @@ export default class Gallery {
       movies,
       library: false,
     });
+    localStorageFilms.addItemsOnCurrentPage(movies);
   }
 }

@@ -30,7 +30,7 @@ export default class Modal {
   }
 
   openModal(event) {
-    event.preventDefault();
+    event?.preventDefault();
     this.refs.modal.classList.remove('is-hidden');
     document.body.classList.add('modal-open');
     document.addEventListener(

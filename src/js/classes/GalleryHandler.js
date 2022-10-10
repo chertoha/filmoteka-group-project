@@ -16,8 +16,10 @@ export default class GalleryHandler {
       event.target?.closest('a')?.hasAttribute('data-movie-id')
     ) {
       const itemIdToFind = event.target.closest('a').dataset.movieId;
-      // метод - get из LocalStorage
-      const itemToFind = localStorageFilms.itemsOnCurrentPage.find(
+      const allCurrentItemsOnPage = localStorageFilms.getItemFromKeyStorage(
+        localStorageFilms.LOCAL_STORAGE_KEYS.itemsOnCurrentPage
+      );
+      const itemToFind = allCurrentItemsOnPage.find(
         item => item.id === +itemIdToFind
       );
       this.currentFilmOpened = itemToFind;
