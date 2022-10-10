@@ -13,12 +13,12 @@ export default class ModalBtn {
     let currentKey = null;
     if (btn.classList.contains('queue-js')) {
       currentArray = localStorageFilms.queueItems;
-      currentKey = 'queue';
+      currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.queue;
     }
 
     if (btn.classList.contains('watch-js')) {
       currentArray = localStorageFilms.watchedItems;
-      currentKey = 'watch';
+      currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
     }
     localStorageFilms.addItemToKeyStorage(currentKey, currentArray);
   }
