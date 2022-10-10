@@ -1,6 +1,5 @@
 import ApiService from './ApiService';
 import CheckMovies from './CheckMovies';
-// import movieCardTemplate from '../../templates/movieCard.hbs';
 import { localStorageFilms } from './ModalBtn';
 
 const api = new ApiService();
