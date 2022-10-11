@@ -21,31 +21,16 @@ galleryHandler.addGalleryHandler();
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 
-
 // console.log('this is inside Library');
 // console.log('pagination', pagination);
 // console.log('template', template);
 // console.log('galleryHandler', galleryHandler);
-
 
 localStorageFilms.saveItemsForArrayAfterReload();
 
-
-// console.log('this is inside Library');
-// console.log('pagination', pagination);
-// console.log('template', template);
-// console.log('galleryHandler', galleryHandler);
-
-// import './js/utils/handlebars-helpers';
-// import movieCardTemplate from './templates/movieCard.hbs';
-// import localStorageFilms from './js/classes/ModalBtn';
-
-// import Pagination from './classes/Pagination';
-// import ApiService from './classes/ApiService';
-// import GalleryHandler from './classes/GalleryHandler';
 import Spinner from './js/classes/spinner';
 import Gallery from './js/classes/Gallery';
-// import template from '../templates/movieCard.hbs';
+
 
 const containerGallery = document.querySelector('.gallery__list');
 const gallery = new Gallery(containerGallery, template);
@@ -68,19 +53,37 @@ export default function load(key) {
 
 const keyOne = load('watch');
 const keyTwo = load('queue');
+let pageKeyOne;
+let pageKeyTwo;
 
 
 // console.log(keyOne)
 
-console.log(keyOne);
-
-
 if (keyOne !== undefined) {
   if (keyOne.length > 0) {
-    tempRenderCards(keyOne);
+    pageKeyOne = keyOne.length;
+    if (pageKeyOne > 20) {
+      tempRenderCards(keyOne);
+      pagination.containerGallery
+      //  console.log(pageKeyOne);
+  //     pagination.on('beforemove', event => {
+  // console.log(event);
+
+  // tempRenderCards(keyOne);
+  //     })
+        ;
+
+    }
+    // tempRenderCards(keyOne);
+  }
+};
+if (keyTwo !== undefined) {
+  if (keyTwo.length > 0) {
+    pageKeyTwo = keyTwo.length;
   }
 }
-
+// console.log(pageKeyOne)
+// console.log(pageKeyTwo)
 const btn = document.querySelector('.header');
 const btnWatch = btn.querySelectorAll('.button--dark-mode');
 console.log(btnWatch);
@@ -122,6 +125,7 @@ pagination.on('aftermove', event => {
 
   // fetchMovies(event);
 });
+
 
 fetchMovies();
 function fetchMovies(page = 1) {
