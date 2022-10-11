@@ -58,7 +58,7 @@
 .finfo-moviecard__table {
   display: flex;
   min-width: 215px;
-  max-width: 100%;
+  width: 100%;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
@@ -75,7 +75,7 @@
 
 .finfo-moviecard__table-title {
   text-align: left;
-  width: 50%;
+  min-width: 100px;
 }
 
 .finfo-moviecard__table-description {
