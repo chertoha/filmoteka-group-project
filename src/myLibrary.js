@@ -61,9 +61,10 @@ let pageKeyTwo;
 
 if (keyOne !== undefined) {
   if (keyOne.length > 0) {
+    tempRenderCards(keyOne);
     pageKeyOne = keyOne.length;
     if (pageKeyOne > 20) {
-      tempRenderCards(keyOne);
+      
       pagination.containerGallery
       //  console.log(pageKeyOne);
   //     pagination.on('beforemove', event => {
@@ -120,25 +121,25 @@ function tempRenderCards(movies) {
 }
 
 
-pagination.on('aftermove', event => {
-  console.log(event);
+// pagination.on('aftermove', event => {
+//   console.log(event);
 
-  // fetchMovies(event);
-});
+//   // fetchMovies(event);
+// });
 
 
-fetchMovies();
-function fetchMovies(page = 1) {
-  // spinner.show();
+// fetchMovies();
+// function fetchMovies(page = 1) {
+//   // spinner.show();
   
-    // const movies = gallery.tempRenderCards(page);
-    // // spinner.hide();
-    // console.log(movies);
-    // gallery.renderCards(movies.results);
+//     // const movies = gallery.tempRenderCards(page);
+//     // // spinner.hide();
+//     // console.log(movies);
+//     // gallery.renderCards(movies.results);
 
-    // pagination.updateTotalItems(movies.total_results);
-    // pagination.render();
-}
+//     // pagination.updateTotalItems(movies.total_results);
+//     // pagination.render();
+// }
 
 // export { apiService, gallery };
 
