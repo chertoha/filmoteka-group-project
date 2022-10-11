@@ -6,7 +6,7 @@ export default class ApiService {
   #BASE_GENRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
   #BASE_TRENDS_URL = 'https://api.themoviedb.org/3/trending/movie/day';
   #BASE_BY_NAME_URL = 'https://api.themoviedb.org/3/search/movie';
- 
+
   #moviesByNameSearchParams = {
     params: {
       api_key: this.#API_KEY,
@@ -40,8 +40,8 @@ export default class ApiService {
     }
   }
 
-  async fetchTrendingMovies(page =1) {
-    const  popularMoviesSearchParams = {
+  async fetchTrendingMovies(page = 1) {
+    const popularMoviesSearchParams = {
       params: { api_key: this.#API_KEY, page },
     };
     try {
@@ -86,4 +86,18 @@ export default class ApiService {
     return response.data.results;
   }
 
+  //Anton's code=============================================
+  async getMoviesByNameANTON(query, page) {
+    const url =
+      this.#BASE_BY_NAME_URL +
+      '?api_key=' +
+      this.#API_KEY +
+      '&query=' +
+      query +
+      '&page=' +
+      page;
+    const response = await axios.get(url);
+    return response.data;
+  }
+  //Anton's code=============================================
 }

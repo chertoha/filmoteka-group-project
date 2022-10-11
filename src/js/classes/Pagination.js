@@ -69,6 +69,10 @@ export default class Pagination {
   }
 
   render() {
+    if (this.#totalItems <= this.#perPage) {
+      this.refs.container.innerHTML = '';
+      return;
+    }
     // console.log(paginationTemplate());
     const currentPage = Number(this.#page);
     const lastPageNumber = this.getLastPageNumber();

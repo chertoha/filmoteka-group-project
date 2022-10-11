@@ -8,10 +8,10 @@ import './js/utils/handlebars-helpers';
 
 import './js/classes/HeaderBtnHandler';
 import './js/classes/Pagination';
-import './js/classes/SearchingForm';
+// import './js/classes/SearchingForm';   ANTON SWITCHED OFF
 
 import './js/filter';
 import './js/modal';
-import './js/searchingForm';
+// import './js/searchingForm'; ANTON SWITCHED OFF
 import './js/gallery';
 import './js/teamAccordion';
