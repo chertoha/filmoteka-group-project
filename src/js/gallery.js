@@ -20,7 +20,7 @@ const spinner = new Spinner('.js-spinner');
 // if (window.location.pathname === '/index.html')
 // if (window.location.pathname === '/myLibrary.html')
 
-if (window.location.pathname === './index.html') {
+if (window.location.pathname === '/index.html') {
   console.log('inside index.html');
 
   pagination.on('aftermove', event => {
