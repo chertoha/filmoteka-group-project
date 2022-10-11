@@ -5,7 +5,7 @@ import { checkMovies } from './Gallery';
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
-  #modalContent = document.querySelector('.js-movieCard');
+  #modalContent = document.querySelector('.js-movie-card');
 
   addGalleryHandler() {
     this.#galleryRef.addEventListener('click', this.onMovieCardClick);

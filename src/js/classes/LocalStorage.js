@@ -19,6 +19,7 @@ export default class LocalStorage {
     return JSON.parse(localStorage.getItem(key));
   }
   saveItemsForArrayAfterReload() {
+    console.log('this is saveItemsForArrayAfterReload');
     //метод должен вызываться при загрузке страницы
     if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.watch))) {
       this.watchedItems = JSON.parse(
