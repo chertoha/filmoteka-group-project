@@ -14,5 +14,3 @@ export default class Spinner {
     this.hidden = false;
   }
 }
-
-// const spinner = new Spinner('.js-spinner');

@@ -4,6 +4,7 @@ import GalleryHandler from './classes/GalleryHandler';
 import Spinner from './classes/spinner';
 import Gallery from './classes/Gallery';
 import template from '../templates/movieCard.hbs';
+import { localStorageFilms } from './classes/ModalBtn';
 
 const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
@@ -15,6 +16,8 @@ const gallery = new Gallery(containerGallery, template);
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner('.js-spinner');
+
+localStorageFilms.saveItemsForArrayAfterReload();
 
 pagination.on('aftermove', event => {
   console.log(event.page);

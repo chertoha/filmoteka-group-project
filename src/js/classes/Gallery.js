@@ -29,6 +29,7 @@ export default class Gallery {
       movies,
       library: false,
     });
+    document.querySelector('#header').scrollIntoView(top);
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
 }
