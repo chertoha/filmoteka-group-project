@@ -95,7 +95,7 @@
   transform: scale(0.3);
 
   @media screen and (min-width: 480px) and (orientation: portrait) {
-    transform: translate(-50%, -50%) scale(0.3);
+    transform: scale(0.3);
   }
 
   @media screen and (min-width: 480px) and (orientation: landscape) {
