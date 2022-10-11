@@ -46,7 +46,7 @@ export default class CheckMovies {
   }
 
   checkMoviePoster(movie) {
-    if (movie.poster_path && movie.poster_path !== '') {
+    if (movie.poster_path) {
       movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
     } else {
       const imgUrl = new URL(
