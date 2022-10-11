@@ -20,10 +20,10 @@ galleryHandler.addGalleryHandler();
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 
-console.log('this is inside Library');
-console.log('pagination', pagination);
-console.log('template', template);
-console.log('galleryHandler', galleryHandler);
+// console.log('this is inside Library');
+// console.log('pagination', pagination);
+// console.log('template', template);
+// console.log('galleryHandler', galleryHandler);
 
 
 
@@ -61,7 +61,7 @@ export default function load(key){
 const keyOne = load("watch");
 const keyTwo = load("queue");
 
-console.log(keyOne)
+// console.log(keyOne)
 
 if (keyOne !== undefined) {
   if (keyOne.length > 0) {
@@ -72,7 +72,7 @@ if (keyOne !== undefined) {
 
 const btn = document.querySelector(".header");
 const btnWatch = btn.querySelectorAll(".button--dark-mode");
-console.log(btnWatch)
+// console.log(btnWatch)
 
 btn.addEventListener("click", selectBtn);
 
@@ -105,30 +105,30 @@ tempRenderCards(keyOne)
 
 
 
-// if (window.location.pathname === '/myLibrary.html') {
-//   pagination.on('aftermove', event => {
-//   console.log(event.page);
+if (window.location.pathname === '/myLibrary.html') {
+  pagination.on('aftermove', event => {
+  console.log(event.page);
 
 
-//   fetchMovies(event.page);
-// });
+  fetchMovies(event.page);
+});
 
 // fetchMovies();
 
-// async function fetchMovies(page = 1) {
-//   spinner.show();
-//   try {
-//     const movies = await gallery.tempRenderCards(page);
-//     spinner.hide();
-//     console.log(movies);
-//     gallery.renderCards(movies.results);
+function fetchMovies(page = 1) {
+  // spinner.show();
+  try {
+    const movies = gallery.tempRenderCards(page);
+    // spinner.hide();
+    console.log(movies);
+    gallery.renderCards(movies.results);
 
-//     pagination.updateTotalItems(movies.total_results);
-//     pagination.render();
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    pagination.updateTotalItems(movies.total_results);
+    pagination.render();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
   
-// }
+}
