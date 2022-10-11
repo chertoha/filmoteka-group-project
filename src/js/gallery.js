@@ -16,10 +16,6 @@ const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner('.js-spinner');
 
-// render library according to the window
-// if (window.location.pathname === '/index.html')
-// if (window.location.pathname === '/myLibrary.html')
-
 pagination.on('aftermove', event => {
   console.log(event.page);
 
@@ -43,8 +39,8 @@ async function fetchMovies(page = 1) {
   }
 }
 
-if (window.location.pathname === '/myLibrary.html') {
-  console.log('inside library.html');
-}
-
 export { apiService, gallery };
+
+// render library according to the window
+// if (window.location.pathname === '/index.html')
+// if (window.location.pathname === '/myLibrary.html')
