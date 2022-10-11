@@ -3,7 +3,7 @@ import SearchingForm from './classes/SearchingForm';
 const searchingFormRef = document.querySelector('.search-form');
 const inputRef = document.querySelector('.search-input');
 
-searchingFormRef?.addEventListener('submit', onSearchSubmit);
+searchingFormRef.addEventListener('submit', onSearchSubmit);
 
 const formSearch = new SearchingForm();
 
