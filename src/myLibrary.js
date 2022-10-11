@@ -21,6 +21,17 @@ galleryHandler.addGalleryHandler();
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 
+let currentPage = 1;
+let currentMovies = [];
+
+
+pagination.on('aftermove', event => {
+  console.log(event.page);
+  currentPage = event.page;
+
+});
+
+
 // console.log('this is inside Library');
 // console.log('pagination', pagination);
 // console.log('template', template);
@@ -35,15 +46,28 @@ import Gallery from './js/classes/Gallery';
 const containerGallery = document.querySelector('.gallery__list');
 const gallery = new Gallery(containerGallery, template);
 
+const keyOne = load('watch');
+const keyTwo = load('queue');
+let pageKeyOne;
+let pageKeyTwo;
+console.log(keyOne);
+
 // const containerPag = document.querySelector('.pag');
 // const pagination = new Pagination(containerPag);
 const spinner = new Spinner('.js-spinner');
-
+const perPage = 20;
 // ф-ция взять из локал стор
 export default function load(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
+    // 1 * 20 = 20
+    // 2 * 20 = 40
+    // 7 * 20 = 140
+    // if (page === 1) {return serializedState === null ? undefined : JSON.parse(serializedState)};
+    // if (page === 2) {return serializedState === null ? undefined : JSON.parse(serializedState) };
+    // serializedState === null ? undefined : JSON.parse(serializedState);
+
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
@@ -51,10 +75,6 @@ export default function load(key) {
 
 // localStorage.clear();
 
-const keyOne = load('watch');
-const keyTwo = load('queue');
-let pageKeyOne;
-let pageKeyTwo;
 
 
 // console.log(keyOne)
@@ -116,8 +136,21 @@ function selectBtn(event) {
 }
 
 function tempRenderCards(movies) {
+  const lastMovie = currentPage * 20;
+   const firstMovie = lastMovie - 20;
   const container = document.querySelector('.gallery__list');
-  container.innerHTML = template({ movies, library: true });
+  const moviesPars = [];
+for (let index = firstMovie; index < lastMovie; index++) {
+
+  moviesPars.push(movies[index]);
+  
+}
+  console.log(moviesPars);
+  container.innerHTML = template({ moviesPars, library: true });
+
+  // проверка на 20 
+  pagination.updateTotalItems(movies.length);
+  pagination.render();
 }
 
 
