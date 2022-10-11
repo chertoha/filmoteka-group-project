@@ -31,11 +31,16 @@ export default class GalleryHandler {
     );
     const itemToFind = allCurrentItemsOnPage.find(item => item.id === +id);
     localStorageFilms.currentFilm = itemToFind;
+
+    console.log('itemToFind', itemToFind.genres);
     return itemToFind;
   }
 
   renderMovieCard(movie) {
+    // checkMovies.update(movie, this.genres);
     checkMovies.checkMoviePoster(movie);
+    console.log('movie.genres', movie.genres);
+
     this.#modalContent.innerHTML = modalMovieDetailsTemplate(movie);
   }
 }
