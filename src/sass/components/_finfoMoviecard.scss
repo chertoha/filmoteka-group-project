@@ -22,6 +22,7 @@
 
   @include mq('desktop') {
     margin-right: 16px;
+    width: 350px;
   }
 }
 
@@ -43,20 +44,32 @@
 }
 
 .finfo-moviecard__table {
+  display: flex;
+  min-width: 215px;
+  max-width: 100%;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
-  color: #8c8c8c;
+  line-height: 1.33;
+  color: var(--table-color);
+
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
 
   @include mq('desktop') {
-    padding-right: 83px;
+    width: 260px;
   }
+}
+
+.finfo-moviecard__table-title {
+  text-align: left;
+  width: 50%;
 }
 
 .finfo-moviecard__table-description {
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.33;
   color: var(--main-text);
 }
 
@@ -65,17 +78,8 @@
 
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.33;
   color: var(--main-text);
-}
-
-.finfo-moviecard__table-accent {
-  padding: 1px 10px;
-  width: 36px;
-  height: 16px;
-  background-color: var(--accent);
-  color: var(--white);
-  border-radius: 5px;
 }
 
 .finfo-moviecard__text-about {
@@ -94,4 +98,14 @@
   font-size: 12px;
   line-height: 20px;
   color: var(--main-text);
+}
+
+.moviecard-buttons__contanier {
+  display: flex;
+  gap: 20px;
+}
+
+.finfo-moviecard__button {
+  padding: 14px 10px;
+  flex-basis: calc((100% - 20px) / 2);
 }

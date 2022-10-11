@@ -1,35 +1,10 @@
-.buttons {
+.header-buttons {
   display: flex;
   justify-content: center;
 }
 
-.button:not(:first-child) {
-  @include mq('mobile-only') {
-    margin-left: 20px;
-  }
-  @include mq('tablet') {
-    margin-left: 32px;
-  }
-  margin-left: 20px;
-  @include mq('desktop') {
-    margin-left: 16px;
-  }
-}
 .button {
-  // padding: 12px 20px;
-  @include mq('mobile-only') {
-    width: 130px;
-    height: 44px;
-  }
-  @include mq('tablet') {
-    width: 152px;
-    height: 44px;
-  }
-  @include mq('desktop') {
-    width: 148px;
-    height: 44px;
-  }
-
+  padding: 14px 20px;
   font-family: inherit;
   color: currentColor;
   font-size: 12px;
@@ -65,5 +40,30 @@
     filter: drop-shadow(0px 8px 43px rgba(255, 107, 1, 0.6));
     background-color: var(--accent);
     border-color: var(--accent);
+  }
+}
+
+.header-button {
+  @include mq('mobile-only') {
+    min-width: 130px;
+  }
+  @include mq('tablet') {
+    min-width: 152px;
+  }
+  @include mq('desktop') {
+    min-width: 148px;
+  }
+
+  &:not(:first-child) {
+    @include mq('mobile-only') {
+      margin-left: 20px;
+    }
+    @include mq('tablet') {
+      margin-left: 32px;
+    }
+    margin-left: 20px;
+    @include mq('desktop') {
+      margin-left: 16px;
+    }
   }
 }
