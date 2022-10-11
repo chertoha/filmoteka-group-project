@@ -20,31 +20,31 @@ const spinner = new Spinner('.js-spinner');
 // if (window.location.pathname === '/index.html')
 // if (window.location.pathname === '/myLibrary.html')
 
-if (window.location.pathname === '/index.html') {
-  console.log('inside index.html');
+pagination.on('aftermove', event => {
+  console.log(event.page);
 
-  pagination.on('aftermove', event => {
-    console.log(event.page);
+  fetchMovies(event.page);
+});
 
-    fetchMovies(event.page);
-  });
+fetchMovies();
 
-  fetchMovies();
+async function fetchMovies(page = 1) {
+  spinner.show();
+  try {
+    const movies = await gallery.getPopularMovies(page);
+    spinner.hide();
+    console.log(movies);
+    gallery.renderCards(movies.results);
 
-  async function fetchMovies(page = 1) {
-    spinner.show();
-    try {
-      const movies = await gallery.getPopularMovies(page);
-      spinner.hide();
-      console.log(movies);
-      gallery.renderCards(movies.results);
-
-      pagination.updateTotalItems(movies.total_results);
-      pagination.render();
-    } catch (error) {
-      console.error(error);
-    }
+    pagination.updateTotalItems(movies.total_results);
+    pagination.render();
+  } catch (error) {
+    console.error(error);
   }
+}
+
+if (window.location.pathname === '/myLibrary.html') {
+  console.log('inside library.html');
 }
 
 export { apiService, gallery };
