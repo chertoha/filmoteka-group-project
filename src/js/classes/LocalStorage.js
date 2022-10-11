@@ -33,6 +33,7 @@ export default class LocalStorage {
     }
   }
   removeItemFromKeyStorage(btn) {
+    console.log(btn);
     let currentArray = null;
     let currentRemoveKey = null;
     if (btn.classList.contains('remove-watch-js')) {
@@ -46,9 +47,11 @@ export default class LocalStorage {
     currentArray = currentArray.filter(film => film.id !== this.currentFilm.id);
     this.setFilms(currentRemoveKey, currentArray);
   }
-  setFilms(keyName, value) {
+  setFilms(keyName, values) {
     localStorage.removeItem(keyName);
-    localStorage.setItem(keyName, JSON.stringify(value));
+    const unique = [...new Set(values.filter(value => value.id))];
+
+    localStorage.setItem(keyName, JSON.stringify(unique));
   }
 
   addItemsOnCurrentPage(films) {
