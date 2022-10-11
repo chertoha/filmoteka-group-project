@@ -16,26 +16,34 @@ const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner('.js-spinner');
 
-pagination.on('aftermove', event => {
-  console.log(event.page);
+// render library according to the window
+// if (window.location.pathname === '/index.html')
+// if (window.location.pathname === '/myLibrary.html')
 
-  fetchMovies(event.page);
-});
+if (window.location.pathname === '/index.html') {
+  console.log('inside index.html');
 
-fetchMovies();
+  pagination.on('aftermove', event => {
+    console.log(event.page);
 
-async function fetchMovies(page = 1) {
-  spinner.show();
-  try {
-    const movies = await gallery.getPopularMovies(page);
-    spinner.hide();
-    console.log(movies);
-    gallery.renderCards(movies.results);
+    fetchMovies(event.page);
+  });
 
-    pagination.updateTotalItems(movies.total_results);
-    pagination.render();
-  } catch (error) {
-    console.error(error);
+  fetchMovies();
+
+  async function fetchMovies(page = 1) {
+    spinner.show();
+    try {
+      const movies = await gallery.getPopularMovies(page);
+      spinner.hide();
+      console.log(movies);
+      gallery.renderCards(movies.results);
+
+      pagination.updateTotalItems(movies.total_results);
+      pagination.render();
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
