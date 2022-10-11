@@ -31,6 +31,7 @@ export default class GalleryHandler {
     );
     const itemToFind = allCurrentItemsOnPage.find(item => item.id === +id);
     localStorageFilms.currentFilm = itemToFind;
+
     return itemToFind;
   }
 
