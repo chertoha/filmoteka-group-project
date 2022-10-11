@@ -3,7 +3,7 @@
 import './js/utils/handlebars-helpers';
 
 //Anton's temporary test code----------------------------
-import './js/temp/antonTempTest';
+// import './js/temp/antonTempTest';
 //Anton's temporary test code----------------------------
 
 import './js/classes/HeaderBtnHandler';
@@ -23,10 +23,10 @@ const pagination = new Pagination(containerPag);
 
 localStorageFilms.saveItemsForArrayAfterReload();
 
-console.log('this is inside Library');
-console.log('pagination', pagination);
-console.log('template', template);
-console.log('galleryHandler', galleryHandler);
+// console.log('this is inside Library');
+// console.log('pagination', pagination);
+// console.log('template', template);
+// console.log('galleryHandler', galleryHandler);
 
 // import './js/utils/handlebars-helpers';
 // import movieCardTemplate from './templates/movieCard.hbs';
