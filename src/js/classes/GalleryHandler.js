@@ -39,4 +39,5 @@ export default class GalleryHandler {
     checkMovies.checkMoviePoster(movie);
     this.#modalContent.innerHTML = modalMovieDetailsTemplate(movie);
   }
+  1;
 }
