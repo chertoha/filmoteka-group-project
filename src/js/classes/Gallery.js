@@ -71,3 +71,5 @@ export default class Gallery {
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
 }
+
+export { checkMovies };
