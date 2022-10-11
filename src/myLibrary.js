@@ -46,8 +46,8 @@ import Gallery from './js/classes/Gallery';
 const containerGallery = document.querySelector('.gallery__list');
 const gallery = new Gallery(containerGallery, template);
 
-const keyOne = load('watch');
-const keyTwo = load('queue');
+// const keyOne = load('watch');
+// const keyTwo = load('queue');
 let pageKeyOne;
 let pageKeyTwo;
 console.log(keyOne);
@@ -74,13 +74,15 @@ export default function load(key) {
 }
 
 // localStorage.clear();
-
+const keyOne = load('watch');
+const keyTwo = load('queue');
 
 
 // console.log(keyOne)
 
 if (keyOne !== undefined) {
   if (keyOne.length > 0) {
+    
     tempRenderCards(keyOne);
     pageKeyOne = keyOne.length;
     if (pageKeyOne > 20) {
