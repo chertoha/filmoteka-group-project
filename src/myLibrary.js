@@ -103,32 +103,23 @@ tempRenderCards(keyOne)
   container.innerHTML = template({ movies, library: true });
 }
 
+pagination.on('aftermove', event => {
+  console.log(event);
 
-
-if (window.location.pathname === '/myLibrary.html') {
-  pagination.on('aftermove', event => {
-  console.log(event.page);
-
-
-  fetchMovies(event.page);
+  // fetchMovies(event);
 });
 
-// fetchMovies();
-
+fetchMovies();
 function fetchMovies(page = 1) {
   // spinner.show();
-  try {
-    const movies = gallery.tempRenderCards(page);
-    // spinner.hide();
-    console.log(movies);
-    gallery.renderCards(movies.results);
-
-    pagination.updateTotalItems(movies.total_results);
-    pagination.render();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
   
+    // const movies = gallery.tempRenderCards(page);
+    // // spinner.hide();
+    // console.log(movies);
+    // gallery.renderCards(movies.results);
+
+    // pagination.updateTotalItems(movies.total_results);
+    // pagination.render();
 }
+
+// export { apiService, gallery };
