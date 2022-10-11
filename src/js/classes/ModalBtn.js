@@ -1,6 +1,7 @@
 import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
+
 export default class ModalBtn {
   onModalBtnClick(btn) {
     //add method
@@ -25,8 +26,10 @@ export default class ModalBtn {
         btn.classList.remove('watch-js');
         btn.classList.add('remove-watch-js');
       }
-      localStorageFilms.addItemToKeyStorage(currentKey, currentArray);
+      
+      localStorageFilms.addItemToKeyStorage(currentKey, currentArray);     
       return;
+      
     }
     if (
       btn.classList.contains('remove-watch-js') ||
@@ -46,10 +49,5 @@ export default class ModalBtn {
         btn.classList.add('queue-js');
       }
     }
-  
-  }
-  onRemoveBtnClick() {
-    //remove method
-    
   }
 }
