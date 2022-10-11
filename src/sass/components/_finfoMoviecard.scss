@@ -110,6 +110,12 @@
   font-size: 12px;
   line-height: 20px;
   color: var(--main-text);
+  max-height: 145px;
+  overflow-y: scroll;
+
+  @include mq('desktop') {
+    max-height: 260px;
+  }
 }
 
 .moviecard-buttons__contanier {
