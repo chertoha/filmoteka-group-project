@@ -40,7 +40,3 @@ async function fetchMovies(page = 1) {
 }
 
 export { apiService, gallery };
-
-// render library according to the window
-// if (window.location.pathname === '/index.html')
-// if (window.location.pathname === '/myLibrary.html')
