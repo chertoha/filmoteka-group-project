@@ -9,7 +9,7 @@ const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
-const containerGallery = document.querySelector('.gallery__list');
+const containerGallery = document.querySelector('.js-gallery');
 const gallery = new Gallery(containerGallery, template);
 
 const containerPag = document.querySelector('.pag');
