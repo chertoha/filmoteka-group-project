@@ -33,7 +33,6 @@ export default class LocalStorage {
     }
   }
   removeItemFromKeyStorage(btn) {
-    console.log(btn);
     let currentArray = null;
     let currentRemoveKey = null;
     if (btn.classList.contains('remove-watch-js')) {
@@ -46,19 +45,44 @@ export default class LocalStorage {
     }
     currentArray = currentArray.filter(film => film.id !== this.currentFilm.id);
     this.setFilms(currentRemoveKey, currentArray);
+    currentArray = null;
   }
   setFilms(keyName, values) {
     localStorage.removeItem(keyName);
-    const unique = [...new Set(values.filter(value => value.id))];
-
-    localStorage.setItem(keyName, JSON.stringify(unique));
+    let uniqueArray = [];
+    let uniqueId = [];
+    values.forEach((value) => {
+      // console.log(!acc.includes(value.id));
+      if (!uniqueId.includes(value.id)) {
+        uniqueId.push(value.id);
+        uniqueArray.push(value);
+      }
+    });
+    localStorage.setItem(keyName, JSON.stringify(uniqueArray));
+    uniqueArray = [];
+    uniqueId = [];
   }
 
   addItemsOnCurrentPage(films) {
     this.itemsOnCurrentPage = [...films];
-    this.setFilms(
-      this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage,
-      this.itemsOnCurrentPage
-    );
+    this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
   }
+  onModalWatchedBtnChange(btn) {
+    const onTrue = this.watchedItems.some(item => this.currentFilm.id === item.id);
+    if (onTrue) {
+      btn.textContent = 'Remove from Watch';
+      btn.classList.remove('watch-js');
+      btn.classList.add('remove-watch-js');
+    }
+  }
+  onModalQueueBtnChange(btn) {
+    const onTrue = this.queueItems.some(item => this.currentFilm.id === item.id);
+    if (onTrue) {
+      btn.textContent = 'Remove from Queue';
+      btn.classList.remove('queue-js');
+      btn.classList.add('remove-queue-js');
+    }
 }
+}
+
+
