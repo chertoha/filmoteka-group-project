@@ -41,6 +41,9 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
 
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+
   @include mq('tablet') {
     width: 550px;
   }

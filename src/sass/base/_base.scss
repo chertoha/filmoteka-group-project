@@ -10,25 +10,95 @@ body {
     font-size: 20px;
     line-height: 1.2;
   }
-}
 
-.dark-theme {
-  --main-background-color: rgb(25, 25, 25);
-  --white: rgb(0, 0, 0);
-  --main-text: white;
-  --main-text: white;
-  --team-modal-background: rgb(25, 25, 25);
-  --main-background-color: rgb(0, 0, 0);
-  --secondary-background-color: rgb(0, 0, 0);
-  --movie-card-shadow: 0 1px 10px rgb(255, 255, 255),
-    -23px 0 20px -23px rgba(255, 255, 255),
-    23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
-}
+  &.dark-theme {
+    --main-background-color: rgb(25, 25, 25);
+    --white: rgb(0, 0, 0);
+    --main-text: white;
+    --main-text: white;
+    --team-modal-background: rgb(25, 25, 25);
+    --main-background-color: rgb(0, 0, 0);
+    --secondary-background-color: rgb(0, 0, 0);
+    --movie-card-shadow: 0 1px 10px rgb(255, 255, 255),
+      -23px 0 20px -23px rgba(255, 255, 255),
+      23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
+  }
 
-html {
-  scroll-behavior: smooth;
+  // SCROLL
+  scrollbar-width: thin;
+  /* полоса прокрутки (скроллбар) */
+  ::-webkit-scrollbar {
+    width: 8px; /* ширина для вертикального скролла */
+    height: 8px; /* высота для горизонтального скролла */
+    background-color: var(--backdrop-color);
+    border-radius: 4px;
+  }
+
+  /* ползунок скроллбара */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--btn-up);
+  }
+
+  /* Стрелки */
+  ::-webkit-scrollbar-button:vertical:start:decrement {
+    background: linear-gradient(
+        120deg,
+        var(--table-color) 40%,
+        rgba(0, 0, 0, 0) 41%
+      ),
+      linear-gradient(240deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(0deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--scroll-background);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:increment {
+    background: linear-gradient(
+        300deg,
+        var(--table-color) 40%,
+        rgba(0, 0, 0, 0) 41%
+      ),
+      linear-gradient(60deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(180deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--scroll-background);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-button:horizontal:start:decrement {
+    background: linear-gradient(
+        30deg,
+        var(--table-color) 40%,
+        rgba(0, 0, 0, 0) 41%
+      ),
+      linear-gradient(150deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(270deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--scroll-background);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-button:horizontal:end:increment {
+    background: linear-gradient(
+        210deg,
+        var(--table-color) 40%,
+        rgba(0, 0, 0, 0) 41%
+      ),
+      linear-gradient(330deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(90deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: var(--scroll-background);
+    border-radius: 4px;
+  }
 }
 
 body.modal-open {
   overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }

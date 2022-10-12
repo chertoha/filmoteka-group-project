@@ -12,7 +12,6 @@
 
   @include mq('tablet') {
     display: flex;
-    margin-bottom: 20px;
   }
 }
 
@@ -34,7 +33,7 @@
 
   @include mq('desktop') {
     margin-right: 40px;
-    width: 350px;
+    width: 320px;
   }
 }
 
