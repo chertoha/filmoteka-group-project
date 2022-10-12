@@ -19,7 +19,6 @@ export default class LocalStorage {
     return JSON.parse(localStorage.getItem(key));
   }
   saveItemsForArrayAfterReload() {
-    console.log('this is saveItemsForArrayAfterReload');
     //метод должен вызываться при загрузке страницы
     if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.watch))) {
       this.watchedItems = JSON.parse(
@@ -33,7 +32,6 @@ export default class LocalStorage {
     }
   }
   removeItemFromKeyStorage(btn) {
-    console.log(this.currentFilm);
     let currentArray = null;
     let currentRemoveKey = null;
     let newArray = [];
@@ -75,7 +73,6 @@ export default class LocalStorage {
   }
   onModalWatchedBtnChange(btn) {
     const onTrue = this.watchedItems.some(item => this.currentFilm.id === item.id);
-    console.log(this.watchedItems);
     if (onTrue) {
       btn.textContent = 'Remove from Watch';
       btn.classList.remove('watch-js');
@@ -85,7 +82,6 @@ export default class LocalStorage {
   }
   onModalQueueBtnChange(btn) {
     const onTrue = this.queueItems.some(item => this.currentFilm.id === item.id);
-    console.log(onTrue);
     if (onTrue) {
       btn.textContent = 'Remove from Queue';
       btn.classList.remove('queue-js');
