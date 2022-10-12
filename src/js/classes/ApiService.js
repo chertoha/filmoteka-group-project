@@ -26,10 +26,7 @@ export default class ApiService {
   async fetchGenres() {
     const url = this.#BASE_URL + this.#GENRES_PATH_URL;
     try {
-      const response = await axios.get(
-        url,
-        this.#genresSearchParams
-      );
+      const response = await axios.get(url, this.#genresSearchParams);
       const genres = response.data.genres;
       return genres;
     } catch (error) {
@@ -43,10 +40,7 @@ export default class ApiService {
       params: { api_key: this.#API_KEY, page },
     };
     try {
-      const response = await axios.get(
-        url,
-        popularMoviesSearchParams
-      );
+      const response = await axios.get(url, popularMoviesSearchParams);
       return response;
     } catch (error) {
       console.error(error);
@@ -56,10 +50,7 @@ export default class ApiService {
   async fetchMoviesByName() {
     const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
     try {
-      const response = await axios.get(
-        url,
-        this.#moviesByNameSearchParams
-      );
+      const response = await axios.get(url, this.#moviesByNameSearchParams);
       return response;
     } catch (error) {
       console.error(error);
@@ -67,17 +58,13 @@ export default class ApiService {
   }
 
   async getMoviesByName(query, page = 1) {
-    if (query) {
-      this.#moviesByNameSearchParams.query = query;
-      this.#moviesByNameSearchParams.page = page;
-    }
-  const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
-    const response = await axios.get(
-        url,
-        this.#moviesByNameSearchParams
-      );
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
+    this.#moviesByNameSearchParams.query = query;
+    this.#moviesByNameSearchParams.page = page;
+    const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+    const response = await axios.get(url, this.#moviesByNameSearchParams);
+    return response.data;
+  }
+  catch(error) {
+    console.error(error);
+  }
 }
