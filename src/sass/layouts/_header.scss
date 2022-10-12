@@ -20,6 +20,9 @@
     height: 216px;
   }
 }
+.dark-image {
+  background-image: url(../images/header-img/dark-header.jpg);
+}
 .header-container {
   height: 100%;
   display: flex;
@@ -45,7 +48,7 @@
   letter-spacing: 0em;
   text-align: center;
 
-  color: var(--white);
+  color: var(--header-white);
 
   @include mq('tablet') {
     display: inline;
@@ -66,7 +69,7 @@
   padding: 10px 10px;
   display: block;
   align-items: center;
-  color: var(--white);
+  color: var(--header-white);
   font-family: var(--main-font);
   font-weight: 500;
   font-size: 13px;
