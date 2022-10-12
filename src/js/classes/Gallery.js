@@ -34,7 +34,7 @@ export default class Gallery {
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
 
-  async getMoviesByName(query, page = 1) {
+  async getQueryMovies(query, page = 1) {
     this.currentQuery = query;
 
     if (query === '') {
