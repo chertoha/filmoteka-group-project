@@ -54,6 +54,7 @@
   padding: 48px 20px 40px 20px;
   background-color: var(--white);
   width: 100%;
+  max-height: 95%;
   transform: scale(1);
   transition: transform 250ms var(--transition-timing);
   border-radius: 8px;
@@ -63,9 +64,10 @@
     -20px 0 20px -20px #000 inset, inset rgba(0, 0, 0, 0.6) 0 -3px 8px,
     inset rgba(252, 255, 255, 0.7) 0 3px 8px, rgba(0, 0, 0, 0.8) 0 3px 8px -3px;
 
-  @include mq('mobile-only') {
-    overflow-y: scroll;
-  }
+  overflow-y: scroll;
+  // @include mq('mobile-only') {
+  //   overflow-y: scroll;
+  // }
 
   @media screen and (min-width: 480px) and (orientation: portrait) {
     position: relative;
@@ -89,6 +91,7 @@
     top: 50%;
     left: 50%;
     max-width: 700px;
+    // max-height: 600px;
     transform: translate(-50%, -50%) scale(1);
   }
 
