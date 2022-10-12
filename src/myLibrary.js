@@ -8,8 +8,8 @@ import template from './templates/movieCard.hbs';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Gallery from './js/classes/Gallery';
 
-localStorage.clear();
-localStorageFilms.saveItemsForArrayAfterReload();
+
+// localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
@@ -23,7 +23,7 @@ const pagination = new Pagination(containerPag);
 let currentPage = 1;
 // let btnStorage = "watch";
 // localStorage.setItem("btnStorage", "watch");
-// let total_results = load(`${load("btnStorage")}`);
+let total_results = load(``);
 
 pagination.on('aftermove', event => {
   console.log(event.page);
@@ -96,19 +96,20 @@ function selectBtn(event) {
   });
 
   if (event.target.textContent === 'watched') {
-    // console.log("watched")
+    console.log("watched")
     event.target.classList.add('button--active')
     total_results = load('watch');
+
     audit(total_results, currentPage);
-// console.log(currentPage)
+console.log(currentPage)
   }
   else if (event.target.textContent === 'queue') {
-    // console.log("queue");
+    console.log("queue");
     event.target.classList.add('button--active');
     total_results = load('queue');
 
     audit(total_results, currentPage);
-    // console.log(currentPage)
+    console.log(currentPage)
   }
 }
 
