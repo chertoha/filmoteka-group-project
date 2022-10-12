@@ -22,6 +22,10 @@ export default class Pagination {
       .addEventListener('change', this.#onViewportChange.bind(this));
   }
 
+  reset() {
+    this.#page = 1;
+  }
+
   #onViewportChange() {
     // console.log(window.innerWidth);
     this.render();
@@ -69,6 +73,10 @@ export default class Pagination {
   }
 
   render() {
+    if (this.#totalItems <= this.#perPage) {
+      this.refs.container.innerHTML = '';
+      return;
+    }
     // console.log(paginationTemplate());
     const currentPage = Number(this.#page);
     const lastPageNumber = this.getLastPageNumber();

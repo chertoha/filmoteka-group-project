@@ -1,3 +1,4 @@
+import axios from 'axios';
 import ApiService from './ApiService';
 import CheckMovies from './CheckMovies';
 import { localStorageFilms } from './ModalBtn';
@@ -32,6 +33,19 @@ export default class Gallery {
     document.querySelector('#header').scrollIntoView(top);
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
+
+  //New code=============================================
+  async getQueryMoviesANTON(query, page = 1) {
+    this.currentQuery = query;
+
+    if (query === '') {
+      return;
+    }
+
+    const response = await api.getMoviesByNameANTON(query, page);
+    return response;
+  }
+  //New code=============================================
 }
 
 export { checkMovies };
