@@ -8,6 +8,7 @@ import template from './templates/movieCard.hbs';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Gallery from './js/classes/Gallery';
 
+localStorage.clear();
 localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
