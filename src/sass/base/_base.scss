@@ -11,6 +11,19 @@ body {
     line-height: 1.2;
   }
 
+  &.dark-theme {
+    --main-background-color: rgb(25, 25, 25);
+    --white: rgb(0, 0, 0);
+    --main-text: white;
+    --main-text: white;
+    --team-modal-background: rgb(25, 25, 25);
+    --main-background-color: rgb(0, 0, 0);
+    --secondary-background-color: rgb(0, 0, 0);
+    --movie-card-shadow: 0 1px 10px rgb(255, 255, 255),
+      -23px 0 20px -23px rgba(255, 255, 255),
+      23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
+  }
+
   // SCROLL
   scrollbar-width: thin;
   /* полоса прокрутки (скроллбар) */

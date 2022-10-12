@@ -8,6 +8,7 @@ import './js/utils/handlebars-helpers';
 
 import './js/classes/Pagination';
 
+import './js/changeTheme';
 import './js/modal';
 import './js/gallery';
 import './js/teamAccordion';
