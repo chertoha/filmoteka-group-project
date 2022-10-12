@@ -46,6 +46,7 @@ export default class CheckMovies {
   }
 
   checkMoviePoster(movie) {
+    console.log('test storage, movie obj:', movie);
     if (movie.poster_path) {
       movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
     } else {

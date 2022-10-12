@@ -2,6 +2,10 @@
 // only import can be inserted
 import './js/utils/handlebars-helpers';
 
+//TEST CODE
+import './js/temp/test-watched-obj';
+//TEST CODE
+
 import './js/classes/HeaderBtnHandler';
 import './js/classes/Pagination';
 
