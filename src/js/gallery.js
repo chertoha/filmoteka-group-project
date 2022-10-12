@@ -77,7 +77,7 @@ function onSearchFormSubmit(e) {
 
 async function searchMovies(query, page = 1) {
   try {
-    const searchedMovies = await gallery.getQueryMoviesANTON(query, page);
+    const searchedMovies = await gallery.getQueryMovies(query, page);
 
     if (!searchedMovies) {
       searchNotification(NOTIFY_UNCORRECT_SEARCH);
