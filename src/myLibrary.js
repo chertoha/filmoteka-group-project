@@ -7,7 +7,7 @@ import GalleryHandler from './js/classes/GalleryHandler';
 import template from './templates/movieCard.hbs';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Gallery from './js/classes/Gallery';
-
+// localStorage.clear();
 
 localStorageFilms.saveItemsForArrayAfterReload();
 
@@ -26,7 +26,7 @@ let currentPage = 1;
 let total_results = load('watch');
 
 pagination.on('aftermove', event => {
-  console.log(event.page);
+  // console.log(event.page);
   currentPage = event.page;
   pageValue(total_results, currentPage)
 });
@@ -35,11 +35,11 @@ function tempRenderCards(movies) {
   const container = document.querySelector('.gallery__list');
   // console.log(movies);
   container.innerHTML = template({ movies, library: true });
-  
-  if (total_results.length > 20) {
-     pagination.updateTotalItems(total_results.length);
+
+  pagination.updateTotalItems(total_results.length);
+    // console.log("asfdafsasf",currentPage);
+    pagination.goToPage(currentPage);
   pagination.render();
- }
 };
 
 
@@ -75,8 +75,10 @@ function pageValue(total_results, currentPage) {
   tempRenderCards(moviesPars);
 }
 
+if (total_results !== undefined) {
+  audit(total_results, currentPage);
+}
 
-audit(total_results, currentPage);
 
 
 // КНОПКИ
@@ -96,20 +98,22 @@ function selectBtn(event) {
   });
 
   if (event.target.textContent === 'watched') {
-    console.log("watched")
+    // console.log("watched")
     event.target.classList.add('button--active')
     total_results = load('watch');
-
+currentPage = 1;
     audit(total_results, currentPage);
-console.log(currentPage)
+// console.log(currentPage)
   }
   else if (event.target.textContent === 'queue') {
-    console.log("queue");
+    // console.log("queue");
     event.target.classList.add('button--active');
     total_results = load('queue');
+    currentPage = 1;
 
     audit(total_results, currentPage);
-    console.log(currentPage)
+    // location.reload()
+    // console.log(currentPage)
   }
 }
 
