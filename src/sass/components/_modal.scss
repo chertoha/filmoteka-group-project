@@ -56,7 +56,12 @@
   width: 100%;
   transform: scale(1);
   transition: transform 250ms var(--transition-timing);
-  border-radius: 4px;
+  border-radius: 8px;
+
+  border: 2px dashed #ccc;
+  box-shadow: 0 0 0 1px #ccc, inset 0 0 0 1px #ccc, 20px 0 20px -20px #000 inset,
+    -20px 0 20px -20px #000 inset, inset rgba(0, 0, 0, 0.6) 0 -3px 8px,
+    inset rgba(252, 255, 255, 0.7) 0 3px 8px, rgba(0, 0, 0, 0.8) 0 3px 8px -3px;
 
   @include mq('mobile-only') {
     overflow-y: scroll;
