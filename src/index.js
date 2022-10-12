@@ -3,7 +3,7 @@
 import './js/utils/handlebars-helpers';
 
 //TEST CODE
-import './js/temp/test-watched-obj';
+// import './js/temp/test-watched-obj';
 //TEST CODE
 
 import './js/classes/HeaderBtnHandler';
