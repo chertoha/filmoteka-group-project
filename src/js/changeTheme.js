@@ -8,6 +8,6 @@ console.log('body', document.body);
 refs.button.addEventListener('click', changeTheme);
 
 function changeTheme(event) {
-  document.body.classList.toggle('.dark-theme');
+  document.body.classList.toggle('dark-theme');
   //   refs.galleryItems.classList.toggle('dark-gallery');
 }
