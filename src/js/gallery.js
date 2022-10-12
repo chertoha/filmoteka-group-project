@@ -67,7 +67,6 @@ Anton's code. Sorry guys for messing your code:)================================
 */
 
 const searchFormRef = document.querySelector('.search-form');
-
 searchFormRef.addEventListener('submit', onSearchFormSubmit);
 
 function onSearchFormSubmit(e) {
@@ -87,7 +86,6 @@ async function searchMovies(query, page = 1) {
 
     if (searchedMovies.total_results === 0) {
       searchNotification(NOTIFY_UNCORRECT_SEARCH);
-      alert(NOTIFY_UNCORRECT_SEARCH); // Temp code
       fetchMovies();
       return;
     }
@@ -105,8 +103,7 @@ async function searchMovies(query, page = 1) {
 //------------------------------------------------------------------
 
 function searchNotification(message) {
-  // const notifyRef = document.querySelector('[data-message]'); ???????????????????
-  // console.log(notifyRef);
+  searchFormRef.dataset.message = message;
 }
 
 /*
