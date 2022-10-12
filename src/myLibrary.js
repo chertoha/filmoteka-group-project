@@ -34,12 +34,14 @@ pagination.on('aftermove', event => {
 function tempRenderCards(movies) {
   const container = document.querySelector('.gallery__list');
   // console.log(movies);
-  container.innerHTML = template({ movies, library: true });
+  if (movies !== undefined) {
+    container.innerHTML = template({ movies, library: true });
 
-  pagination.updateTotalItems(total_results.length);
+    pagination.updateTotalItems(total_results.length);
     // console.log("asfdafsasf",currentPage);
     pagination.goToPage(currentPage);
-  pagination.render();
+    pagination.render();
+  } else { container.innerHTML = ""; }
 };
 
 
@@ -102,7 +104,12 @@ function selectBtn(event) {
     event.target.classList.add('button--active')
     total_results = load('watch');
 currentPage = 1;
-    audit(total_results, currentPage);
+    if (total_results !== undefined) {
+  audit(total_results, currentPage);
+    }
+    if (total_results === undefined) {
+      tempRenderCards(total_results, currentPage);
+    }
 // console.log(currentPage)
   }
   else if (event.target.textContent === 'queue') {
@@ -111,7 +118,13 @@ currentPage = 1;
     total_results = load('queue');
     currentPage = 1;
 
-    audit(total_results, currentPage);
+    if (total_results !== undefined) {
+  audit(total_results, currentPage);
+    }
+    if (total_results === undefined) {
+      tempRenderCards(total_results, currentPage);
+    }
+
     // location.reload()
     // console.log(currentPage)
   }
