@@ -1,5 +1,4 @@
 import './js/utils/handlebars-helpers';
-import './js/classes/HeaderBtnHandler';
 import './js/modal';
 import './js/teamAccordion';
 import Pagination from './js/classes/Pagination';
@@ -28,7 +27,7 @@ let total_results = load('watch');
 pagination.on('aftermove', event => {
   // console.log(event.page);
   currentPage = event.page;
-  pageValue(total_results, currentPage)
+  pageValue(total_results, currentPage);
 });
 
 function tempRenderCards(movies) {
@@ -41,9 +40,10 @@ function tempRenderCards(movies) {
     // console.log("asfdafsasf",currentPage);
     pagination.goToPage(currentPage);
     pagination.render();
-  } else { container.innerHTML = ""; }
-};
-
+  } else {
+    container.innerHTML = '';
+  }
+}
 
 function load(key) {
   try {
@@ -52,28 +52,26 @@ function load(key) {
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
-};
-
+}
 
 function audit(total_results, currentPage) {
   if (total_results.length <= 20) {
-  tempRenderCards(total_results);
+    tempRenderCards(total_results);
+  } else if (total_results.length > 20) {
+    pageValue(total_results, currentPage);
+  }
 }
-else if (total_results.length > 20) {
-  pageValue(total_results, currentPage)
-}}
 
 function pageValue(total_results, currentPage) {
   // console.log(currentPage);
-      const lastMovie = currentPage * 20;
-   const firstMovie = lastMovie - 20;
+  const lastMovie = currentPage * 20;
+  const firstMovie = lastMovie - 20;
   const moviesPars = [];
   for (let index = firstMovie; index < lastMovie; index++) {
     if (total_results[index] !== undefined) {
-    moviesPars.push(total_results[index]);
+      moviesPars.push(total_results[index]);
+    }
   }
-   
-}
   tempRenderCards(moviesPars);
 }
 
@@ -81,15 +79,13 @@ if (total_results !== undefined) {
   audit(total_results, currentPage);
 }
 
-
-
 // КНОПКИ
 const btn = document.querySelector('.header');
 const btnWatch = btn.querySelectorAll('.button--dark-mode');
 // console.log(btnWatch);
 
 // КНОПКИ
-btn.addEventListener("click", selectBtn);
+btn.addEventListener('click', selectBtn);
 
 function selectBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -101,25 +97,24 @@ function selectBtn(event) {
 
   if (event.target.textContent === 'watched') {
     // console.log("watched")
-    event.target.classList.add('button--active')
+    event.target.classList.add('button--active');
     total_results = load('watch');
-currentPage = 1;
+    currentPage = 1;
     if (total_results !== undefined) {
-  audit(total_results, currentPage);
+      audit(total_results, currentPage);
     }
     if (total_results === undefined) {
       tempRenderCards(total_results, currentPage);
     }
-// console.log(currentPage)
-  }
-  else if (event.target.textContent === 'queue') {
+    // console.log(currentPage)
+  } else if (event.target.textContent === 'queue') {
     // console.log("queue");
     event.target.classList.add('button--active');
     total_results = load('queue');
     currentPage = 1;
 
     if (total_results !== undefined) {
-  audit(total_results, currentPage);
+      audit(total_results, currentPage);
     }
     if (total_results === undefined) {
       tempRenderCards(total_results, currentPage);
@@ -129,5 +124,3 @@ currentPage = 1;
     // console.log(currentPage)
   }
 }
-
-
