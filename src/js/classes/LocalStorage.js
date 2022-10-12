@@ -70,7 +70,7 @@ export default class LocalStorage {
   }
 
   addItemsOnCurrentPage(films) {
-    this.itemsOnCurrentPage = [...films];
+    this.itemsOnCurrentPage.push(...films);
     this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
   }
   onModalWatchedBtnChange(btn) {
