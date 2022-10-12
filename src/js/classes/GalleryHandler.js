@@ -40,8 +40,6 @@ export default class GalleryHandler {
   }
 
   renderMovieCard(movie) {
-    console.log('movie', movie);
-    checkMovies.checkMoviePoster(movie);
     this.#modalContent.innerHTML = modalMovieDetailsTemplate(movie);
   }
   1;
