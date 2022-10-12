@@ -34,19 +34,18 @@ export default class Gallery {
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
 
-  //Anton's code=============================================
+  //New code=============================================
   async getQueryMoviesANTON(query, page = 1) {
     this.currentQuery = query;
 
     if (query === '') {
-      const response = await this.getPopularMovies(1);
-      return response;
+      return;
     }
 
     const response = await api.getMoviesByNameANTON(query, page);
     return response;
   }
-  //Anton's code=============================================
+  //New code=============================================
 }
 
 export { checkMovies };

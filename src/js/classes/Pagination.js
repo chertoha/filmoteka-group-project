@@ -22,6 +22,10 @@ export default class Pagination {
       .addEventListener('change', this.#onViewportChange.bind(this));
   }
 
+  reset() {
+    this.#page = 1;
+  }
+
   #onViewportChange() {
     // console.log(window.innerWidth);
     this.render();

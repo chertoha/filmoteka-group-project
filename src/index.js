@@ -2,16 +2,10 @@
 // only import can be inserted
 import './js/utils/handlebars-helpers';
 
-//Anton's temporary test code----------------------------
-// import './js/temp/antonTempTest';
-//Anton's temporary test code----------------------------
-
 import './js/classes/HeaderBtnHandler';
 import './js/classes/Pagination';
-// import './js/classes/SearchingForm';   ANTON SWITCHED OFF
 
 import './js/filter';
 import './js/modal';
-// import './js/searchingForm'; ANTON SWITCHED OFF
 import './js/gallery';
 import './js/teamAccordion';
