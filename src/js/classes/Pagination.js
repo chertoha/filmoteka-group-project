@@ -104,7 +104,7 @@ export default class Pagination {
       }
 
       if (i > 1 && i < currentPage - nearbyQtyPages) {
-        string += `<a class="pag__page pag__page--dots pag__btn--dots-prev" href="#" data-value="${
+        string += `<a class="pag__page pag__page--dots pag__btn--dots-prev hovered" href="#" data-value="${
           currentPage - 4
         }"></a>`;
 
@@ -113,7 +113,7 @@ export default class Pagination {
       }
 
       if (i > currentPage + nearbyQtyPages && i <= end - 1) {
-        string += `<a class="pag__page pag__page--dots pag__btn--dots-next" href="#" data-value="${
+        string += `<a class="pag__page pag__page--dots pag__btn--dots-next hovered" href="#" data-value="${
           currentPage + 4
         }"></a>`;
 
@@ -122,11 +122,11 @@ export default class Pagination {
       }
 
       if (i === end && end > 9999) {
-        string += `<a class="pag__page" href="#" data-value="${i}">Last page</a>`;
+        string += `<a class="pag__page hovered" href="#" data-value="${i}">Last page</a>`;
         continue;
       }
 
-      string += `<a class="pag__page" href="#" data-value="${i}">${i}</a>`;
+      string += `<a class="pag__page hovered" href="#" data-value="${i}">${i}</a>`;
     }
 
     if (currentPage <= end - 4) {
