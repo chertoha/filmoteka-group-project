@@ -22,7 +22,7 @@ export default class ModalBtn {
       if (btn.classList.contains('watch-js')) {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
-        btn.textContent = 'Remove from Watch';
+        btn.textContent = 'Remove from Watched';
         btn.classList.remove('watch-js');
         btn.classList.add('remove-watch-js');
       }
