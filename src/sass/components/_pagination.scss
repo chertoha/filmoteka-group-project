@@ -33,11 +33,18 @@
     background-image: url('../images/arrow-right.svg');
   }
 
-  &--dots-prev {
+  @include default-transition(background-color);
+
+  &--prev,
+  &--next {
+    &:hover {
+      background-color: #E4E1E1;
+    }
   }
 
-  &--dots-next {
-  }
+  &--dots-prev {}
+
+  &--dots-next {}
 
   &--dots-prev,
   &--dots-next {
@@ -68,6 +75,14 @@
   &--last-number {
     @include mq('mobile-only') {
       // display: none;
+    }
+  }
+
+  &.hovered {
+    @include default-transition(border-color);
+
+    &:hover {
+      border: 1px solid var(--accent);
     }
   }
 }
