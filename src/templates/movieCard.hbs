@@ -2,12 +2,16 @@
   {{#each movies}}
     <li class='gallery__item movie-card'>
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
-        <img
-          class='movie-card__image'
-          src='{{poster_path}}'
-          alt='{{title}}'
-          {{!-- width='500' --}}
-        />
+        
+        <div class="movie-card__image-wrapper">
+            <img class='movie-card__image' 
+            src='{{poster_path}}' 
+            alt='{{title}}' 
+            {{!-- width='500' --}} 
+            />
+        </div>
+       
+        
         <div class='movie-card__meta'>
           <h2 class='movie-card__title'>{{original_title}}</h2>
           <p class='movie-card__description'>
@@ -43,12 +47,15 @@
   {{#each movies}}
     <li class='gallery__item movie-card'>
       <a href='#' class='movie-card__link' data-movie-id='{{id}}'>
-        <img
-          class='movie-card__image'
-          src='{{poster_path}}'
-          alt='{{title}}'
-          {{!-- width='500' --}}
-        />
+        <div class="movie-card__image-wrapper">
+          <img class='movie-card__image'
+           src='{{poster_path}}' 
+           alt='{{title}}'
+           {{!-- width='500' --}} 
+           />
+        </div>
+
+        
         <div class='movie-card__meta'>
           <h2 class='movie-card__title'>{{original_title}}</h2>
           <p class='movie-card__description'>
