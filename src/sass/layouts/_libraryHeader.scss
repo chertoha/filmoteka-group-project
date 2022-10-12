@@ -12,19 +12,19 @@
 }
 
 .header-library {
-  background-image: url(../images/background-lib-mob.jpg);
+  background-image: url(../images/header-img/background-lib-mob.jpg);
   background-position: center;
   background-size: cover;
   height: 230px;
 
   @include mq('mobile-only') {
-    background-image: url(../images/background-lib-mob.jpg);
+    background-image: url(../images/header-img/background-lib-mob.jpg);
   }
   @include mq('tablet') {
-    background-image: url(../images/background-lib-tab.jpg);
+    background-image: url(../images/header-img/background-lib-tab.jpg);
   }
   @include mq('desktop') {
-    background-image: url(../images/background-lib-desk.jpg);
+    background-image: url(../images/header-img/background-lib-desk.jpg);
   }
 }
 

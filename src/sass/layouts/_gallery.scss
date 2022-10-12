@@ -2,7 +2,7 @@
   padding-top: 20px;
   padding-bottom: 40px;
 
-  background-color: var(--white);
+  // background-color: var(--white);
 
   @include mq('tablet') {
     padding-top: 60px;
@@ -37,4 +37,9 @@
   @include mq('desktop') {
     flex-basis: calc((100% - 66px) / 3);
   }
+}
+.dark-bg {
+  box-shadow: 0 1px 10px rgb(255, 255, 255),
+    -23px 0 20px -23px rgba(255, 255, 255),
+    23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
 }

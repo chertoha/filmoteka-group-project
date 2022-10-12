@@ -1,21 +1,22 @@
 .header {
+  position: relative;
   background-position: center;
   background-size: cover;
 
   @include mq('mobile-only') {
     padding: 41px 20px 91px 20px;
-    background-image: url(../images/header-background-mob.jpg);
+    background-image: url(../images/header-img/header-background-mob.jpg);
     height: 230px;
   }
   @include mq('tablet') {
     padding: 40px 32px 81px 32px;
-    background-image: url(../images/header-background-tab.jpg);
+    background-image: url(../images/header-img/header-background-tab.jpg);
     height: 219px;
   }
 
   @include mq('desktop') {
     padding: 45px 32px 80px 32px;
-    background-image: url(../images/header-background-desk.jpg);
+    background-image: url(../images/header-img/header-background-desk.jpg);
     height: 216px;
   }
 }

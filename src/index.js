@@ -10,6 +10,7 @@ import './js/classes/HeaderBtnHandler';
 import './js/classes/Pagination';
 import './js/classes/SearchingForm';
 
+import './js/changeTheme';
 import './js/filter';
 import './js/modal';
 import './js/searchingForm';
