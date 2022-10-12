@@ -48,7 +48,7 @@ async function fetchMovies(page = 1) {
   try {
     const movies = await gallery.getPopularMovies(page);
     spinner.hide();
-    console.log('Popular Movies:', movies);
+    // console.log('Popular Movies:', movies);
     gallery.renderCards(movies.results);
 
     pagination.updateTotalItems(movies.total_results);
