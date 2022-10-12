@@ -30,6 +30,9 @@ export default class LocalStorage {
         localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue)
       );
     }
+    if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))) {
+      this.itemsOnCurrentPage = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))
+    }
   }
   removeItemFromKeyStorage(btn) {
     let currentArray = null;
@@ -74,7 +77,7 @@ export default class LocalStorage {
   onModalWatchedBtnChange(btn) {
     const onTrue = this.watchedItems.some(item => this.currentFilm.id === item.id);
     if (onTrue) {
-      btn.textContent = 'Remove from Watch';
+      btn.textContent = 'Remove from Watched';
       btn.classList.remove('watch-js');
       btn.classList.add('remove-watch-js');
       
