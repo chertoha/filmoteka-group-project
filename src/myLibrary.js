@@ -1,79 +1,93 @@
-// do not write code here
-// only import can be inserted
 import './js/utils/handlebars-helpers';
-
-//Anton's temporary test code----------------------------
-// import './js/temp/antonTempTest';
-//Anton's temporary test code----------------------------
-
 import './js/classes/HeaderBtnHandler';
 import './js/modal';
 import './js/teamAccordion';
-
 import Pagination from './js/classes/Pagination';
 import GalleryHandler from './js/classes/GalleryHandler';
 import template from './templates/movieCard.hbs';
 import { localStorageFilms } from './js/classes/ModalBtn';
+import Gallery from './js/classes/Gallery';
+// localStorage.clear();
+
+localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
-const containerPag = document.querySelector('.pag');
-const pagination = new Pagination(containerPag);
-
-localStorageFilms.saveItemsForArrayAfterReload();
-
-// console.log('this is inside Library');
-// console.log('pagination', pagination);
-// console.log('template', template);
-// console.log('galleryHandler', galleryHandler);
-
-// import './js/utils/handlebars-helpers';
-// import movieCardTemplate from './templates/movieCard.hbs';
-// import localStorageFilms from './js/classes/ModalBtn';
-
-// import Pagination from './classes/Pagination';
-// import ApiService from './classes/ApiService';
-// import GalleryHandler from './classes/GalleryHandler';
-import Spinner from './js/classes/spinner';
-import Gallery from './js/classes/Gallery';
-// import template from '../templates/movieCard.hbs';
-
 const containerGallery = document.querySelector('.gallery__list');
 const gallery = new Gallery(containerGallery, template);
 
-// const containerPag = document.querySelector('.pag');
-// const pagination = new Pagination(containerPag);
-const spinner = new Spinner('.js-spinner');
+const containerPag = document.querySelector('.pag');
+const pagination = new Pagination(containerPag);
 
-// ф-ция взять из локал стор
-export default function load(key) {
+let currentPage = 1;
+// let btnStorage = "watch";
+// localStorage.setItem("btnStorage", "watch");
+let total_results = load('watch');
+
+pagination.on('aftermove', event => {
+  // console.log(event.page);
+  currentPage = event.page;
+  pageValue(total_results, currentPage)
+});
+
+function tempRenderCards(movies) {
+  const container = document.querySelector('.gallery__list');
+  // console.log(movies);
+  container.innerHTML = template({ movies, library: true });
+
+  pagination.updateTotalItems(total_results.length);
+    // console.log("asfdafsasf",currentPage);
+    pagination.goToPage(currentPage);
+  pagination.render();
+};
+
+
+function load(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
   } catch (error) {
     console.error('Get state error: ', error.message);
   }
+};
+
+
+function audit(total_results, currentPage) {
+  if (total_results.length <= 20) {
+  tempRenderCards(total_results);
 }
+else if (total_results.length > 20) {
+  pageValue(total_results, currentPage)
+}}
 
-// localStorage.clear();
-
-const keyOne = load('watch');
-const keyTwo = load('queue');
-
-console.log(keyOne);
-
-if (keyOne !== undefined) {
-  if (keyOne.length > 0) {
-    tempRenderCards(keyOne);
+function pageValue(total_results, currentPage) {
+  // console.log(currentPage);
+      const lastMovie = currentPage * 20;
+   const firstMovie = lastMovie - 20;
+  const moviesPars = [];
+  for (let index = firstMovie; index < lastMovie; index++) {
+    if (total_results[index] !== undefined) {
+    moviesPars.push(total_results[index]);
   }
+   
+}
+  tempRenderCards(moviesPars);
 }
 
+if (total_results !== undefined) {
+  audit(total_results, currentPage);
+}
+
+
+
+// КНОПКИ
 const btn = document.querySelector('.header');
 const btnWatch = btn.querySelectorAll('.button--dark-mode');
-console.log(btnWatch);
+// console.log(btnWatch);
 
-btn.addEventListener('click', selectBtn);
+// КНОПКИ
+btn.addEventListener("click", selectBtn);
 
 function selectBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
@@ -85,43 +99,22 @@ function selectBtn(event) {
 
   if (event.target.textContent === 'watched') {
     // console.log("watched")
-    event.target.classList.add('button--active');
-
-    tempRenderCards(keyOne);
-  } else if (event.target.textContent === 'queue') {
+    event.target.classList.add('button--active')
+    total_results = load('watch');
+currentPage = 1;
+    audit(total_results, currentPage);
+// console.log(currentPage)
+  }
+  else if (event.target.textContent === 'queue') {
     // console.log("queue");
     event.target.classList.add('button--active');
-    tempRenderCards(keyTwo);
+    total_results = load('queue');
+    currentPage = 1;
+
+    audit(total_results, currentPage);
+    // location.reload()
+    // console.log(currentPage)
   }
 }
 
-function tempRenderCards(movies) {
-  const container = document.querySelector('.gallery__list');
-  container.innerHTML = template({ movies, library: true });
-}
 
-// if (window.location.pathname === '/myLibrary.html') {
-//   pagination.on('aftermove', event => {
-//   console.log(event.page);
-
-//   fetchMovies(event.page);
-// });
-
-// fetchMovies();
-
-// async function fetchMovies(page = 1) {
-//   spinner.show();
-//   try {
-//     const movies = await gallery.tempRenderCards(page);
-//     spinner.hide();
-//     console.log(movies);
-//     gallery.renderCards(movies.results);
-
-//     pagination.updateTotalItems(movies.total_results);
-//     pagination.render();
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// }
