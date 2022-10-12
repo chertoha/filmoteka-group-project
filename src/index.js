@@ -11,3 +11,4 @@ import './js/classes/Pagination';
 import './js/modal';
 import './js/gallery';
 import './js/teamAccordion';
+import './js/buttonUp';
