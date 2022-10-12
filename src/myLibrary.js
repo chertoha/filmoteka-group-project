@@ -20,12 +20,14 @@ const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 
 let currentPage = 1;
-let total_results = load('watch');
+// let btnStorage = "watch";
+// localStorage.setItem("btnStorage", "watch");
+// let total_results = load(`${load("btnStorage")}`);
 
 pagination.on('aftermove', event => {
   console.log(event.page);
   currentPage = event.page;
-  pageValue(total_results, currentPage)
+  // pageValue(total_results, currentPage)
 });
 
 function tempRenderCards(movies) {
@@ -73,7 +75,7 @@ function pageValue(total_results, currentPage) {
 }
 
 
-audit(total_results, currentPage);
+// audit(total_results, currentPage);
 
 
 // КНОПКИ
@@ -103,6 +105,7 @@ function selectBtn(event) {
     // console.log("queue");
     event.target.classList.add('button--active');
     total_results = load('queue');
+
     audit(total_results, currentPage);
     // console.log(currentPage)
   }
