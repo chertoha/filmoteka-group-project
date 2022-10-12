@@ -16,15 +16,15 @@
   }
 }
 
-.finfo-moviecard__img {
-  display: block;
-  border-radius: 5px;
-  height: 100%;
-  margin: 0 auto;
+.finfo-moviecard__img-wrapper {
+  flex-shrink: 0;
+
+  min-height: 330px;
 
   @include mq('mobile-only') {
     width: 100%;
     margin-bottom: 20px;
+
   }
 
   @include mq('tablet') {
@@ -37,6 +37,44 @@
     width: 350px;
   }
 }
+
+.finfo-moviecard__img {
+  display: block;
+  border-radius: 5px;
+  // height: 100%;
+  margin: 0 auto;
+
+  @include mq('tablet') {
+    height: 374px;
+  }
+
+  @include mq('desktop') {
+    height: 478px;
+  }
+
+}
+
+// .finfo-moviecard__img {
+//   display: block;
+//   border-radius: 5px;
+//   height: 100%;
+//   margin: 0 auto;
+
+//   @include mq('mobile-only') {
+//     width: 100%;
+//     margin-bottom: 20px;
+//   }
+
+//   @include mq('tablet') {
+//     width: 264px;
+//     margin-right: 40px;
+//   }
+
+//   @include mq('desktop') {
+//     margin-right: 40px;
+//     width: 350px;
+//   }
+// }
 
 .finfo-moviecard__name {
   margin-bottom: 20px;
