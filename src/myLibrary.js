@@ -9,7 +9,7 @@ import { localStorageFilms } from './js/classes/ModalBtn';
 import Gallery from './js/classes/Gallery';
 
 
-// localStorageFilms.saveItemsForArrayAfterReload();
+localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
@@ -23,12 +23,12 @@ const pagination = new Pagination(containerPag);
 let currentPage = 1;
 // let btnStorage = "watch";
 // localStorage.setItem("btnStorage", "watch");
-let total_results = load(``);
+let total_results = load('watch');
 
 pagination.on('aftermove', event => {
   console.log(event.page);
   currentPage = event.page;
-  // pageValue(total_results, currentPage)
+  pageValue(total_results, currentPage)
 });
 
 function tempRenderCards(movies) {
@@ -76,7 +76,7 @@ function pageValue(total_results, currentPage) {
 }
 
 
-// audit(total_results, currentPage);
+audit(total_results, currentPage);
 
 
 // КНОПКИ
