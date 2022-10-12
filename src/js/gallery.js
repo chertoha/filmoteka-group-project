@@ -104,6 +104,10 @@ async function searchMovies(query, page = 1) {
 
 function searchNotification(message) {
   searchFormRef.dataset.message = message;
+
+  setTimeout(() => {
+    searchFormRef.dataset.message = '';
+  }, 4000);
 }
 
 /*
