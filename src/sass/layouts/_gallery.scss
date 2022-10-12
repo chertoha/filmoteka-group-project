@@ -1,7 +1,6 @@
 .gallery {
   padding-top: 20px;
   padding-bottom: 40px;
-
   // background-color: var(--white);
 
   @include mq('tablet') {
@@ -19,9 +18,9 @@
 }
 
 .gallery__item {
+  background-color: var(--white);
   border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
-    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--movie-card-shadow);
   text-align: center;
 
   @include mq('mobile-only') {
@@ -37,9 +36,4 @@
   @include mq('desktop') {
     flex-basis: calc((100% - 66px) / 3);
   }
-}
-.dark-bg {
-  box-shadow: 0 1px 10px rgb(255, 255, 255),
-    -23px 0 20px -23px rgba(255, 255, 255),
-    23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
 }

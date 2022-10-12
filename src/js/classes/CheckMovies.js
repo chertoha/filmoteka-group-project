@@ -46,6 +46,11 @@ export default class CheckMovies {
   }
 
   checkMoviePoster(movie) {
+    if (!movie) {
+      throw new Error('Object movie is undefined, null, empty string etc...');
+      return;
+    }
+
     if (movie.poster_path) {
       movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
     } else {

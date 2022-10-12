@@ -1,12 +1,13 @@
 const refs = {
-  gallery: document.querySelector('.gallery__item'),
-  body: document.querySelector('body'),
+  //   gallery: document.querySelector('.gallery__item'),
+  //   body: document.querySelector('body'),
   button: document.querySelector('.theme-btn'),
 };
-console.log(refs.gallery);
+
+console.log('body', document.body);
 refs.button.addEventListener('click', changeTheme);
 
 function changeTheme(event) {
-  refs.body.classList.toggle('dark-bg');
+  document.body.classList.toggle('.dark-theme');
   //   refs.galleryItems.classList.toggle('dark-gallery');
 }

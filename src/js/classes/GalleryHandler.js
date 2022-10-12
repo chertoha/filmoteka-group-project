@@ -5,7 +5,7 @@ import { checkMovies } from './Gallery';
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
-  #modalContent = document.querySelector('.js-movieCard');
+  #modalContent = document.querySelector('.js-movie-card');
 
   addGalleryHandler() {
     this.#galleryRef.addEventListener('click', this.onMovieCardClick);
@@ -21,6 +21,10 @@ export default class GalleryHandler {
       const itemIdToFind = event.target.closest('a').dataset.movieId;
 
       this.renderMovieCard(this.findClickedItem(itemIdToFind));
+      const watchBtn = document.querySelector('.watch-js');
+      const queueBtn = document.querySelector('.queue-js');
+      localStorageFilms.onModalQueueBtnChange(queueBtn);
+      localStorageFilms.onModalWatchedBtnChange(watchBtn);
       movieCardModal.openModal();
     }
   };
@@ -31,6 +35,7 @@ export default class GalleryHandler {
     );
     const itemToFind = allCurrentItemsOnPage.find(item => item.id === +id);
     localStorageFilms.currentFilm = itemToFind;
+
     return itemToFind;
   }
 
@@ -38,4 +43,5 @@ export default class GalleryHandler {
     checkMovies.checkMoviePoster(movie);
     this.#modalContent.innerHTML = modalMovieDetailsTemplate(movie);
   }
+  1;
 }

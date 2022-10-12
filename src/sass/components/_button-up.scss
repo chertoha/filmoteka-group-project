@@ -1,4 +1,8 @@
 .button--up {
+  @include mq('not-desktop') {
+    display: none;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -8,7 +8,7 @@
   --backdrop-color: rgba(0, 0, 0, 0.2);
   --secondary-bgc: #f7f7f7;
   --team-modal-background: rgb(246, 241, 237);
-  --main-text: #000000;
+  --main-text: #333333;
   --accent: #ff6b08;
   --secondary: #545454;
   --white: #ffffff;
@@ -16,6 +16,9 @@
   --btn-up: rgba(255, 107, 8, 0.8);
   --btn-close: rgba(0, 0, 0, 0.5);
   --table-color: #8c8c8c;
+  --movie-card-shadow: 0 1px 4px rgba(0, 0, 0, 1),
+    -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 0, 0, 0.1);
 
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
