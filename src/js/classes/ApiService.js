@@ -3,9 +3,10 @@ const axios = require('axios').default;
 export default class ApiService {
   #API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
   //змінити базовий юрл
-  #BASE_GENRES_URL = 'https://api.themoviedb.org/3/genre/movie/list';
-  #BASE_TRENDS_URL = 'https://api.themoviedb.org/3/trending/movie/day';
-  #BASE_BY_NAME_URL = 'https://api.themoviedb.org/3/search/movie';
+  #BASE_URL = 'https://api.themoviedb.org/3/';
+  #GENRES_PATH_URL = 'genre/movie/list';
+  #TRENDINGS_PATH_URL = 'trending/movie/day';
+  #SEARCH_PATH_URL = 'search/movie';
 
   #moviesByNameSearchParams = {
     params: {
@@ -23,30 +24,27 @@ export default class ApiService {
   constructor() {}
 
   async fetchGenres() {
+    const url = this.#BASE_URL + this.#GENRES_PATH_URL;
     try {
       const response = await axios.get(
-        this.#BASE_GENRES_URL,
+        url,
         this.#genresSearchParams
       );
       const genres = response.data.genres;
       return genres;
-      // for (const genre of genres) {
-      //   console.log(genre.id);
-      //   console.log(genre.name);
-      //   localStorage.setItem(genre.id, genre.name);
-      // }
     } catch (error) {
       console.error(error);
     }
   }
 
   async fetchTrendingMovies(page = 1) {
+    const url = this.#BASE_URL + this.#TRENDINGS_PATH_URL;
     const popularMoviesSearchParams = {
       params: { api_key: this.#API_KEY, page },
     };
     try {
       const response = await axios.get(
-        this.#BASE_TRENDS_URL,
+        url,
         popularMoviesSearchParams
       );
       return response;
@@ -56,9 +54,10 @@ export default class ApiService {
   }
 
   async fetchMoviesByName() {
+    const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
     try {
       const response = await axios.get(
-        this.#BASE_BY_NAME_URL,
+        url,
         this.#moviesByNameSearchParams
       );
       return response;
@@ -67,37 +66,18 @@ export default class ApiService {
     }
   }
 
-  // async getPopularMovies() {
-  //   try {
-  //     const response = await this.fetchTrendingMovies();
-  //     return response.data;
-  //   }
-  //   catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  async getMoviesByName(query) {
+  async getMoviesByName(query, page = 1) {
     if (query) {
       this.#moviesByNameSearchParams.query = query;
-      this.#moviesByNameSearchParams.page = 1;
+      this.#moviesByNameSearchParams.page = page;
     }
-    const response = await this.fetchMoviesByName();
-    return response.data.results;
-  }
-
-  //Anton's code=============================================
-  async getMoviesByNameANTON(query, page) {
-    const url =
-      this.#BASE_BY_NAME_URL +
-      '?api_key=' +
-      this.#API_KEY +
-      '&query=' +
-      query +
-      '&page=' +
-      page;
-    const response = await axios.get(url);
-    return response.data;
-  }
-  //Anton's code=============================================
+  const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+    const response = await axios.get(
+        url,
+        this.#moviesByNameSearchParams
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
 }
