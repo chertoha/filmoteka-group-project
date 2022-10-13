@@ -6,20 +6,16 @@ import Pagination from './classes/Pagination';
 import Spinner from './classes/spinner';
 import template from '../templates/movieCard.hbs';
 import { NOTIFY_UNCORRECT_SEARCH } from './utils/config';
-import { containerGallery, containerPag } from './utils/refs';
+import { containerGallery, containerPag, searchFormRef } from './utils/refs';
 
 const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
-// const containerGallery = document.querySelector('.js-gallery');
 const gallery = new Gallery(containerGallery, template);
-
-// const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner();
 
-const searchFormRef = document.querySelector('.search-form');
 searchFormRef.addEventListener('submit', onSearchFormSubmit);
 
 pagination.on('aftermove', event => {

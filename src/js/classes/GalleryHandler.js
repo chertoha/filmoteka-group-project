@@ -4,9 +4,7 @@ import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
 import { containerGallery, movieCardModalRef } from '../utils/refs';
 
 export default class GalleryHandler {
-  // #galleryRef = document.querySelector('.js-gallery');
   #galleryRef = containerGallery;
-  // #modalContent = document.querySelector('.js-movie-card');
   #modalContent = movieCardModalRef;
 
   addGalleryHandler() {
