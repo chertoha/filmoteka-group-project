@@ -13,7 +13,7 @@ export default class LocalStorage {
   }
   addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
-    dataName.push(this.currentFilm);
+    dataName.unshift(this.currentFilm);
     this.setFilms(keyName, dataName);
   }
   getItemFromKeyStorage(key) {
