@@ -1,13 +1,10 @@
 // do not write code here
 // only import can be inserted
 import './js/utils/handlebars-helpers';
-
-//TEST CODE
-// import './js/temp/test-watched-obj';
-//TEST CODE
-
 import './js/classes/Pagination';
 
-import './js/modal';
+import './js/buttonUp';
+import './js/changeTheme';
 import './js/gallery';
+import './js/modal';
 import './js/teamAccordion';

@@ -17,16 +17,29 @@
 
 }
 
-.movie-card__image {
-  display: block;
-  border-radius: 5px;
-
+.movie-card__image-wrapper {
   @include mq('tablet') {
-    height: 455px;
+    min-height: 474px;
   }
 
   @include mq('desktop') {
-    height: 574px;
+    min-height: 545px;
+  }
+
+}
+
+.movie-card__image {
+  display: block;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mq('tablet') {
+    // height: 455px;
+  }
+
+  @include mq('desktop') {
+    // height: 574px;
   }
 
 }

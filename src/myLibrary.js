@@ -1,6 +1,7 @@
 import './js/utils/handlebars-helpers';
 import './js/modal';
 import './js/teamAccordion';
+import './js/changeTheme';
 import Pagination from './js/classes/Pagination';
 import GalleryHandler from './js/classes/GalleryHandler';
 import template from './templates/movieCard.hbs';

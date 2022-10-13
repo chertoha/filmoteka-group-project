@@ -3,6 +3,8 @@
   --main-font: 'Roboto', sans-serif;
 
   // COLORS
+  --header-white: #ffffff;
+  // --main-background-color: #f5f4fa;
   --main-background-color: #ffffff;
   --secondary-background-color: #f7f7f7;
   --backdrop-color: rgba(0, 0, 0, 0.2);
@@ -15,6 +17,9 @@
   --btn-up: rgba(255, 107, 8, 0.8);
   --btn-close: rgba(0, 0, 0, 0.5);
   --table-color: #8c8c8c;
+  --movie-card-shadow: 0 1px 4px rgba(0, 0, 0, 1),
+    -23px 0 20px -23px rgba(0, 0, 0, 0.8), 23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 0, 0, 0.1);
   --scroll-background: #f6f8f4;
 
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);

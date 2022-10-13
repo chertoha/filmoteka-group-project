@@ -1,14 +1,11 @@
-import Pagination from './classes/Pagination';
 import ApiService from './classes/ApiService';
-import GalleryHandler from './classes/GalleryHandler';
-import Spinner from './classes/spinner';
 import Gallery from './classes/Gallery';
-import template from '../templates/movieCard.hbs';
+import GalleryHandler from './classes/GalleryHandler';
 import { localStorageFilms } from './classes/ModalBtn';
-
-//ANTON"S CODE=======================================
+import Pagination from './classes/Pagination';
+import Spinner from './classes/spinner';
+import template from '../templates/movieCard.hbs';
 import { NOTIFY_UNCORRECT_SEARCH } from './utils/config';
-//ANTON"S CODE=======================================
 
 const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
@@ -21,7 +18,6 @@ const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner('.js-spinner');
 
-//NEW CODE=============================================
 const searchFormRef = document.querySelector('.search-form');
 searchFormRef.addEventListener('submit', onSearchFormSubmit);
 
@@ -32,14 +28,8 @@ pagination.on('aftermove', event => {
     searchMovies(gallery.currentQuery, event.page);
   }
 });
-//NEW CODE=============================================
 
 localStorageFilms.saveItemsForArrayAfterReload();
-
-// pagination.on('aftermove', event => {
-//   console.log(event.page);
-//   fetchMovies(event.page);
-// });
 
 fetchMovies();
 
@@ -59,10 +49,6 @@ async function fetchMovies(page = 1) {
   }
 }
 
-/*
-      NEW CODE =============================================
-*/
-
 function onSearchFormSubmit(e) {
   e.preventDefault();
 
@@ -72,8 +58,6 @@ function onSearchFormSubmit(e) {
     this.reset();
   }
 }
-
-//------------------------------------------------------------------
 
 async function searchMovies(query, page = 1) {
   try {
@@ -102,8 +86,6 @@ async function searchMovies(query, page = 1) {
   }
 }
 
-//------------------------------------------------------------------
-
 function searchNotification(message) {
   searchFormRef.dataset.message = message;
 
@@ -111,9 +93,5 @@ function searchNotification(message) {
     searchFormRef.dataset.message = '';
   }, 4000);
 }
-
-/*
-      NEW CODE =============================================
-*/
 
 export { apiService, gallery };

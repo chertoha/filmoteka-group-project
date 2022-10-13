@@ -8,6 +8,7 @@ export default class LocalStorage {
       itemsOnCurrentPage: 'itemsOnCurrentPage',
       watch: 'watch',
       queue: 'queue',
+      theme: 'theme',
     };
   }
   addItemToKeyStorage(keyName, dataName) {
@@ -30,15 +31,12 @@ export default class LocalStorage {
         localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue)
       );
     }
-    if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))) {
-      this.itemsOnCurrentPage = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))
-    }
   }
   removeItemFromKeyStorage(btn) {
     let currentArray = null;
     let currentRemoveKey = null;
     let newArray = [];
-    if (btn.classList.contains('remove-watch-js')) {
+    if (btn.classList.contains('remove-watched-js')) {
       currentArray = 'watchedItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.watch;
     }
@@ -63,34 +61,35 @@ export default class LocalStorage {
       if (!uniqueId.includes(value.id)) {
         uniqueId.push(value.id);
         uniqueArray.push(value);
-      }
-    });
+      }});
     localStorage.setItem(keyName, JSON.stringify(uniqueArray));
-    uniqueArray = [];
-    uniqueId = [];
   }
-
   addItemsOnCurrentPage(films) {
-    this.itemsOnCurrentPage.push(...films);
+    this.itemsOnCurrentPage = [...films, ...this.watchedItems, ...this.queueItems];
     this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
   }
   onModalWatchedBtnChange(btn) {
-    const onTrue = this.watchedItems.some(item => this.currentFilm.id === item.id);
-    if (onTrue) {
-      btn.textContent = 'Remove from Watched';
-      btn.classList.remove('watch-js');
-      btn.classList.add('remove-watch-js');
-      
+    if (this.watchedItems.some(item => this.currentFilm.id === item.id)) {
+    this.changeAddBtn('watched', btn, 'remove');
     }
   }
   onModalQueueBtnChange(btn) {
-    const onTrue = this.queueItems.some(item => this.currentFilm.id === item.id);
-    if (onTrue) {
-      btn.textContent = 'Remove from Queue';
-      btn.classList.remove('queue-js');
-      btn.classList.add('remove-queue-js');
+    if (this.queueItems.some(item => this.currentFilm.id === item.id)) {
+      this.changeAddBtn('queue', btn, 'remove');
     }
+  }
+  changeAddBtn(name, btn, event) {
+    if (event === 'remove') {
+    btn.textContent = `Remove from ${name}`;
+    btn.classList.remove(`${name}-js`);
+    btn.classList.add(`remove-${name}-js`);
+      return;
+    }
+    btn.textContent = `Add to ${name}`;
+    btn.classList.remove(`remove-${name}-js`);
+    btn.classList.add(`${name}-js`);
+  }
+  set themeBody(currentTheme) {
+    localStorage.setItem(this.LOCAL_STORAGE_KEYS.theme, JSON.stringify(currentTheme));
+  }
 }
-}
-
-

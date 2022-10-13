@@ -1,12 +1,14 @@
-const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const urls = {
+  BASE_URL: 'https://api.themoviedb.org/3/',
+  GENRES_PATH_URL: 'genre/movie/list',
+  TRENDINGS_PATH_URL: 'trending/movie/day',
+  SEARCH_PATH_URL: 'search/movie',
+  BASE_IMAGE_URL: 'https://image.tmdb.org/t/p/w500',
+};
+
+const API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
+
 const NOTIFY_UNCORRECT_SEARCH =
   'Search result not successful. Enter the correct movie name and try again!';
-//here could be:
-/*
-BASE_URL
-URL PATHS: trendings, search, MoviesDetails, genres
-API_KEY
-...
-*/
 
-export { BASE_IMAGE_URL, NOTIFY_UNCORRECT_SEARCH };
+export { urls, API_KEY, NOTIFY_UNCORRECT_SEARCH };

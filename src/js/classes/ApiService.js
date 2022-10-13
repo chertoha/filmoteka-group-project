@@ -26,8 +26,8 @@ export default class ApiService {
   #getMovieDetailsSearchParams = {
     params: {
       api_key: this.#API_KEY,
-    }
-  }
+    },
+  };
   constructor() {}
 
   async fetchGenres() {
@@ -68,6 +68,8 @@ export default class ApiService {
     this.#moviesByNameSearchParams.params.query = query;
     this.#moviesByNameSearchParams.params.page = page;
     const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+    console.log('query', query);
+    console.log(url, this.#moviesByNameSearchParams);
     const response = await axios.get(url, this.#moviesByNameSearchParams);
     return response.data;
   }
