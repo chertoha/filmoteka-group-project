@@ -1,7 +1,6 @@
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
-import { checkMovies } from './Gallery';
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
@@ -19,12 +18,14 @@ export default class GalleryHandler {
       event.target?.closest('a')?.hasAttribute('data-movie-id')
     ) {
       const itemIdToFind = event.target.closest('a').dataset.movieId;
-
       this.renderMovieCard(this.findClickedItem(itemIdToFind));
-      const watchBtn = document.querySelector('.watched-js');
-      const queueBtn = document.querySelector('.queue-js');
-      localStorageFilms.onModalQueueBtnChange(queueBtn);
-      localStorageFilms.onModalWatchedBtnChange(watchBtn);
+
+      localStorageFilms.onModalQueueBtnChange(
+        this.#modalContent.querySelector('.queue-js')
+      );
+      localStorageFilms.onModalWatchedBtnChange(
+        this.#modalContent.querySelector('.watched-js')
+      );
       movieCardModal.openModal();
     }
   };
@@ -40,8 +41,6 @@ export default class GalleryHandler {
   }
 
   renderMovieCard(movie) {
-    console.log('movie', movie);
-    checkMovies.checkMoviePoster(movie);
     this.#modalContent.innerHTML = modalMovieDetailsTemplate(movie);
   }
   1;
