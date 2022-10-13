@@ -13,7 +13,7 @@ export default class LocalStorage {
   }
   addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
-    dataName.push(this.currentFilm);
+    dataName.unshift(this.currentFilm);
     this.setFilms(keyName, dataName);
   }
   getItemFromKeyStorage(key) {
@@ -61,7 +61,8 @@ export default class LocalStorage {
       if (!uniqueId.includes(value.id)) {
         uniqueId.push(value.id);
         uniqueArray.push(value);
-      }});
+      }
+    });
     localStorage.setItem(keyName, JSON.stringify(uniqueArray));
   }
   addItemsOnCurrentPage(films) {
@@ -70,7 +71,7 @@ export default class LocalStorage {
   }
   onModalWatchedBtnChange(btn) {
     if (this.watchedItems.some(item => this.currentFilm.id === item.id)) {
-    this.changeAddBtn('watched', btn, 'remove');
+      this.changeAddBtn('watched', btn, 'remove');
     }
   }
   onModalQueueBtnChange(btn) {
@@ -80,9 +81,9 @@ export default class LocalStorage {
   }
   changeAddBtn(name, btn, event) {
     if (event === 'remove') {
-    btn.textContent = `Remove from ${name}`;
-    btn.classList.remove(`${name}-js`);
-    btn.classList.add(`remove-${name}-js`);
+      btn.textContent = `Remove from ${name}`;
+      btn.classList.remove(`${name}-js`);
+      btn.classList.add(`remove-${name}-js`);
       return;
     }
     btn.textContent = `Add to ${name}`;
