@@ -57,14 +57,32 @@ export default class ApiService {
     }
   }
 
-  async getMoviesByName(query, page = 1) {
-    this.#moviesByNameSearchParams.query = query;
-    this.#moviesByNameSearchParams.page = page;
-    const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
-    const response = await axios.get(url, this.#moviesByNameSearchParams);
+  // async getMoviesByName(query, page = 1) {
+  //   this.#moviesByNameSearchParams.query = query;
+  //   this.#moviesByNameSearchParams.page = page;
+  //   const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+  //   const response = await axios.get(url, this.#moviesByNameSearchParams);
+  //   return response.data;
+  // }
+  // catch(error) {
+  //   console.error(error);
+  // }
+
+  //Anton's code=============================================
+  async getMoviesByName(query, page) {
+    const url =
+      this.#BASE_URL +
+      this.#SEARCH_PATH_URL +
+      '?api_key=' +
+      this.#API_KEY +
+      '&query=' +
+      query +
+      '&page=' +
+      page;
+
+    console.log(url);
+    const response = await axios.get(url);
     return response.data;
   }
-  catch(error) {
-    console.error(error);
-  }
+  //Anton's code=============================================
 }
