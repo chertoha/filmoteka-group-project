@@ -1,7 +1,6 @@
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
-import { checkMovies } from './Gallery';
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
