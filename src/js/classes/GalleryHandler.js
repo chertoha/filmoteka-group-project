@@ -1,10 +1,13 @@
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
+import { containerGallery, movieCardModalRef } from '../utils/refs';
 
 export default class GalleryHandler {
-  #galleryRef = document.querySelector('#gallery');
-  #modalContent = document.querySelector('.js-movie-card');
+  // #galleryRef = document.querySelector('.js-gallery');
+  #galleryRef = containerGallery;
+  // #modalContent = document.querySelector('.js-movie-card');
+  #modalContent = movieCardModalRef;
 
   addGalleryHandler() {
     this.#galleryRef.addEventListener('click', this.onMovieCardClick);

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import ApiService from './ApiService';
 import CheckMovies from './CheckMovies';
 import { localStorageFilms } from './ModalBtn';
