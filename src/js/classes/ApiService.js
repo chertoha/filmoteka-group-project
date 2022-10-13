@@ -7,6 +7,7 @@ export default class ApiService {
   #GENRES_PATH_URL = 'genre/movie/list';
   #TRENDINGS_PATH_URL = 'trending/movie/day';
   #SEARCH_PATH_URL = 'search/movie';
+  #GET_MOVIE_DETAILS_PATH_URL = 'movie/';
 
   #moviesByNameSearchParams = {
     params: {
@@ -17,6 +18,12 @@ export default class ApiService {
     },
   };
   #genresSearchParams = {
+    params: {
+      api_key: this.#API_KEY,
+    },
+  };
+
+  #getMovieDetailsSearchParams = {
     params: {
       api_key: this.#API_KEY,
     },
@@ -70,26 +77,13 @@ export default class ApiService {
     console.error(error);
   }
 
-  //Anton's code=============================================
-  // async getMoviesByName(query, page) {
-  //   const url =
-  //     this.#BASE_URL +
-  //     this.#SEARCH_PATH_URL +
-  //     '?api_key=' +
-  //     this.#API_KEY +
-  //     '&query=' +
-  //     query +
-  //     '&page=' +
-  //     page;
-
-  //   console.log(url);
-  //   const response = await axios.get(url);
-  //   return response.data;
-  // }
-  //Anton's code=============================================
+  async fetchMoviesByID(id) {
+    const url = this.#BASE_URL + this.#GET_MOVIE_DETAILS_PATH_URL + id;
+    try {
+      const response = await axios.get(url, this.#getMovieDetailsSearchParams);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
-
-// https://api.themoviedb.org/3/search/movie? api_key=1351fe1fee33f4dc7ca86c3a4fb4a61c&query=top&page=1
-// https://api.themoviedb.org/3/search/movie? api_key=1351fe1fee33f4dc7ca86c3a4fb4a61c&query=top&page=2
-
-// https://api.themoviedb.org/3/search/movie? api_key=1351fe1fee33f4dc7ca86c3a4fb4a61c &query= &page=1&include_adult=false
