@@ -21,7 +21,7 @@ export default class GalleryHandler {
       const itemIdToFind = event.target.closest('a').dataset.movieId;
 
       this.renderMovieCard(this.findClickedItem(itemIdToFind));
-      const watchBtn = document.querySelector('.watch-js');
+      const watchBtn = document.querySelector('.watched-js');
       const queueBtn = document.querySelector('.queue-js');
       localStorageFilms.onModalQueueBtnChange(queueBtn);
       localStorageFilms.onModalWatchedBtnChange(watchBtn);
