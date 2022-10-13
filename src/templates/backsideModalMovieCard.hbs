@@ -1,0 +1,61 @@
+<div class='finfo-moviecard__back-side'>
+    <table class='finfo-moviecard__back-side-info'>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Original Title</th>
+            <td class='finfo-moviecard__back-side-table-description'>{{original_title}}</td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Production companies
+                name</th>
+            <td class='finfo-moviecard__back-side-table-description'>
+
+                {{#each production_companies}}
+                <span class=''>
+                    {{name}}
+                </span>
+                {{/each}}
+
+            </td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Production countries</th>
+            <td class='finfo-moviecard__back-side-table-description'>
+
+                {{#each production_countries}}
+                <span class=''>
+                    {{name}}
+                </span>
+                {{/each}}
+
+            </td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Release date</th>
+            <td class='finfo-moviecard__back-side-table-description'>{{release_date}}</td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Budget</th>
+            <td class='finfo-moviecard__back-side-table-description'>{{budget}}</td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Revenue</th>
+            <td class='finfo-moviecard__back-side-table-description'>{{revenue}}</td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Genres</th>
+            <td class='finfo-moviecard__back-side-table-description'>
+
+                {{#each genres}}
+                <span class='movie-card__genre'>
+                    {{name}}
+                </span>
+                {{/each}}
+
+            </td>
+        </tr>
+        <tr class='finfo-moviecard__back-side-table'>
+            <th class='finfo-moviecard__back-side-table-title'>Tagline</th>
+            <td class='finfo-moviecard__back-side-table-description'>{{tagline}}</td>
+        </tr>
+    </table>
+</div>
