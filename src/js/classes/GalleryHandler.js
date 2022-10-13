@@ -1,7 +1,6 @@
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
-import { checkMovies } from './Gallery';
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
@@ -25,7 +24,7 @@ export default class GalleryHandler {
         this.#modalContent.querySelector('.queue-js')
       );
       localStorageFilms.onModalWatchedBtnChange(
-        this.#modalContent.querySelector('.watch-js')
+        this.#modalContent.querySelector('.watched-js')
       );
       movieCardModal.openModal();
     }
