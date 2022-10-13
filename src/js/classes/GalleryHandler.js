@@ -1,7 +1,8 @@
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
-import { apiService } from '../gallery';
+import ApiService from './ApiService';
+const apiById = new ApiService();
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
@@ -27,7 +28,7 @@ export default class GalleryHandler {
       movieCardModal.openModal();
 
       try {
-        const movie = await apiService.fetchMoviesByID(itemIdToFind);
+        const movie = await apiById.fetchMoviesByID(itemIdToFind);
         console.log('data', movie.title);
       } catch (error) {
         console.log(error);
@@ -59,11 +60,13 @@ export default class GalleryHandler {
 
   FlipImgHandler() {
     const flipCard = document.querySelector('#flip-wrapper');
-    flipCard.addEventListener('click', this.onImageClick);
+    flipCard.addEventListener('click', event =>
+      event.currentTarget.classList.toggle('is-flipped')
+    );
   }
 
-  onImageClick(evn) {
-    console.log(evn.currentTarget.classList);
-    evn.currentTarget.classList.toggle('is-flipped');
-  }
+  // onImageClick(evn) {
+  //   // console.log(evn.currentTarget.classList);
+  //   evn.currentTarget.classList.toggle('is-flipped');
+  // }
 }
