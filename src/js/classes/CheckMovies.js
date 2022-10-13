@@ -1,4 +1,4 @@
-import { BASE_IMAGE_URL } from '../utils/config';
+import { urls } from '../utils/config';
 
 export default class CheckMovies {
   #genres;
@@ -52,7 +52,7 @@ export default class CheckMovies {
     }
 
     if (movie.poster_path) {
-      movie.poster_path = BASE_IMAGE_URL + movie.poster_path;
+      movie.poster_path = urls.BASE_IMAGE_URL + movie.poster_path;
     } else {
       const imgUrl = new URL(
         '../../images/movie-card-plug.jpg',
