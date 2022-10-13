@@ -7,6 +7,7 @@ export default class ApiService {
   #GENRES_PATH_URL = 'genre/movie/list';
   #TRENDINGS_PATH_URL = 'trending/movie/day';
   #SEARCH_PATH_URL = 'search/movie';
+  #GET_MOVIE_DETAILS_PATH_URL = 'movie/';
 
   #moviesByNameSearchParams = {
     params: {
@@ -21,6 +22,12 @@ export default class ApiService {
       api_key: this.#API_KEY,
     },
   };
+
+  #getMovieDetailsSearchParams = {
+    params: {
+      api_key: this.#API_KEY,
+    }
+  }
   constructor() {}
 
   async fetchGenres() {
@@ -58,13 +65,23 @@ export default class ApiService {
   }
 
   async getMoviesByName(query, page = 1) {
-    this.#moviesByNameSearchParams.query = query;
-    this.#moviesByNameSearchParams.page = page;
+    this.#moviesByNameSearchParams.params.query = query;
+    this.#moviesByNameSearchParams.params.page = page;
     const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
     const response = await axios.get(url, this.#moviesByNameSearchParams);
     return response.data;
   }
   catch(error) {
     console.error(error);
+  }
+
+  async fetchMoviesByID(id) {
+    const url = this.#BASE_URL + this.#GET_MOVIE_DETAILS_PATH_URL + id;
+    try {
+      const response = await axios.get(url, this.#getMovieDetailsSearchParams);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
