@@ -1,53 +1,39 @@
 import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
-
 export default class ModalBtn {
   onModalBtnClick(btn) {
     //add method
     if (
       btn.classList.contains('queue-js') ||
-      btn.classList.contains('watch-js')
+      btn.classList.contains('watched-js')
     ) {
       let currentArray = null;
       let currentKey = null;
       if (btn.classList.contains('queue-js')) {
         currentArray = localStorageFilms.queueItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.queue;
-        btn.textContent = 'Remove from Queue';
-        btn.classList.remove('queue-js');
-        btn.classList.add('remove-queue-js');
-      }
-
-      if (btn.classList.contains('watch-js')) {
+        localStorageFilms.changeAddBtn('queue', btn, 'remove');
+      } else {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
-        btn.textContent = 'Remove from Watched';
-        btn.classList.remove('watch-js');
-        btn.classList.add('remove-watch-js');
+        localStorageFilms.changeAddBtn('watched', btn, 'remove');
       }
-      
-      localStorageFilms.addItemToKeyStorage(currentKey, currentArray);     
+        
+
+      localStorageFilms.addItemToKeyStorage(currentKey, currentArray); //записываем в LS фильм под нужным ключем
       return;
-      
     }
+    //remove method
     if (
-      btn.classList.contains('remove-watch-js') ||
+      btn.classList.contains('remove-watched-js') ||
       btn.classList.contains('remove-queue-js')
     ) {
-      if (btn.classList.contains('remove-watch-js')) {
-        btn.textContent = 'Add to Watched';
+      if (btn.classList.contains('remove-watched-js')) {
         localStorageFilms.removeItemFromKeyStorage(btn);
-        btn.classList.remove('remove-watch-js');
-        btn.classList.add('watch-js');
-        
+        localStorageFilms.changeAddBtn('watched', btn, 'add')
+        return;
       }
-      if (btn.classList.contains('remove-queue-js')) {
-        btn.textContent = 'Add to Queue';
         localStorageFilms.removeItemFromKeyStorage(btn);
-        btn.classList.remove('remove-queue-js');
-        btn.classList.add('queue-js');
-      }
-    }
-  }
-}
+        localStorageFilms.changeAddBtn('queue', btn, 'add')
+    }}}
