@@ -29,26 +29,26 @@ $speed: 250ms;
   }
 }
 
-// .toggle__input {
-//   clip: rect(0 0 0 0);
-//   clip-path: inset(50%);
-//   height: 1px;
-//   overflow: hidden;
-//   position: absolute;
-//   white-space: nowrap;
-//   width: 1px;
+.toggle__input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 
-//   &:not([disabled]):active + .toggle-track,
-//   &:not([disabled]):focus + .toggle-track {
-//     border: 1px solid transparent;
-//     box-shadow: $focus-ring;
-//   }
+  &:not([disabled]):active + .toggle-track,
+  &:not([disabled]):focus + .toggle-track {
+    border: 1px solid transparent;
+    box-shadow: $focus-ring;
+  }
 
-//   &:disabled + .toggle-track {
-//     cursor: not-allowed;
-//     opacity: 0.7;
-//   }
-// }
+  &:disabled + .toggle-track {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
 
 .toggle-track {
   background: $track-background;

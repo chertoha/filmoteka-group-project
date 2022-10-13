@@ -5,7 +5,7 @@
 // localStorageFilms.getItemFromKeyStorage('theme'); //вернул тему
 
 const refs = {
-  button: document.querySelector('.theme-btn'),
+  button: document.querySelector('.toggle-track'),
   header: document.querySelector('header'),
 };
 
@@ -26,7 +26,6 @@ function onDarkTheme() {
 }
 
 function changeTheme(event) {
-  console.log('click');
   if (!document.body.classList.contains('dark-theme')) {
     saveThemeValue();
   } else {
