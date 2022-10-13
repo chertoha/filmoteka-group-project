@@ -24,7 +24,7 @@ export default class GalleryHandler {
         this.#modalContent.querySelector('.queue-js')
       );
       localStorageFilms.onModalWatchedBtnChange(
-        this.#modalContent.querySelector('.watch-js')
+        this.#modalContent.querySelector('.watched-js')
       );
       movieCardModal.openModal();
     }
