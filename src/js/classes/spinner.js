@@ -1,16 +1,18 @@
+import { spinnerRef } from '../utils/refs';
+
 export default class Spinner {
-  constructor(selector) {
-    this.buttonRef = document.querySelector(selector);
+  constructor() {
+    this.spinnerRef = spinnerRef;
     this.hidden = true;
   }
 
   hide() {
-    this.buttonRef.classList.add('is-hidden');
+    this.spinnerRef.classList.add('is-hidden');
     this.hidden = true;
   }
 
   show() {
-    this.buttonRef.classList.remove('is-hidden');
+    this.spinnerRef.classList.remove('is-hidden');
     this.hidden = false;
   }
 }

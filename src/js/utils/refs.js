@@ -11,7 +11,24 @@ const containerPag = document.querySelector('.pag');
 //Searching form
 const searchFormRef = document.querySelector('.search-form');
 
+// movie card in Modal
+const movieCardModalRef = document.querySelector('.js-movie-card');
+
+// modal team content
+const accordionRef = document.querySelector('#accordion');
+
+// spinner
+const spinnerRef = document.querySelector('.js-spinner');
+
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //EXPORT
-export { buttonUpRef, containerGallery, containerPag, searchFormRef };
+export {
+  buttonUpRef,
+  containerGallery,
+  containerPag,
+  searchFormRef,
+  movieCardModalRef,
+  accordionRef,
+  spinnerRef,
+};

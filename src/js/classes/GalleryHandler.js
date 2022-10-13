@@ -1,12 +1,14 @@
+import ApiService from './ApiService';
+import { containerGallery, movieCardModalRef } from '../utils/refs';
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
-import ApiService from './ApiService';
+
 const apiService = new ApiService();
 
 export default class GalleryHandler {
-  #galleryRef = document.querySelector('#gallery');
-  #modalContent = document.querySelector('.js-movie-card');
+  #galleryRef = containerGallery;
+  #modalContent = movieCardModalRef;
 
   addGalleryHandler() {
     this.#galleryRef.addEventListener('click', event =>

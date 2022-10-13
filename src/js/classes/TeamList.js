@@ -1,5 +1,8 @@
+import { accordionRef } from '../utils/refs';
+
 export default class TeamList {
-  #accordionRef = document.querySelector('#accordion');
+  // #accordionRef = document.querySelector('#accordion');
+  #accordionRef = accordionRef;
 
   addHandler() {
     this.#accordionRef.addEventListener('click', this.onBtnClick);
