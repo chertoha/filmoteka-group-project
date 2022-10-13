@@ -31,9 +31,6 @@ export default class LocalStorage {
         localStorage.getItem(this.LOCAL_STORAGE_KEYS.queue)
       );
     }
-    if (JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))) {
-      this.itemsOnCurrentPage = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage))
-    }
   }
   removeItemFromKeyStorage(btn) {
     let currentArray = null;
@@ -64,21 +61,16 @@ export default class LocalStorage {
       if (!uniqueId.includes(value.id)) {
         uniqueId.push(value.id);
         uniqueArray.push(value);
-      }
-    });
+      }});
     localStorage.setItem(keyName, JSON.stringify(uniqueArray));
-    uniqueArray = [];
-    uniqueId = [];
   }
-
   addItemsOnCurrentPage(films) {
-    this.itemsOnCurrentPage.push(...films);
+    this.itemsOnCurrentPage = [...films, ...this.watchedItems, ...this.queueItems];
     this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
   }
   onModalWatchedBtnChange(btn) {
     if (this.watchedItems.some(item => this.currentFilm.id === item.id)) {
-      this.changeAddBtn('watched', btn, 'remove');
-      
+    this.changeAddBtn('watched', btn, 'remove');
     }
   }
   onModalQueueBtnChange(btn) {
