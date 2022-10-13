@@ -42,6 +42,14 @@ export default class Gallery {
     const response = await api.getMoviesByName(query, page);
     return response;
   }
+
+  async getMovieDetails(id) {
+    if (!id) {
+      return;
+    }
+    const response = await api.fetchMoviesByID(id);
+    return response;
+  }
 }
 
 export { checkMovies };

@@ -7,6 +7,7 @@ export default class ApiService {
   #GENRES_PATH_URL = 'genre/movie/list';
   #TRENDINGS_PATH_URL = 'trending/movie/day';
   #SEARCH_PATH_URL = 'search/movie';
+  #GET_MOVIE_DETAILS_PATH_URL = 'movie/';
 
   #moviesByNameSearchParams = {
     params: {
@@ -17,6 +18,12 @@ export default class ApiService {
     },
   };
   #genresSearchParams = {
+    params: {
+      api_key: this.#API_KEY,
+    },
+  };
+
+  #getMovieDetailsSearchParams = {
     params: {
       api_key: this.#API_KEY,
     },
@@ -69,3 +76,17 @@ export default class ApiService {
   catch(error) {
     console.error(error);
   }
+<<<<<<< HEAD
+=======
+
+  async fetchMoviesByID(id) {
+    const url = this.#BASE_URL + this.#GET_MOVIE_DETAILS_PATH_URL + id;
+    try {
+      const response = await axios.get(url, this.#getMovieDetailsSearchParams);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+>>>>>>> main
