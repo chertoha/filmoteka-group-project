@@ -2,7 +2,7 @@ import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
 import ApiService from './ApiService';
-const apiById = new ApiService();
+const apiService = new ApiService();
 
 export default class GalleryHandler {
   #galleryRef = document.querySelector('#gallery');
@@ -28,7 +28,7 @@ export default class GalleryHandler {
       movieCardModal.openModal();
 
       try {
-        const movie = await apiById.fetchMoviesByID(itemIdToFind);
+        const movie = await apiService.fetchMoviesByID(itemIdToFind);
         console.log('data', movie.title);
       } catch (error) {
         console.log(error);
