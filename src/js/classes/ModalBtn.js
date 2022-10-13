@@ -1,3 +1,6 @@
+import Library from './Library';
+const library = new Library();
+
 import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
@@ -14,10 +17,12 @@ export default class ModalBtn {
         currentArray = localStorageFilms.queueItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.queue;
         localStorageFilms.changeAddBtn('queue', btn, 'remove');
+     
       } else {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
         localStorageFilms.changeAddBtn('watched', btn, 'remove');
+        
       }
         
 
@@ -32,8 +37,10 @@ export default class ModalBtn {
       if (btn.classList.contains('remove-watched-js')) {
         localStorageFilms.removeItemFromKeyStorage(btn);
         localStorageFilms.changeAddBtn('watched', btn, 'add')
+        library.updateCardsWatch('watch');
         return;
       }
         localStorageFilms.removeItemFromKeyStorage(btn);
-        localStorageFilms.changeAddBtn('queue', btn, 'add')
+      localStorageFilms.changeAddBtn('queue', btn, 'add');
+      library.updateCardsQueue('queue');
     }}}
