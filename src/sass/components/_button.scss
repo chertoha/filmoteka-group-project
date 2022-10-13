@@ -1,18 +1,3 @@
-// @mixin center($extend: true) {
-//   @if $extend {
-//     @extend %center;
-//   } @else {
-//     position: absolute;
-//     left: 50%;
-//     top: 50%;
-//     transform: translateX(-50%) translateY(-50%);
-//   }
-// }
-
-// %center {
-//   @include center($extend: false);
-// }
-
 .header-buttons {
   display: flex;
   justify-content: center;
@@ -43,8 +28,8 @@
   }
 
   &--dark-mode {
-    border: 1px solid var(--white);
-    color: var(--white);
+    border: 1px solid var(--dark-mode-btn);
+    color: var(--dark-mode-btn);
   }
 
   &--light-mode {

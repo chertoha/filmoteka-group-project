@@ -38,13 +38,15 @@
   &--prev,
   &--next {
     &:hover {
-      background-color: #E4E1E1;
+      background-color: #e4e1e1;
     }
   }
 
-  &--dots-prev {}
+  &--dots-prev {
+  }
 
-  &--dots-next {}
+  &--dots-next {
+  }
 
   &--dots-prev,
   &--dots-next {
