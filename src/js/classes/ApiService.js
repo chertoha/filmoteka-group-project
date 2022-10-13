@@ -76,8 +76,6 @@ export default class ApiService {
   catch(error) {
     console.error(error);
   }
-<<<<<<< HEAD
-=======
 
   async fetchMoviesByID(id) {
     const url = this.#BASE_URL + this.#GET_MOVIE_DETAILS_PATH_URL + id;
@@ -89,4 +87,3 @@ export default class ApiService {
     }
   }
 }
->>>>>>> main
