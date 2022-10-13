@@ -7,6 +7,7 @@ import GalleryHandler from './js/classes/GalleryHandler';
 import template from './templates/movieCard.hbs';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Gallery from './js/classes/Gallery';
+import Library from './js/classes/Library';
 // localStorage.clear();
 
 localStorageFilms.saveItemsForArrayAfterReload();
@@ -20,15 +21,17 @@ const gallery = new Gallery(containerGallery, template);
 const containerPag = document.querySelector('.pag');
 const pagination = new Pagination(containerPag);
 
+const library = new Library();
+
 let currentPage = 1;
 // let btnStorage = "watch";
 // localStorage.setItem("btnStorage", "watch");
-let total_results = load('watch');
+let localStArrey = library.loadLocalStArrey('watch');
 
 pagination.on('aftermove', event => {
   // console.log(event.page);
   currentPage = event.page;
-  pageValue(total_results, currentPage);
+  currentPageRender(localStArrey, currentPage);
 });
 
 function tempRenderCards(movies) {
@@ -37,7 +40,7 @@ function tempRenderCards(movies) {
   if (movies !== undefined) {
     container.innerHTML = template({ movies, library: true });
 
-    pagination.updateTotalItems(total_results.length);
+    pagination.updateTotalItems(localStArrey.length);
     // console.log("asfdafsasf",currentPage);
     pagination.goToPage(currentPage);
     pagination.render();
@@ -46,45 +49,32 @@ function tempRenderCards(movies) {
   }
 }
 
-function load(key) {
-  try {
-    const serializedState = localStorage.getItem(key);
-    return serializedState === null ? undefined : JSON.parse(serializedState);
-  } catch (error) {
-    console.error('Get state error: ', error.message);
+function localStAudit(localStArrey, currentPage) {
+  if (localStArrey.length <= 20) {
+    tempRenderCards(localStArrey);
+  } else if (localStArrey.length > 20) {
+    currentPageRender(localStArrey, currentPage);
   }
 }
 
-function audit(total_results, currentPage) {
-  if (total_results.length <= 20) {
-    tempRenderCards(total_results);
-  } else if (total_results.length > 20) {
-    pageValue(total_results, currentPage);
-  }
-}
-
-function pageValue(total_results, currentPage) {
+function currentPageRender(localStArrey, currentPage) {
   // console.log(currentPage);
-  const lastMovie = currentPage * 20;
-  const firstMovie = lastMovie - 20;
   const moviesPars = [];
-  for (let index = firstMovie; index < lastMovie; index++) {
-    if (total_results[index] !== undefined) {
-      moviesPars.push(total_results[index]);
+  for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
+    if (localStArrey[index] !== undefined) {
+      moviesPars.push(localStArrey[index]);
     }
   }
   tempRenderCards(moviesPars);
 }
 
-if (total_results !== undefined) {
-  audit(total_results, currentPage);
+if (localStArrey !== undefined) {
+  localStAudit(localStArrey, currentPage);
 }
 
 // КНОПКИ
-const btn = document.querySelector('.header');
+const btn = document.querySelector('.header-buttons');
 const btnWatch = btn.querySelectorAll('.button--dark-mode');
-// console.log(btnWatch);
-
 // КНОПКИ
 btn.addEventListener('click', selectBtn);
 
@@ -92,36 +82,34 @@ function selectBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
+
   btnWatch.forEach(function (button) {
     button.classList.remove('button--active');
   });
 
-  if (event.target.textContent === 'watched') {
+  if (event.target === btn.firstElementChild) {
     // console.log("watched")
     event.target.classList.add('button--active');
-    total_results = load('watch');
+    localStArrey = library.loadLocalStArrey('watch');
     currentPage = 1;
-    if (total_results !== undefined) {
-      audit(total_results, currentPage);
+    if (localStArrey !== undefined) {
+      localStAudit(localStArrey, currentPage);
     }
-    if (total_results === undefined) {
-      tempRenderCards(total_results, currentPage);
+    if (localStArrey === undefined) {
+      tempRenderCards(localStArrey, currentPage);
     }
     // console.log(currentPage)
-  } else if (event.target.textContent === 'queue') {
+  } else if (event.target === btn.lastElementChild) {
     // console.log("queue");
     event.target.classList.add('button--active');
-    total_results = load('queue');
+    localStArrey = library.loadLocalStArrey('queue');
     currentPage = 1;
 
-    if (total_results !== undefined) {
-      audit(total_results, currentPage);
+    if (localStArrey !== undefined) {
+      localStAudit(localStArrey, currentPage);
     }
-    if (total_results === undefined) {
-      tempRenderCards(total_results, currentPage);
+    if (localStArrey === undefined) {
+      tempRenderCards(localStArrey, currentPage);
     }
-
-    // location.reload()
-    // console.log(currentPage)
   }
 }
