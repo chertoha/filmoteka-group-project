@@ -1,6 +1,7 @@
 import debounce from 'lodash.debounce';
+import { buttonUpRef } from './utils/refs';
 
-const buttonUpRef = document.querySelector('.button--up');
+// const buttonUpRef = document.querySelector('.button--up');
 window.addEventListener('scroll', debounce(onWindowScroll, 500));
 
 function onWindowScroll() {
