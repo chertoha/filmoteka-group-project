@@ -40,7 +40,6 @@ function selectBtn(event) {
   });
 
   if (event.target === btn.firstElementChild) {
-    // console.log("watched")
     event.target.classList.add('button--active');
     localStArrey = library.loadLocalStArrey('watch');
     currentPage = 1;
@@ -50,9 +49,9 @@ function selectBtn(event) {
     if (localStArrey === undefined) {
       library.tempRenderCards(localStArrey, currentPage);
     }
-    // console.log(currentPage)
+    
   } else if (event.target === btn.lastElementChild) {
-    // console.log("queue");
+    
     event.target.classList.add('button--active');
     localStArrey = library.loadLocalStArrey('queue');
     currentPage = 1;
@@ -62,6 +61,10 @@ function selectBtn(event) {
     }
     if (localStArrey === undefined) {
       library.tempRenderCards(localStArrey, currentPage);
+      
     }
   }
 }
+
+// library.updateCards()
+
