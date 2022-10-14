@@ -26,7 +26,7 @@ export default class Library {
        }
    
   };
-
+  
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
@@ -56,13 +56,20 @@ export default class Library {
       this.currentPageRender(localStArray, currentPage);
     });
   }
-
+  updateCards(currentKey) {
+       if (currentKey === localSt.LOCAL_STORAGE_KEYS.watch) {
+      this.updateCardsWatch();
+    } else if (currentKey === localSt.LOCAL_STORAGE_KEYS.queue) {
+      this.updateCardsQueue();
+  }
+}
 
   updateCardsWatch() {
     if ((window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') && document
           .querySelector('.header-buttons')
         .firstElementChild.classList.contains('button--active')) {
-        this.currentPageRenderWatch()
+      this.currentPageRenderWatch()
+      
     }
   }
 
@@ -70,8 +77,7 @@ export default class Library {
     if ((window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') && document
           .querySelector('.header-buttons')
         .lastElementChild.classList.contains('button--active')) {
-      this.currentPageRenderQueue()
-      
+      this.currentPageRenderQueue();
     }
   }
 }
