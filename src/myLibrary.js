@@ -13,11 +13,9 @@ const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
 const library = new Library();
-let currentPage = library.currentPage;
-let localStArray = library.localStArray;
 
-if (localStArray !== undefined) {
-  library.currentPageRender(localStArray, currentPage);
+if (library.localStArray !== undefined) {
+  library.currentPageRenderWatch();
 }
 
 // КНОПКИ
@@ -37,26 +35,28 @@ function selectBtn(event) {
 
   if (event.target === btn.firstElementChild) {
     event.target.classList.add('button--active');
-    localStArray = library.loadLocalStArray('watch');
-    currentPage = 1;
-    if (localStArray !== undefined) {
-      library.currentPageRender(localStArray, currentPage);
+ 
+    if (library.localStArray !== undefined) {
+      library.currentPageRender(library.localStArray, library.currentPage);
     }
-    if (localStArray === undefined) {
-      library.tempRenderCards();
+    if (library.localStArray === undefined) {
+      library.tempRenderCards(undefined);
     }
   } else if (event.target === btn.lastElementChild) {
     event.target.classList.add('button--active');
-    localStArray = library.loadLocalStArray('queue');
-    currentPage = 1;
 
-    if (localStArray !== undefined) {
-      library.currentPageRender(localStArray, currentPage);
+    if (library.localStArray !== undefined) {
+      library.currentPageRenderQueue(library.localStArray, library.currentPage);
     }
-    if (localStArray === undefined) {
-      library.tempRenderCards();
+    if (library.localStArray === undefined) {
+      library.tempRenderCards(undefined);
     }
   }
 }
 
 // library.updateCards()
+//  updateCardsWatch() {
+//     if (window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') {
+//       if (document.querySelector('.header-buttons')
+//         .firstElementChild.classList.contains('button--active')) { this.currentPageRenderWatch() }
+//     };
