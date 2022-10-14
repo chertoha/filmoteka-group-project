@@ -33,4 +33,5 @@ export {
   movieCardModalRef,
   accordionRef,
   spinnerRef,
+  headerRef,
 };
