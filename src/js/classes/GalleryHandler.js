@@ -3,6 +3,7 @@ import { containerGallery, movieCardModalRef } from '../utils/refs';
 import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
+import modalMovieDetailsBackSide from '../../templates/backsideModalMovieCard.hbs';
 
 const apiService = new ApiService();
 
@@ -30,8 +31,8 @@ export default class GalleryHandler {
       movieCardModal.openModal();
 
       try {
-        const movie = await apiService.fetchMoviesByID(itemIdToFind);
-        console.log('data', movie.title);
+        const movieDetails = await apiService.fetchMoviesByID(itemIdToFind);
+        this.renderBackSide(movieDetails);
       } catch (error) {
         console.log(error);
       }
@@ -67,8 +68,8 @@ export default class GalleryHandler {
     );
   }
 
-  // onImageClick(evn) {
-  //   // console.log(evn.currentTarget.classList);
-  //   evn.currentTarget.classList.toggle('is-flipped');
-  // }
+  renderBackSide(movieDetailedData) {
+    const flipBackSide = document.querySelector('#flip-back-side');
+    flipBackSide.innerHTML = modalMovieDetailsBackSide(movieDetailedData);
+  }
 }
