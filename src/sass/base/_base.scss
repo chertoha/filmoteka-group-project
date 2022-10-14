@@ -12,6 +12,7 @@ body {
   }
 
   &.dark-theme {
+    $dark-theme: true;
     --main-background-color: rgb(21, 21, 21);
     --modal-color: #373737;
     --main-text: rgb(202, 200, 200);
