@@ -67,6 +67,13 @@ export default class Library {
       this.currentPageRender(localStArray, currentPage);
     });
   }
+  updateCards(currentKey) {
+    if (currentKey === localSt.LOCAL_STORAGE_KEYS.watch) {
+      this.updateCardsWatch();
+    } else if (currentKey === localSt.LOCAL_STORAGE_KEYS.queue) {
+      this.updateCardsQueue();
+    }
+  }
 
   updateCardsWatch() {
     if (

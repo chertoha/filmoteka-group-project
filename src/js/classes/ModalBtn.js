@@ -17,19 +17,18 @@ export default class ModalBtn {
         currentArray = localStorageFilms.queueItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.queue;
         localStorageFilms.changeAddBtn('queue', btn, 'remove');
-        console.log("queue")
-        library.updateCardsQueue();
       } else {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
         localStorageFilms.changeAddBtn('watched', btn, 'remove');
-        console.log("watched")
-        library.updateCardsWatch();
+      
+       
         
       }
         
 
       localStorageFilms.addItemToKeyStorage(currentKey, currentArray); //записываем в LS фильм под нужным ключем
+       library.updateCards(currentKey);
       return;
     }
     //remove method
