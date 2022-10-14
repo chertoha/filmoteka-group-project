@@ -36,11 +36,15 @@ export default class ModalBtn {
     ) {
       if (btn.classList.contains('remove-watched-js')) {
         localStorageFilms.removeItemFromKeyStorage(btn);
-        localStorageFilms.changeAddBtn('watched', btn, 'add')
-        library.updateCardsWatch('watch');
+        localStorageFilms.changeAddBtn('watched', btn, 'add');
+        library.updateCardsWatch();
         return;
       }
         localStorageFilms.removeItemFromKeyStorage(btn);
       localStorageFilms.changeAddBtn('queue', btn, 'add');
-      library.updateCardsQueue('queue');
-    }}}
+      library.updateCardsQueue();
+    }
+  }
+}
+// const con = document.querySelector(".pag");
+// console.log(con.children)

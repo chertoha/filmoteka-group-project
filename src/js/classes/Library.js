@@ -1,5 +1,5 @@
 import '../utils/handlebars-helpers';
-
+import LocalStorage from './LocalStorage';
 import '../teamAccordion';
 
 import Pagination from './Pagination';
@@ -53,17 +53,20 @@ loadLocalStArrey(key) {
   this.currentPageRender(localStArrey, currentPage);
 });
 	};
-	updateCardsWatch(watch) {
+	updateCardsWatch() {
 		
-		if (window.location.pathname === "/myLibrary.html" && document.querySelector('.header-buttons').firstElementChild.classList.contains("button--active")) {
-				this.currentPageRender(this.loadLocalStArrey(`${watch}`), this.currentPage);
+    if (window.location.pathname === "/myLibrary.html" && document.querySelector('.header-buttons').firstElementChild.classList.contains("button--active")) {
+      document.querySelector(".pag")
+				this.currentPageRender(this.loadLocalStArrey('watch'), this.currentPage);
 }				
 	};
 	
-	updateCardsQueue(queue) {
+	updateCardsQueue() {
 		
 		if (window.location.pathname === "/myLibrary.html" && document.querySelector('.header-buttons').lastElementChild.classList.contains("button--active")) {
-				this.currentPageRender(this.loadLocalStArrey(`${queue}`), this.currentPage);
+				this.currentPageRender(this.loadLocalStArrey('queue'), this.currentPage);
 }				
 		}
-	}
+}
+//   document.querySelector("pag__page--current-number").textContent
+// <a class="pag__page pag__page--current-number" href="#" data-value="2">2</a>
