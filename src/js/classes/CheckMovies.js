@@ -61,4 +61,16 @@ export default class CheckMovies {
       movie.poster_path = imgUrl;
     }
   }
+
+  fixLargeNumbers(movie) {
+    if (movie.budget > 1000 && movie.budget < 1000000)
+      movie.budget = (movie.budget / 1000).toFixed(1) + ` K`;
+    if (movie.revenue > 1000 && movie.revenue < 1000000)
+      movie.revenue = (movie.revenue / 1000).toFixed(1) + ` K`;
+
+    if (movie.budget > 1000000)
+      movie.budget = (movie.budget / 1000000).toFixed(1) + ` M`;
+    if (movie.revenue > 1000000)
+      movie.revenue = (movie.revenue / 1000000).toFixed(1) + ` M`;
+  }
 }

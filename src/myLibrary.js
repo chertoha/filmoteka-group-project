@@ -5,18 +5,13 @@ import './js/changeTheme';
 import GalleryHandler from './js/classes/GalleryHandler';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Library from './js/classes/Library';
-// localStorage.clear();
 
 localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
-
-
 const library = new Library();
-
-
 let currentPage = library.currentPage;
 let localStArray = library.localStArray;
 
@@ -49,9 +44,7 @@ function selectBtn(event) {
     if (localStArray === undefined) {
       library.tempRenderCards();
     }
-    
   } else if (event.target === btn.lastElementChild) {
-    
     event.target.classList.add('button--active');
     localStArray = library.loadLocalStArray('queue');
     currentPage = 1;
@@ -61,10 +54,8 @@ function selectBtn(event) {
     }
     if (localStArray === undefined) {
       library.tempRenderCards();
-      
     }
   }
 }
 
 // library.updateCards()
-

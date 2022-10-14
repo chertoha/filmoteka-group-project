@@ -6,16 +6,20 @@
 
 const refs = {
   button: document.querySelector('.toggle-track'),
+  label: document.querySelector('.theme-btn'),
   header: document.querySelector('header'),
+  input: document.querySelector('.toggle__input'),
 };
 
 refs.button.addEventListener('click', changeTheme);
+refs.label.addEventListener('click', changeTheme);
 
 let currentThemeValue = getThemeValue();
 
 function updatePage(themeValue) {
   if (themeValue === 'dark-theme') {
     onDarkTheme();
+    refs.input.setAttribute('checked', true);
   }
 }
 updatePage(currentThemeValue);

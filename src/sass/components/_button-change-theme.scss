@@ -5,7 +5,7 @@ $highContrastModeSupport: solid 2px transparent;
 
 $light: rgb(255, 255, 255);
 $mid: rgb(144, 143, 143);
-$dark: rgb(8, 8, 8);
+$dark: #373737;
 
 $track-border: $mid;
 $track-background: $light;
@@ -51,21 +51,35 @@ $speed: 250ms;
 }
 
 .toggle-track {
-  background: $track-background;
+  // background: $track-background;
+  background: linear-gradient(
+    to left,
+    #03001e,
+    var(--accent),
+    var(--accent-light)
+  );
   border: 1px solid $track-border;
   border-radius: 100px;
   cursor: pointer;
   display: flex;
   height: $track-height;
-  margin-right: 12px;
+  // margin-right: 12px;
   position: relative;
   width: $track-width;
+
+  &:hover,
+  &:focus {
+    transition: box-shadow 200ms var(--transition-timing);
+    box-shadow: 0px -4px 5px 0px rgb(254, 254, 254),
+      0px -1px 1px 0px rgb(254, 254, 254);
+  }
 }
 
 .toggle-indicator {
   align-items: center;
   background: $dark;
   border-radius: $toggle-indicator-size;
+  box-shadow: inset 5px -10px 15px 0 rgba(0, 0, 0, 0.5);
   bottom: 2px;
   display: flex;
   height: $toggle-indicator-size;
@@ -78,7 +92,7 @@ $speed: 250ms;
 }
 
 .toggle__input:checked + .toggle-track .toggle-indicator {
-  background: $dark;
+  background: $light;
   transform: translateX($track-width - $track-height);
 
   .checkMark {
