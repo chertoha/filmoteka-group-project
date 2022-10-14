@@ -24,8 +24,7 @@
   min-height: 330px;
   transition: transform 250ms vaR(--transition-timing);
 
-  &:hover,
-  &:focus {
+  &:hover {
     transform: scale(1.03);
   }
 
