@@ -22,9 +22,12 @@
   border-radius: 4px;
 
   min-height: 330px;
+  transition: transform 250ms vaR(--transition-timing);
 
-  // transition: transform 0.8s;
-  // transform-style: preserve-3d;
+  &:hover,
+  &:focus {
+    transform: scale(1.03);
+  }
 
   @include mq('mobile-only') {
     width: 100%;

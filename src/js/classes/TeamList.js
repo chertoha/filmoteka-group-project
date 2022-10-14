@@ -1,7 +1,6 @@
 import { accordionRef } from '../utils/refs';
 
 export default class TeamList {
-  // #accordionRef = document.querySelector('#accordion');
   #accordionRef = accordionRef;
 
   addHandler() {
