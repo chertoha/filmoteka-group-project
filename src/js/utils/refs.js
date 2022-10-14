@@ -20,6 +20,8 @@ const accordionRef = document.querySelector('#accordion');
 // spinner
 const spinnerRef = document.querySelector('.js-spinner');
 
+// Header
+const headerRef = document.querySelector('#header');
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //EXPORT

@@ -1,10 +1,8 @@
 import '../utils/handlebars-helpers';
 import LocalStorage from './LocalStorage';
-import '../teamAccordion';
-
 import Pagination from './Pagination';
 import template from '../../templates/movieCard.hbs';
-import { containerGallery, containerPag } from '../utils/refs';
+import { containerGallery, containerPag, headerRef } from '../utils/refs';
 const pagination = new Pagination(containerPag);
 
 export default class Library {
@@ -33,7 +31,7 @@ export default class Library {
     // console.log(movies);
     if (movies !== undefined) {
       containerGallery.innerHTML = template({ movies, library: true });
-      document.querySelector('#header').scrollIntoView(top);
+      headerRef.scrollIntoView(top);
 
       pagination.updateTotalItems(localStArray.length);
       // console.log("asfdafsasf",currentPage);

@@ -1,6 +1,7 @@
 import ApiService from './ApiService';
 import CheckMovies from './CheckMovies';
 import { localStorageFilms } from './ModalBtn';
+import { headerRef } from '../utils/refs';
 
 const api = new ApiService();
 const checkMovies = new CheckMovies();
@@ -29,7 +30,7 @@ export default class Gallery {
       movies,
       library: false,
     });
-    document.querySelector('#header').scrollIntoView(top);
+    headerRef.scrollIntoView(top);
     localStorageFilms.addItemsOnCurrentPage(movies);
   }
 
