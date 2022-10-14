@@ -13,10 +13,10 @@ $focus-ring: 0px 0px 0px 2px $dark;
 $speed: 250ms;
 
 .theme-btn {
-  position: absolute;
-  z-index: 10;
-  top: 175px;
-  right: 30px;
+  // position: absolute;
+  // z-index: 10;
+  // top: 175px;
+  // right: 30px;
 
   align-items: center;
   border-radius: 100px;
@@ -34,7 +34,7 @@ $speed: 250ms;
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
-  position: absolute;
+  // position: absolute;
   white-space: nowrap;
   width: 1px;
 
@@ -51,7 +51,11 @@ $speed: 250ms;
 }
 
 .toggle-track {
-  // background: $track-background;
+  position: absolute;
+  z-index: 10;
+  top: 175px;
+  right: 30px;
+
   background: linear-gradient(
     to left,
     #03001e,
@@ -64,7 +68,7 @@ $speed: 250ms;
   display: flex;
   height: $track-height;
   // margin-right: 12px;
-  position: relative;
+
   width: $track-width;
 
   &:hover,
