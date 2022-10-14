@@ -1,3 +1,5 @@
+import { create } from "handlebars";
+
 export default class LocalStorage {
   constructor() {
     this.watchedItems = [];
@@ -17,7 +19,12 @@ export default class LocalStorage {
     this.setFilms(keyName, dataName);
   }
   getItemFromKeyStorage(key) {
-    return JSON.parse(localStorage.getItem(key));
+    try {
+      const getItem = localStorage.getItem(key)
+      return getItem === null ? undefined: JSON.parse(getItem);
+    } catch(error) {
+      console.error("Get state error: ", error.message);
+    }
   }
   saveItemsForArrayAfterReload() {
     //метод должен вызываться при загрузке страницы
