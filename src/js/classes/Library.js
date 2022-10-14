@@ -10,14 +10,21 @@ export default class Library {
 
   
   currentPage = 1;
-  localStArray = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch);
+  // localStArray = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch);
 
-  currentPageRenderQueue() { 
+  currentPageRenderQueue() {
+    if (localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue) !== undefined) {
     this.currentPageRender(localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue), this.currentPage);
+  } else {this.tempRenderCards(undefined)}
   };
 
     currentPageRenderWatch() { 
-    this.currentPageRender(localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch), this.currentPage);
+      if (localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch) !== undefined) {
+          this.currentPageRender(localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch), this.currentPage);
+      } else {
+        this.tempRenderCards(undefined)
+       }
+   
   };
 
   currentPageRender(localStArray, currentPage) {
@@ -52,7 +59,7 @@ export default class Library {
 
 
   updateCardsWatch() {
-    if (window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html' && document
+    if ((window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') && document
           .querySelector('.header-buttons')
         .firstElementChild.classList.contains('button--active')) {
         this.currentPageRenderWatch()
@@ -60,7 +67,7 @@ export default class Library {
   }
 
   updateCardsQueue() {
-    if (window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html' && document
+    if ((window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') && document
           .querySelector('.header-buttons')
         .lastElementChild.classList.contains('button--active')) {
       this.currentPageRenderQueue()
