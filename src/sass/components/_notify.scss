@@ -1,0 +1,41 @@
+.failure,
+.success {
+  position: absolute;
+  display: flex;
+  top: 220px;
+  right: 20px;
+
+  width: 200px;
+  padding: 10px;
+  min-width: 100px;
+  min-height: 50px;
+  border-radius: 10px;
+
+  font-size: 17px;
+
+  z-index: 1;
+
+  @include mq('tablet') {
+    width: 250px;
+    top: 100px;
+  }
+
+  @include mq('desktop') {
+    width: 360px;
+    top: 100px;
+  }
+}
+
+.failure {
+  border: thick solid var(--header-white);
+
+  background-color: var(--attention);
+  color: var(--header-white);
+}
+
+.success {
+  border: thick solid var(--accent-light);
+
+  background-color: var(--header-white);
+  color: var(--accent);
+}
