@@ -1,4 +1,5 @@
 import './js/utils/handlebars-helpers';
+import './js/buttonUp';
 import './js/modal';
 import './js/teamAccordion';
 import './js/changeTheme';
