@@ -48,7 +48,7 @@ export default class LocalStorage {
       if (item.id !== this.currentFilm.id) {
         newArray.push(item);
       }
-    })
+    });
     this.setFilms(currentRemoveKey, newArray);
     this[currentArray] = newArray;
     newArray = [];
@@ -57,7 +57,7 @@ export default class LocalStorage {
     localStorage.removeItem(keyName);
     let uniqueArray = [];
     let uniqueId = [];
-    values.forEach((value) => {
+    values.forEach(value => {
       if (!uniqueId.includes(value.id)) {
         uniqueId.push(value.id);
         uniqueArray.push(value);
@@ -66,8 +66,15 @@ export default class LocalStorage {
     localStorage.setItem(keyName, JSON.stringify(uniqueArray));
   }
   addItemsOnCurrentPage(films) {
-    this.itemsOnCurrentPage = [...films, ...this.watchedItems, ...this.queueItems];
-    this.setFilms(this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage, this.itemsOnCurrentPage);
+    this.itemsOnCurrentPage = [
+      ...films,
+      ...this.watchedItems,
+      ...this.queueItems,
+    ];
+    this.setFilms(
+      this.LOCAL_STORAGE_KEYS.itemsOnCurrentPage,
+      this.itemsOnCurrentPage
+    );
   }
   onModalWatchedBtnChange(btn) {
     if (this.watchedItems.some(item => this.currentFilm.id === item.id)) {
@@ -91,6 +98,9 @@ export default class LocalStorage {
     btn.classList.add(`${name}-js`);
   }
   set themeBody(currentTheme) {
-    localStorage.setItem(this.LOCAL_STORAGE_KEYS.theme, JSON.stringify(currentTheme));
+    localStorage.setItem(
+      this.LOCAL_STORAGE_KEYS.theme,
+      JSON.stringify(currentTheme)
+    );
   }
 }
