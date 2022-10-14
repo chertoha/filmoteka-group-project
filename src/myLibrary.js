@@ -13,10 +13,10 @@ galleryHandler.addGalleryHandler();
 
 const library = new Library();
 let currentPage = library.currentPage;
-let localStArrey = library.localStArrey;
+let localStArray = library.localStArray;
 
-if (localStArrey !== undefined) {
-  library.currentPageRender(localStArrey, currentPage);
+if (localStArray !== undefined) {
+  library.currentPageRender(localStArray, currentPage);
 }
 
 // КНОПКИ
@@ -36,24 +36,24 @@ function selectBtn(event) {
 
   if (event.target === btn.firstElementChild) {
     event.target.classList.add('button--active');
-    localStArrey = library.loadLocalStArrey('watch');
+    localStArray = library.loadLocalStArray('watch');
     currentPage = 1;
-    if (localStArrey !== undefined) {
-      library.currentPageRender(localStArrey, currentPage);
+    if (localStArray !== undefined) {
+      library.currentPageRender(localStArray, currentPage);
     }
-    if (localStArrey === undefined) {
-      library.tempRenderCards(localStArrey, currentPage);
+    if (localStArray === undefined) {
+      library.tempRenderCards();
     }
   } else if (event.target === btn.lastElementChild) {
     event.target.classList.add('button--active');
-    localStArrey = library.loadLocalStArrey('queue');
+    localStArray = library.loadLocalStArray('queue');
     currentPage = 1;
 
-    if (localStArrey !== undefined) {
-      library.currentPageRender(localStArrey, currentPage);
+    if (localStArray !== undefined) {
+      library.currentPageRender(localStArray, currentPage);
     }
-    if (localStArrey === undefined) {
-      library.tempRenderCards(localStArrey, currentPage);
+    if (localStArray === undefined) {
+      library.tempRenderCards();
     }
   }
 }
