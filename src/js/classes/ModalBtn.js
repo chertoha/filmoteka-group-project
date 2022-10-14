@@ -1,7 +1,7 @@
 import Library from './Library';
+import LocalStorage from './LocalStorage';
 const library = new Library();
 
-import LocalStorage from './LocalStorage';
 export const localStorageFilms = new LocalStorage();
 
 export default class ModalBtn {
@@ -21,14 +21,10 @@ export default class ModalBtn {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
         localStorageFilms.changeAddBtn('watched', btn, 'remove');
-      
-       
-        
       }
-        
 
       localStorageFilms.addItemToKeyStorage(currentKey, currentArray); //записываем в LS фильм под нужным ключем
-       library.updateCards(currentKey);
+      library.updateCards(currentKey);
       return;
     }
     //remove method
@@ -42,7 +38,7 @@ export default class ModalBtn {
         library.updateCardsWatch();
         return;
       }
-        localStorageFilms.removeItemFromKeyStorage(btn);
+      localStorageFilms.removeItemFromKeyStorage(btn);
       localStorageFilms.changeAddBtn('queue', btn, 'add');
       library.updateCardsQueue();
     }
