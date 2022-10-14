@@ -52,7 +52,6 @@ export default class Library {
     // console.log(movies);
     if (movies !== undefined) {
       containerGallery.innerHTML = template({ movies, library: true });
-      headerRef.scrollIntoView(top);
 
       pagination.updateTotalItems(localStArray.length);
       // console.log("asfdafsasf",currentPage);
