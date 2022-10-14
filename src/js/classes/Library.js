@@ -52,7 +52,7 @@ export default class Library {
   }
   updateCardsWatch(watch) {
     if (
-      window.location.pathname === './myLibrary.html' &&
+      window.location.pathname === '/filmoteka-group-project/myLibrary.html' &&
       document
         .querySelector('.header-buttons')
         .firstElementChild.classList.contains('button--active')
@@ -66,7 +66,7 @@ export default class Library {
 
   updateCardsQueue(queue) {
     if (
-      window.location.pathname === './myLibrary.html' &&
+      window.location.pathname === '/filmoteka-group-project/myLibrary.html' &&
       document
         .querySelector('.header-buttons')
         .lastElementChild.classList.contains('button--active')
