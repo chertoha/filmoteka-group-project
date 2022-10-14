@@ -13,9 +13,9 @@ const pagination = new Pagination(containerPag);
 
 export default class Library {
 currentPage = 1;
-localStArrey = this.loadLocalStArrey('watch');
+localStArray = this.loadLocalStArray('watch');
 
-loadLocalStArrey(key) {
+loadLocalStArray(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
@@ -23,24 +23,24 @@ loadLocalStArrey(key) {
     console.error('Get state error: ', error.message);
   }
 	};
-	currentPageRender(localStArrey, currentPage) {
+	currentPageRender(localStArray, currentPage) {
 	
   const moviesPars = [];
   for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
-    if (localStArrey[index] !== undefined) {
-      moviesPars.push(localStArrey[index]);
+    if (localStArray[index] !== undefined) {
+      moviesPars.push(localStArray[index]);
     }
   }
-  this.tempRenderCards(moviesPars, localStArrey, currentPage);
+  this.tempRenderCards(moviesPars, localStArray, currentPage);
 	};
 
-	tempRenderCards(movies, localStArrey, currentPage) {
+	tempRenderCards(movies, localStArray, currentPage) {
   const container = document.querySelector('.gallery__list');
   // console.log(movies);
   if (movies !== undefined) {
 		container.innerHTML = template({ movies, library: true });
 		
-    pagination.updateTotalItems(localStArrey.length);
+    pagination.updateTotalItems(localStArray.length);
     // console.log("asfdafsasf",currentPage);
     pagination.goToPage(currentPage);
     pagination.render();
@@ -50,23 +50,20 @@ loadLocalStArrey(key) {
 			pagination.on('aftermove', event => {
   // console.log(event.page);
   currentPage = event.page;
-  this.currentPageRender(localStArrey, currentPage);
+  this.currentPageRender(localStArray, currentPage);
 });
 	};
 	updateCardsWatch() {
 		
-    if (window.location.pathname === "/myLibrary.html" && document.querySelector('.header-buttons').firstElementChild.classList.contains("button--active")) {
-      document.querySelector(".pag")
-				this.currentPageRender(this.loadLocalStArrey('watch'), this.currentPage);
+    if (window.location.pathname === "/myLibrary.html" || window.location.pathname === "/filmoteka-group-project/myLibrary.html" && document.querySelector('.header-buttons').firstElementChild.classList.contains("button--active")) {
+				this.currentPageRender(this.loadLocalStArray('watch'), this.currentPage);
 }				
 	};
 	
 	updateCardsQueue() {
 		
-		if (window.location.pathname === "/myLibrary.html" && document.querySelector('.header-buttons').lastElementChild.classList.contains("button--active")) {
-				this.currentPageRender(this.loadLocalStArrey('queue'), this.currentPage);
+		if (window.location.pathname === "/myLibrary.html" || window.location.pathname === "/filmoteka-group-project/myLibrary.html" && document.querySelector('.header-buttons').lastElementChild.classList.contains("button--active")) {
+				this.currentPageRender(this.loadLocalStArray('queue'), this.currentPage);
 }				
 		}
 }
-//   document.querySelector("pag__page--current-number").textContent
-// <a class="pag__page pag__page--current-number" href="#" data-value="2">2</a>

@@ -46,5 +46,3 @@ export default class ModalBtn {
     }
   }
 }
-// const con = document.querySelector(".pag");
-// console.log(con.children)
