@@ -7,6 +7,7 @@ import Spinner from './classes/spinner';
 import template from '../templates/movieCard.hbs';
 import { NOTIFY_UNCORRECT_SEARCH } from './utils/config';
 import { containerGallery, containerPag, searchFormRef } from './utils/refs';
+import Notify from './classes/Notify';
 
 const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
@@ -15,6 +16,8 @@ galleryHandler.addGalleryHandler();
 const gallery = new Gallery(containerGallery, template);
 const pagination = new Pagination(containerPag);
 const spinner = new Spinner();
+
+const notify = new Notify();
 
 searchFormRef.addEventListener('submit', onSearchFormSubmit);
 
@@ -73,6 +76,7 @@ async function searchMovies(query, page = 1) {
     }
 
     console.log('Searched Movies:', searchedMovies);
+    notify.notifySuccess();
     gallery.renderCards(searchedMovies.results);
 
     pagination.updateTotalItems(searchedMovies.total_results);
@@ -85,6 +89,7 @@ async function searchMovies(query, page = 1) {
 
 function searchNotification(message) {
   searchFormRef.dataset.message = message;
+  notify.notifyFailure();
 
   setTimeout(() => {
     searchFormRef.dataset.message = '';
