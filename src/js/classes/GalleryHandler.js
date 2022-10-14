@@ -4,7 +4,9 @@ import { localStorageFilms } from './ModalBtn';
 import { movieCardModal } from '../modal';
 import modalMovieDetailsTemplate from '../../templates/modalMovieCard.hbs';
 import modalMovieDetailsBackSide from '../../templates/backsideModalMovieCard.hbs';
+import CheckMovies from './CheckMovies';
 
+const checkMovieData = new CheckMovies();
 const apiService = new ApiService();
 
 export default class GalleryHandler {
@@ -32,6 +34,7 @@ export default class GalleryHandler {
 
       try {
         const movieDetails = await apiService.fetchMoviesByID(itemIdToFind);
+        checkMovieData.fixLargeNumbers(movieDetails);
         this.renderBackSide(movieDetails);
       } catch (error) {
         console.log(error);
