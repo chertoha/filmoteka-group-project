@@ -6,19 +6,17 @@ import './js/changeTheme';
 import GalleryHandler from './js/classes/GalleryHandler';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Library from './js/classes/Library';
-
+// localStorage.clear()
 localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
 galleryHandler.addGalleryHandler();
 
 const library = new Library();
-let currentPage = library.currentPage;
-let localStArray = library.localStArray;
-
-if (localStArray !== undefined) {
-  library.currentPageRender(localStArray, currentPage);
-}
+library.currentPageRenderWatch();
+// if (library.localStArray !== undefined) {
+//   library.currentPageRenderWatch();
+// }
 
 // КНОПКИ
 const btn = document.querySelector('.header-buttons');
@@ -37,26 +35,31 @@ function selectBtn(event) {
 
   if (event.target === btn.firstElementChild) {
     event.target.classList.add('button--active');
-    localStArray = library.loadLocalStArray('watch');
-    currentPage = 1;
-    if (localStArray !== undefined) {
-      library.currentPageRender(localStArray, currentPage);
-    }
-    if (localStArray === undefined) {
-      library.tempRenderCards();
-    }
+ library.currentPageRenderWatch();
+    // if (library.localStArray !== undefined) {
+    //   library.currentPageRender(library.localStArray, library.currentPage);
+    // }
+    // if (library.localStArray === undefined) {
+    //   library.tempRenderCards(undefined);
+    // }
   } else if (event.target === btn.lastElementChild) {
     event.target.classList.add('button--active');
-    localStArray = library.loadLocalStArray('queue');
-    currentPage = 1;
-
-    if (localStArray !== undefined) {
-      library.currentPageRender(localStArray, currentPage);
-    }
-    if (localStArray === undefined) {
-      library.tempRenderCards();
-    }
+library.currentPageRenderQueue()
+    // if (library.localStArray !== undefined) {
+    //   library.currentPageRenderQueue(library.localStArray, library.currentPage);
+    // }
+    // if (library.localStArray === undefined) {
+    //   library.tempRenderCards(undefined);
+    // }
   }
 }
 
 // library.updateCards()
+//  updateCardsWatch() {
+//     if (window.location.pathname === '/myLibrary.html' || window.location.pathname === '/filmoteka-group-project/myLibrary.html') {
+//       if (document.querySelector('.header-buttons')
+//         .firstElementChild.classList.contains('button--active')) { this.currentPageRenderWatch() }
+//     };
+// console.log(document
+//           .querySelector('.header-buttons')
+//         .firstElementChild.textContent)
