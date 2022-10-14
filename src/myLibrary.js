@@ -6,7 +6,7 @@ import './js/changeTheme';
 import GalleryHandler from './js/classes/GalleryHandler';
 import { localStorageFilms } from './js/classes/ModalBtn';
 import Library from './js/classes/Library';
-// localStorage.clear()
+
 localStorageFilms.saveItemsForArrayAfterReload();
 
 const galleryHandler = new GalleryHandler();
@@ -35,7 +35,7 @@ function selectBtn(event) {
 
   if (event.target === btn.firstElementChild) {
     event.target.classList.add('button--active');
- library.currentPageRenderWatch();
+    library.currentPageRenderWatch();
     // if (library.localStArray !== undefined) {
     //   library.currentPageRender(library.localStArray, library.currentPage);
     // }
@@ -44,7 +44,7 @@ function selectBtn(event) {
     // }
   } else if (event.target === btn.lastElementChild) {
     event.target.classList.add('button--active');
-library.currentPageRenderQueue()
+    library.currentPageRenderQueue();
     // if (library.localStArray !== undefined) {
     //   library.currentPageRenderQueue(library.localStArray, library.currentPage);
     // }
