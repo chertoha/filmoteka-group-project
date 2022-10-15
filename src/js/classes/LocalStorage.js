@@ -1,4 +1,4 @@
-import { create } from "handlebars";
+import { create } from 'handlebars';
 
 export default class LocalStorage {
   constructor() {
@@ -20,10 +20,10 @@ export default class LocalStorage {
   }
   getItemFromKeyStorage(key) {
     try {
-      const getItem = localStorage.getItem(key)
-      return getItem === null ? undefined: JSON.parse(getItem);
-    } catch(error) {
-      console.error("Get state error: ", error.message);
+      const getItem = localStorage.getItem(key);
+      return getItem === null ? undefined : JSON.parse(getItem);
+    } catch (error) {
+      console.error('Get state error: ', error.message);
     }
   }
   saveItemsForArrayAfterReload() {
@@ -109,5 +109,16 @@ export default class LocalStorage {
       this.LOCAL_STORAGE_KEYS.theme,
       JSON.stringify(currentTheme)
     );
+  }
+
+  addThemeToLocalStorage(currentTheme) {
+    localStorage.setItem(
+      this.LOCAL_STORAGE_KEYS.theme,
+      JSON.stringify(currentTheme)
+    );
+  }
+
+  removeThemeFromLocalStorage() {
+    localStorage.removeItem(this.LOCAL_STORAGE_KEYS.theme);
   }
 }
