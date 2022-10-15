@@ -19,21 +19,22 @@ library.currentPageRenderWatch();
 // }
 
 // КНОПКИ
-const btn = document.querySelector('.header-buttons');
-const btnWatch = btn.querySelectorAll('.button--dark-mode');
+const headerButtonsContainerRef = document.querySelector('.header-buttons');
+const headerButtonsRef =
+  headerButtonsContainerRef.querySelectorAll('.header-button');
 // КНОПКИ
-btn.addEventListener('click', selectBtn);
+headerButtonsContainerRef.addEventListener('click', selectBtn);
 
 function selectBtn(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
 
-  btnWatch.forEach(function (button) {
+  headerButtonsRef.forEach(function (button) {
     button.classList.remove('button--active');
   });
 
-  if (event.target === btn.firstElementChild) {
+  if (event.target === headerButtonsContainerRef.firstElementChild) {
     event.target.classList.add('button--active');
     library.currentPageRenderWatch();
     // if (library.localStArray !== undefined) {
@@ -42,7 +43,7 @@ function selectBtn(event) {
     // if (library.localStArray === undefined) {
     //   library.tempRenderCards(undefined);
     // }
-  } else if (event.target === btn.lastElementChild) {
+  } else if (event.target === headerButtonsContainerRef.lastElementChild) {
     event.target.classList.add('button--active');
     library.currentPageRenderQueue();
     // if (library.localStArray !== undefined) {
