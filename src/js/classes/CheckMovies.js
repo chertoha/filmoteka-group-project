@@ -63,14 +63,17 @@ export default class CheckMovies {
   }
 
   fixLargeNumbers(movie) {
-    if (movie.budget > 1000 && movie.budget < 1000000)
-      movie.budget = (movie.budget / 1000).toFixed(1) + ` K`;
-    if (movie.revenue > 1000 && movie.revenue < 1000000)
-      movie.revenue = (movie.revenue / 1000).toFixed(1) + ` K`;
+    const thousand = 1000;
+    const million = 1000000;
 
-    if (movie.budget > 1000000)
-      movie.budget = (movie.budget / 1000000).toFixed(1) + ` M`;
-    if (movie.revenue > 1000000)
-      movie.revenue = (movie.revenue / 1000000).toFixed(1) + ` M`;
+    if (movie.budget > thousand && movie.budget < million)
+      movie.budget = (movie.budget / thousand).toFixed(1) + ` K`;
+    if (movie.revenue > thousand && movie.revenue < million)
+      movie.revenue = (movie.revenue / thousand).toFixed(1) + ` K`;
+
+    if (movie.budget > million)
+      movie.budget = (movie.budget / million).toFixed(1) + ` M`;
+    if (movie.revenue > million)
+      movie.revenue = (movie.revenue / million).toFixed(1) + ` M`;
   }
 }
