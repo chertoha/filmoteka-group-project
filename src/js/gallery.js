@@ -63,13 +63,7 @@ async function searchMovies(query, page = 1) {
   try {
     const searchedMovies = await gallery.getQueryMovies(query, page);
 
-    if (!searchedMovies) {
-      searchNotification(NOTIFY_UNCORRECT_SEARCH);
-      fetchMovies();
-      return;
-    }
-
-    if (searchedMovies.total_results === 0) {
+    if (!searchedMovies || !searchedMovies.total_results) {
       searchNotification(NOTIFY_UNCORRECT_SEARCH);
       fetchMovies();
       return;
