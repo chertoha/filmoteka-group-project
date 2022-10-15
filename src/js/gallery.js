@@ -75,7 +75,7 @@ async function searchMovies(query, page = 1) {
       return;
     }
 
-    console.log('Searched Movies:', searchedMovies);
+    // console.log('Searched Movies:', searchedMovies);
     notify.notifySuccess();
     gallery.renderCards(searchedMovies.results);
 
