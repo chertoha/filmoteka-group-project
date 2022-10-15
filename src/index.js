@@ -1,5 +1,8 @@
 // do not write code here
 // only import can be inserted
+
+import './js/auth';
+
 import './js/utils/handlebars-helpers';
 import './js/classes/Pagination';
 

@@ -1,0 +1,81 @@
+<div class="backdrop is-hidden" data-auth-modal>
+  <div class="modal modal-auth js-modal">
+    <button class="btn-close" aria-label="close modal" data-auth-modal-close>
+      <svg class="btn-close__icon" width="18px" height="18px">
+        <use href="./images/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+    <div class="auth-content js-login">
+      <form class="form-auth form-auth--login js-form-login">
+        <div class="form-auth__input-wrapper">
+          <!-- <input
+            class="form-auth__input"
+            type="text"
+            name="username"
+            placeholder="User Name"
+          /> -->
+          <input
+            class="form-auth__input"
+            type="email"
+            name="email"
+            placeholder="E-mail"
+          />
+          <input
+            class="form-auth__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-auth__button-wrapper">
+          <button class="form-auth__btn js-submit-btn" type="submit">
+            Log In
+          </button>
+          <button
+            class="form-auth__btn form-auth__btn-reg js-btn-go-to-registration"
+            type="button"
+          >
+            Go To Registration
+          </button>
+        </div>
+      </form>
+
+      <form class="form-auth form-auth--registration js-form-reg hidden">
+        <div class="form-auth__input-wrapper">
+          <input
+            class="form-auth__input"
+            type="text"
+            name="username"
+            placeholder="User Name"
+          />
+          <input
+            class="form-auth__input"
+            type="email"
+            name="email"
+            placeholder="E-mail"
+          />
+          <input
+            class="form-auth__input"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-auth__button-wrapper">
+          <button
+            class="form-auth__btn form-auth__btn-log js-btn-go-to-login"
+            type="button"
+          >
+            Back To Log In
+          </button>
+
+          <button class="form-auth__btn js-submit-btn" type="submit">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
