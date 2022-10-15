@@ -2,33 +2,52 @@ export default class Notify {
   #MessageSuccess = 'Search result successfull!';
   #MessageFailure =
     'Search result not successfull. Enter the movie name and try again!';
+  note = document.querySelector('.notify');
+  #checkerFail = true;
+  #checkerSuccess = true;
 
   constructor() {}
 
   notifyFailure() {
-    if (!document.querySelector('.failure')) {
-      const notify = document.createElement('aside');
-      notify.classList.add('failure');
-      notify.innerHTML = `${this.#MessageFailure}`;
-
-      document.body.appendChild(notify);
+    if (this.#checkerFail) {
+      this.#checkerFail = false;
+      this.note.classList.add('failure');
+      this.note.classList.remove('invisible', 'success');
+      this.note.innerHTML = `${this.#MessageFailure}`;
 
       setTimeout(() => {
-        document.body.removeChild(notify);
+        if (this.#checkerSuccess) {
+          this.note.classList.add('invisible');
+        }
+      }, 3000);
+      setTimeout(() => {
+        this.#checkerFail = true;
+        if (this.#checkerSuccess) {
+          this.note.classList.remove('failure');
+          this.note.innerHTML = '';
+        }
       }, 4000);
     }
   }
 
   notifySuccess() {
-    if (!document.querySelector('.success')) {
-      const notify = document.createElement('aside');
-      notify.classList.add('success');
-      notify.innerHTML = `${this.#MessageSuccess}`;
-
-      document.body.appendChild(notify);
+    if (this.#checkerSuccess) {
+      this.#checkerSuccess = false;
+      this.note.classList.add('success');
+      this.note.classList.remove('invisible', 'failure');
+      this.note.innerHTML = `${this.#MessageSuccess}`;
 
       setTimeout(() => {
-        document.body.removeChild(notify);
+        if (this.#checkerFail) {
+          this.note.classList.add('invisible');
+        }
+      }, 3000);
+      setTimeout(() => {
+        this.#checkerSuccess = true;
+        if (this.#checkerFail) {
+          this.note.classList.remove('success');
+          this.note.innerHTML = '';
+        }
       }, 4000);
     }
   }
