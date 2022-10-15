@@ -37,17 +37,15 @@ export default class Gallery {
   async getQueryMovies(query, page = 1) {
     this.currentQuery = query;
 
-    if (query === '') {
-      return;
-    }
+    if (!query) return;
+
     const response = await api.getMoviesByName(query, page);
     return response;
   }
 
   async getMovieDetails(id) {
-    if (!id) {
-      return;
-    }
+    if (!id) return;
+
     const response = await api.fetchMoviesByID(id);
     return response;
   }
