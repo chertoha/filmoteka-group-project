@@ -9,6 +9,6 @@ const urls = {
 const API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
 
 const NOTIFY_UNCORRECT_SEARCH =
-  'Search result not successful. Enter the correct movie name and try again!';
+  'Search result is unsuccessful. Enter the correct movie name and try again!';
 
 export { urls, API_KEY, NOTIFY_UNCORRECT_SEARCH };
