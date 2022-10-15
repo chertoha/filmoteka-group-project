@@ -18,3 +18,10 @@
     display: flex;
     align-items: center;
 }
+
+.signout-btn {
+
+    &.hidden {
+        display: none;
+    }
+}
