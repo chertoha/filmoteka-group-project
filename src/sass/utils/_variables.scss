@@ -1,6 +1,4 @@
 :root {
-
-
   // FONTS
   --main-font: 'Roboto', sans-serif;
 
@@ -24,6 +22,9 @@
   --dark-mode-btn: #ffffff;
   --modal-color: #ffffff;
   --attention: #ff001b;
+
+  --failure-notify: rgba(173, 0, 17, 0.9);
+  --success-notify: rgba(35, 75, 35, 0.9);
 
   --btn-up: rgba(255, 107, 8, 0.8);
   --btn-close: rgba(0, 0, 0, 0.5);

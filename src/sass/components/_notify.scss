@@ -44,13 +44,13 @@
 .failure {
   border: thin solid var(--secondary);
 
-  background-color: #000000;
+  background-color: var(--failure-notify);
   color: var(--header-white);
 }
 
 .success {
   border: thin solid var(--secondary);
 
-  background-color: var(--header-white);
-  color: var(--secondary);
+  background-color: var(--success-notify);
+  color: var(--header-white);
 }

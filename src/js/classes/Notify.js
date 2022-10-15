@@ -1,7 +1,7 @@
 export default class Notify {
-  #MessageSuccess = 'Search result successfull!';
+  #MessageSuccess = 'Search result is successful!';
   #MessageFailure =
-    'Search result not successfull. Enter the movie name and try again!';
+    'Search result is unsuccessful. Enter the movie name and try again!';
   note = document.querySelector('.notify');
   #checkerFail = true;
   #checkerSuccess = true;
