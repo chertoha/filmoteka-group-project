@@ -12,7 +12,7 @@ body {
   }
 
   &.dark-theme {
-    $dark-theme: true;
+    --dots-color: #fff;
     --main-background-color: rgb(21, 21, 21);
     --modal-color: #373737;
     --main-text: rgb(202, 200, 200);
@@ -29,10 +29,13 @@ body {
 
   // SCROLL
   scrollbar-width: thin;
+
   /* полоса прокрутки (скроллбар) */
   ::-webkit-scrollbar {
-    width: 8px; /* ширина для вертикального скролла */
-    height: 8px; /* высота для горизонтального скролла */
+    width: 8px;
+    /* ширина для вертикального скролла */
+    height: 8px;
+    /* высота для горизонтального скролла */
     background-color: var(--backdrop-color);
     border-radius: 4px;
   }
@@ -50,11 +53,9 @@ body {
 
   /* Стрелки */
   ::-webkit-scrollbar-button:vertical:start:decrement {
-    background: linear-gradient(
-        120deg,
+    background: linear-gradient(120deg,
         var(--table-color) 40%,
-        rgba(0, 0, 0, 0) 41%
-      ),
+        rgba(0, 0, 0, 0) 41%),
       linear-gradient(240deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
       linear-gradient(0deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
     background-color: var(--scroll-background);
@@ -62,11 +63,9 @@ body {
   }
 
   ::-webkit-scrollbar-button:vertical:end:increment {
-    background: linear-gradient(
-        300deg,
+    background: linear-gradient(300deg,
         var(--table-color) 40%,
-        rgba(0, 0, 0, 0) 41%
-      ),
+        rgba(0, 0, 0, 0) 41%),
       linear-gradient(60deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
       linear-gradient(180deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
     background-color: var(--scroll-background);
@@ -74,11 +73,9 @@ body {
   }
 
   ::-webkit-scrollbar-button:horizontal:start:decrement {
-    background: linear-gradient(
-        30deg,
+    background: linear-gradient(30deg,
         var(--table-color) 40%,
-        rgba(0, 0, 0, 0) 41%
-      ),
+        rgba(0, 0, 0, 0) 41%),
       linear-gradient(150deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
       linear-gradient(270deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
     background-color: var(--scroll-background);
@@ -86,11 +83,9 @@ body {
   }
 
   ::-webkit-scrollbar-button:horizontal:end:increment {
-    background: linear-gradient(
-        210deg,
+    background: linear-gradient(210deg,
         var(--table-color) 40%,
-        rgba(0, 0, 0, 0) 41%
-      ),
+        rgba(0, 0, 0, 0) 41%),
       linear-gradient(330deg, var(--table-color) 40%, rgba(0, 0, 0, 0) 41%),
       linear-gradient(90deg, var(--table-color) 30%, rgba(0, 0, 0, 0) 31%);
     background-color: var(--scroll-background);

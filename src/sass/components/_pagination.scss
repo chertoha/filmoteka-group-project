@@ -42,17 +42,15 @@
     }
   }
 
-  &--dots-prev {
-  }
+  &--dots-prev {}
 
-  &--dots-next {
-  }
+  &--dots-next {}
 
   &--dots-prev,
   &--dots-next {
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../images/dots.svg');
+    // background-image: url('../images/dots.svg');
   }
 }
 
@@ -71,6 +69,7 @@
     color: var(--white);
     background-color: var(--accent);
   }
+
 
   &--dots,
   &--first-number,
