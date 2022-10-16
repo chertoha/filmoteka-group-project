@@ -50,7 +50,9 @@ export default class LocalStorage {
       currentArray = 'queueItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.queue;
     }
-    const newArray = this[currentArray].filter(item => item.id !== this.currentFilm.id);
+    const newArray = this[currentArray].filter(
+      item => item.id !== this.currentFilm.id
+    );
     this.setFilms(currentRemoveKey, newArray);
     this[currentArray] = newArray;
   }
@@ -97,12 +99,6 @@ export default class LocalStorage {
     btn.classList.remove(`remove-${name}-js`);
     btn.classList.add(`${name}-js`);
   }
-  // set themeBody(currentTheme) {
-  //   localStorage.setItem(
-  //     this.LOCAL_STORAGE_KEYS.theme,
-  //     JSON.stringify(currentTheme)
-  //   );
-  // }
 
   addThemeToLocalStorage(currentTheme) {
     localStorage.setItem(
