@@ -1,17 +1,10 @@
 const axios = require('axios').default;
+import {urls, API_KEY } from '../utils/config';
 
 export default class ApiService {
-  #API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
-  //змінити базовий юрл
-  #BASE_URL = 'https://api.themoviedb.org/3/';
-  #GENRES_PATH_URL = 'genre/movie/list';
-  #TRENDINGS_PATH_URL = 'trending/movie/day';
-  #SEARCH_PATH_URL = 'search/movie';
-  #GET_MOVIE_DETAILS_PATH_URL = 'movie/';
-
   #moviesByNameSearchParams = {
     params: {
-      api_key: this.#API_KEY,
+      api_key: API_KEY,
       query: '',
       page: 1,
       include_adult: false,
@@ -19,19 +12,19 @@ export default class ApiService {
   };
   #genresSearchParams = {
     params: {
-      api_key: this.#API_KEY,
+      api_key: API_KEY,
     },
   };
 
   #getMovieDetailsSearchParams = {
     params: {
-      api_key: this.#API_KEY,
+      api_key: API_KEY,
     },
   };
   constructor() {}
 
   async fetchGenres() {
-    const url = this.#BASE_URL + this.#GENRES_PATH_URL;
+    const url = urls.BASE_URL + urls.GENRES_PATH_URL;
     try {
       const response = await axios.get(url, this.#genresSearchParams);
       const genres = response.data.genres;
@@ -42,9 +35,9 @@ export default class ApiService {
   }
 
   async fetchTrendingMovies(page = 1) {
-    const url = this.#BASE_URL + this.#TRENDINGS_PATH_URL;
+    const url = urls.BASE_URL + urls.TRENDINGS_PATH_URL;
     const popularMoviesSearchParams = {
-      params: { api_key: this.#API_KEY, page },
+      params: { api_key: API_KEY, page },
     };
     try {
       const response = await axios.get(url, popularMoviesSearchParams);
@@ -55,7 +48,7 @@ export default class ApiService {
   }
 
   async fetchMoviesByName() {
-    const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+    const url = urls.BASE_URL + urls.SEARCH_PATH_URL;
     try {
       const response = await axios.get(url, this.#moviesByNameSearchParams);
       return response;
@@ -67,7 +60,7 @@ export default class ApiService {
   async getMoviesByName(query, page = 1) {
     this.#moviesByNameSearchParams.params.query = query;
     this.#moviesByNameSearchParams.params.page = page;
-    const url = this.#BASE_URL + this.#SEARCH_PATH_URL;
+    const url = urls.BASE_URL + urls.SEARCH_PATH_URL;
     const response = await axios.get(url, this.#moviesByNameSearchParams);
     return response.data;
   }
@@ -76,7 +69,7 @@ export default class ApiService {
   }
 
   async fetchMoviesByID(id) {
-    const url = this.#BASE_URL + this.#GET_MOVIE_DETAILS_PATH_URL + id;
+    const url = urls.BASE_URL + urls.GET_MOVIE_DETAILS_PATH_URL + id;
     try {
       const response = await axios.get(url, this.#getMovieDetailsSearchParams);
       return response.data;
