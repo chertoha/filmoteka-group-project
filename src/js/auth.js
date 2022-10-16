@@ -45,7 +45,6 @@ modalRefs.backdrop.addEventListener('click', onBackdropClick);
 
 function onOpenBtn(e) {
   e.preventDefault();
-  console.log('listener +');
   switchModal(true);
   window.addEventListener('keydown', onEscapePress);
 }
@@ -126,8 +125,8 @@ refs.formReg.addEventListener('submit', e => {
   createUser(auth, username, email, password);
   e.target.reset();
   // authModal.closeModal();
-  // closeModal();
-  switchToLoginForm();
+  closeModal();
+  // switchToLoginForm();
 });
 
 //SIGN IN===============================================
@@ -155,6 +154,7 @@ onAuthStateChanged(auth, user => {
     refs.signOutBtn.classList.remove('hidden');
 
     changeUserTitle(refreshUserTitle);
+
     modalRefs.openModalBtn.removeEventListener('click', onOpenBtn);
   } else {
     // User is signed out
@@ -187,7 +187,7 @@ async function signInUser(auth, email, password) {
       last_login: dt,
     });
 
-    await updateUserTitle(auth, user.uid);
+    await updateUserTitle();
 
     console.log('User sign in');
   } catch (error) {
@@ -215,6 +215,8 @@ async function createUser(auth, username, email, password) {
       email: email,
     });
 
+    // await updateUserTitle();
+    await changeUserTitle(refreshUserTitle);
     // signInUser(auth, email, password);
 
     console.log('user registered success');
@@ -225,11 +227,15 @@ async function createUser(auth, username, email, password) {
 }
 //===========================================================================
 
-async function updateUserTitle(auth, userId) {
+async function updateUserTitle() {
+  const auth = getAuth();
+  const userId = auth.currentUser.uid;
+
   const dbRef = ref(getDatabase());
 
   const snapshot = await get(child(dbRef, 'users/' + userId));
   let val = {};
+  console.log(snapshot);
   if (snapshot.exists()) {
     val = snapshot.val();
   } else {
