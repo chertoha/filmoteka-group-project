@@ -24,13 +24,60 @@ const firebaseConfig = {
 };
 
 //MODAL==========================================
-const authModal = new Modal({
-  openModalBtn: '[data-auth-modal-open]',
-  closeModalBtn: '[data-auth-modal-close]',
-  modal: '[data-auth-modal]',
-});
-authModal.addHandler();
+// const authModal = new Modal({
+//   openModalBtn: '[data-auth-modal-open]',
+//   closeModalBtn: '[data-auth-modal-close]',
+//   modal: '[data-auth-modal]',
+// });
+// authModal.addHandler();
 //MODAL==========================================
+
+//MODAL REFS=========================================
+const modalRefs = {
+  openModalBtn: document.querySelector('[data-auth-modal-open]'),
+  closeModalBtn: document.querySelector('[data-auth-modal-close]'),
+  backdrop: document.querySelector('[data-auth-modal]'),
+};
+
+modalRefs.openModalBtn.addEventListener('click', onOpenBtn);
+modalRefs.closeModalBtn.addEventListener('click', onCloseButtonClick);
+modalRefs.backdrop.addEventListener('click', onBackdropClick);
+
+function onOpenBtn(e) {
+  e.preventDefault();
+  console.log('listener +');
+  switchModal(true);
+  window.addEventListener('keydown', onEscapePress);
+}
+
+function onCloseButtonClick(e) {
+  closeModal();
+}
+
+function onBackdropClick(e) {
+  if (e.target !== e.currentTarget) return;
+  closeModal();
+}
+
+function onEscapePress(e) {
+  if (e.code === 'Escape') {
+    closeModal();
+  }
+}
+
+function removeEscapeListener() {
+  window.removeEventListener('keydown', onEscapePress);
+}
+
+function closeModal() {
+  switchModal(false);
+  removeEscapeListener();
+}
+
+function switchModal(isEnabled) {
+  modalRefs.backdrop.classList.toggle('is-hidden', !isEnabled);
+}
+//MODAL REFS=========================================
 
 ///// REFS==============================================
 const refs = {
@@ -78,7 +125,9 @@ refs.formReg.addEventListener('submit', e => {
 
   createUser(auth, username, email, password);
   e.target.reset();
-  authModal.closeModal();
+  // authModal.closeModal();
+  // closeModal();
+  switchToLoginForm();
 });
 
 //SIGN IN===============================================
@@ -91,7 +140,8 @@ refs.formLogin.addEventListener('submit', e => {
 
   signInUser(auth, email, password);
   e.target.reset();
-  authModal.closeModal();
+  // authModal.closeModal();
+  closeModal();
 });
 //SIGN IN===============================================
 
@@ -105,9 +155,11 @@ onAuthStateChanged(auth, user => {
     refs.signOutBtn.classList.remove('hidden');
 
     changeUserTitle(refreshUserTitle);
+    modalRefs.openModalBtn.removeEventListener('click', onOpenBtn);
   } else {
     // User is signed out
     refs.signOutBtn.classList.add('hidden');
+    modalRefs.openModalBtn.addEventListener('click', onOpenBtn);
 
     userTitle = 'LOGIN';
     refreshUserTitle();
@@ -163,9 +215,9 @@ async function createUser(auth, username, email, password) {
       email: email,
     });
 
-    signInUser(auth, email, password);
+    // signInUser(auth, email, password);
 
-    console.log('user registered');
+    console.log('user registered success');
   } catch (error) {
     const errorMessage = error.message;
     console.log(errorMessage);
@@ -174,7 +226,7 @@ async function createUser(auth, username, email, password) {
 //===========================================================================
 
 async function updateUserTitle(auth, userId) {
-  const dbRef = await ref(getDatabase());
+  const dbRef = ref(getDatabase());
 
   const snapshot = await get(child(dbRef, 'users/' + userId));
   let val = {};
