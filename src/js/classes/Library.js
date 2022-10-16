@@ -17,18 +17,17 @@ export default class Library {
   queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
   localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
   localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
-  isWindowLocationLibrary = window.location.pathname === '/myLibrary.html';
-  isWindowLocationFilmoteka =
-    window.location.pathname === '/filmoteka-group-project/myLibrary.html';
   isLibraryPage =
-    this.isWindowLocationLibrary || this.isWindowLocationFilmoteka;
+    window.location.pathname === '/myLibrary.html' ||
+    window.location.pathname === '/filmoteka-group-project/myLibrary.html';
 
   updateVar(value) {
     if (value === this.watchKey) {
       return (this.localStArrayWatch = localSt.getItemFromKeyStorage(
         this.watchKey
       ));
-    } else if (value === this.queueKey) {
+    }
+    if (value === this.queueKey) {
       return (this.localStArrayQueue = localSt.getItemFromKeyStorage(
         this.queueKey
       ));
@@ -39,18 +38,18 @@ export default class Library {
     this.updateVar(this.queueKey);
     if (this.localStArrayQueue) {
       this.currentPageRender(this.localStArrayQueue, this.currentPage);
-    } else {
-      this.tempRenderCards(null);
+      return;
     }
+    this.tempRenderCards(null);
   }
 
   currentPageRenderWatch() {
     this.updateVar(this.watchKey);
     if (this.localStArrayWatch) {
       this.currentPageRender(this.localStArrayWatch, this.currentPage);
-    } else {
-      this.tempRenderCards(null);
+      return;
     }
+    this.tempRenderCards(null);
   }
 
   currentPageRender(localStArray, currentPage) {
@@ -94,20 +93,22 @@ export default class Library {
   }
 
   updateCardsWatch() {
-    this.isBtnWatchActive =
-      headerButtonsContainerRef?.firstElementChild.classList.contains(
-        'button--active'
-      );
-    if (this.isLibraryPage && this.isBtnWatchActive)
-      this.currentPageRenderWatch();
+    if (this.isLibraryPage) {
+      const isBtnWatchActive =
+        headerButtonsContainerRef.firstElementChild.classList.contains(
+          'button--active'
+        );
+      if (isBtnWatchActive) this.currentPageRenderWatch();
+    }
   }
 
   updateCardsQueue() {
-    this.isBtnQueueActive =
-      headerButtonsContainerRef?.lastElementChild.classList.contains(
-        'button--active'
-      );
-    if (this.isLibraryPage && this.isBtnQueueActive)
-      this.currentPageRenderQueue();
+    if (this.isLibraryPage) {
+      const isBtnQueueActive =
+        headerButtonsContainerRef.lastElementChild.classList.contains(
+          'button--active'
+        );
+      if (isBtnQueueActive) this.currentPageRenderQueue();
+    }
   }
 }
