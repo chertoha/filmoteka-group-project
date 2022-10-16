@@ -8,7 +8,7 @@
   margin: 0;
 
   @include circle(30px);
-  border: 1px solid var(--white);
+  border: 1px solid var(--main-text);
 
   font-size: 0;
   display: inline-block;
@@ -16,11 +16,13 @@
   background-color: transparent;
   cursor: pointer;
   color: var(--main-text);
-  transition: color 250ms var(--transition-timing);
+  transition: color 250ms var(--transition-timing),
+    border-color 250ms var(--transition-timing);
 
   &:hover,
   &:focus {
     color: var(--accent);
+    border-color: var(--accent);
   }
 }
 
