@@ -2,101 +2,112 @@ import '../utils/handlebars-helpers';
 import LocalStorage from './LocalStorage';
 import Pagination from './Pagination';
 import template from '../../templates/movieCard.hbs';
-import { containerGallery, containerPag, headerRef } from '../utils/refs';
+import {
+  containerGallery,
+  containerPag,
+  headerRef,
+  headerButtonsContainerRef,
+} from '../utils/refs';
 const pagination = new Pagination(containerPag);
 const localSt = new LocalStorage();
 
 export default class Library {
   currentPage = 1;
-  // localStArray = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch);
+  watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
+  queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
+  localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
+  localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
+  isWindowLocationLibrary = window.location.pathname === '/myLibrary.html';
+  isWindowLocationFilmoteka =
+    window.location.pathname === '/filmoteka-group-project/myLibrary.html';
+  isLibraryPage =
+    this.isWindowLocationLibrary || this.isWindowLocationFilmoteka;
+
+  updateVar(value) {
+    if (value === this.watchKey) {
+      return (this.localStArrayWatch = localSt.getItemFromKeyStorage(
+        this.watchKey
+      ));
+    } else if (value === this.queueKey) {
+      return (this.localStArrayQueue = localSt.getItemFromKeyStorage(
+        this.queueKey
+      ));
+    }
+  }
 
   currentPageRenderQueue() {
-    if (
-      localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue) !==
-      undefined
-    ) {
-      this.currentPageRender(
-        localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue),
-        this.currentPage
-      );
+    this.updateVar(this.queueKey);
+    if (this.localStArrayQueue) {
+      this.currentPageRender(this.localStArrayQueue, this.currentPage);
     } else {
-      this.tempRenderCards(undefined);
+      this.tempRenderCards(null);
     }
   }
 
   currentPageRenderWatch() {
-    if (
-      localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch) !==
-      undefined
-    ) {
-      this.currentPageRender(
-        localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch),
-        this.currentPage
-      );
+    this.updateVar(this.watchKey);
+    if (this.localStArrayWatch) {
+      this.currentPageRender(this.localStArrayWatch, this.currentPage);
     } else {
-      this.tempRenderCards(undefined);
+      this.tempRenderCards(null);
     }
   }
 
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
-      if (localStArray[index] !== undefined) {
-        moviesPars.push(localStArray[index]);
-      }
+      if (localStArray[index]) moviesPars.push(localStArray[index]);
     }
+
     this.tempRenderCards(moviesPars, localStArray, currentPage);
   }
 
   tempRenderCards(movies, localStArray, currentPage) {
-    // console.log(movies);
-    if (movies !== undefined) {
-      containerGallery.innerHTML = template({ movies, library: true });
+    if (movies) {
+      if (!movies.length) {
+        containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
+      } else {
+        containerGallery.innerHTML = template({ movies, library: true });
+      }
 
       pagination.updateTotalItems(localStArray.length);
-      // console.log("asfdafsasf",currentPage);
       pagination.goToPage(currentPage);
       pagination.render();
     } else {
-      containerGallery.innerHTML = '';
+      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
     }
     pagination.on('aftermove', event => {
-      // console.log(event.page);
+      headerRef.scrollIntoView(top);
       currentPage = event.page;
       this.currentPageRender(localStArray, currentPage);
     });
   }
   updateCards(currentKey) {
-    if (currentKey === localSt.LOCAL_STORAGE_KEYS.watch) {
+    if (currentKey === this.watchKey) {
       this.updateCardsWatch();
-    } else if (currentKey === localSt.LOCAL_STORAGE_KEYS.queue) {
+      return;
+    }
+    if (currentKey === this.queueKey) {
       this.updateCardsQueue();
+      return;
     }
   }
 
   updateCardsWatch() {
-    if (
-      (window.location.pathname === '/myLibrary.html' ||
-        window.location.pathname ===
-          '/filmoteka-group-project/myLibrary.html') &&
-      document
-        .querySelector('.header-buttons')
-        .firstElementChild.classList.contains('button--active')
-    ) {
+    this.isBtnWatchActive =
+      headerButtonsContainerRef?.firstElementChild.classList.contains(
+        'button--active'
+      );
+    if (this.isLibraryPage && this.isBtnWatchActive)
       this.currentPageRenderWatch();
-    }
   }
 
   updateCardsQueue() {
-    if (
-      (window.location.pathname === '/myLibrary.html' ||
-        window.location.pathname ===
-          '/filmoteka-group-project/myLibrary.html') &&
-      document
-        .querySelector('.header-buttons')
-        .lastElementChild.classList.contains('button--active')
-    ) {
+    this.isBtnQueueActive =
+      headerButtonsContainerRef?.lastElementChild.classList.contains(
+        'button--active'
+      );
+    if (this.isLibraryPage && this.isBtnQueueActive)
       this.currentPageRenderQueue();
-    }
   }
 }
