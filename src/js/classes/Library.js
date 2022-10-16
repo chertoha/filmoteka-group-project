@@ -25,7 +25,6 @@ return  this.localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
   currentPageRenderQueue() {
     this.updateVar(this.queueKey)
     if (this.localStArrayQueue) {
-      console.log(this.localStArrayQueue)
       this.currentPageRender(
         this.localStArrayQueue,
         this.currentPage
@@ -51,7 +50,6 @@ return  this.localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
 
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
-    console.log(containerPag.children)
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
       if (localStArray[index] !== undefined) {
         moviesPars.push(localStArray[index]);
