@@ -1,9 +1,8 @@
 import '../utils/handlebars-helpers';
-import {headerButtonsContainerRef} from'../utils/refs';
 import LocalStorage from './LocalStorage';
 import Pagination from './Pagination';
 import template from '../../templates/movieCard.hbs';
-import { containerGallery, containerPag, headerRef } from '../utils/refs';
+import { containerGallery, containerPag, headerRef, headerButtonsContainerRef} from '../utils/refs';
 const pagination = new Pagination(containerPag);
 const localSt = new LocalStorage();
 
@@ -12,8 +11,7 @@ export default class Library {
   watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
   queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
   localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
-  localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
- 
+  localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);  
 
   updateVar(value) {
     if (value === this.watchKey) {
@@ -53,6 +51,7 @@ return  this.localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
 
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
+    console.log(containerPag.children)
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
       if (localStArray[index] !== undefined) {
         moviesPars.push(localStArray[index]);
@@ -63,20 +62,21 @@ return  this.localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
   }
 
   tempRenderCards(movies, localStArray, currentPage) {
-    // console.log(movies);
+ 
     if (movies) {
       if (!movies.length) {
         containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
-      } else {containerGallery.innerHTML = template({ movies, library: true });}
+      } else { containerGallery.innerHTML = template({ movies, library: true }); }
+      
       
       pagination.updateTotalItems(localStArray.length);
       pagination.goToPage(currentPage);
       pagination.render();
     } else {
-      // console.log("dasfasd")
       containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
     }
     pagination.on('aftermove', event => {
+      headerRef.scrollIntoView(top);
       currentPage = event.page;
       this.currentPageRender(localStArray, currentPage);
     });
