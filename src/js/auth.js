@@ -1,3 +1,6 @@
+// import authModal from './modal';
+import Modal from './classes/Modal';
+
 import { initializeApp } from 'firebase/app';
 import { getDatabase, set, ref, update } from 'firebase/database';
 import {
@@ -18,6 +21,15 @@ const firebaseConfig = {
   messagingSenderId: '1077300111014',
   appId: '1:1077300111014:web:e62970f415155fc2f2b667',
 };
+
+//MODAL==========================================
+const authModal = new Modal({
+  openModalBtn: '[data-auth-modal-open]',
+  closeModalBtn: '[data-auth-modal-close]',
+  modal: '[data-auth-modal]',
+});
+authModal.addHandler();
+//MODAL==========================================
 
 ///// REFS==============================================
 const refs = {
@@ -89,7 +101,7 @@ refs.formLogin.addEventListener('submit', e => {
       update(ref(database, 'users/' + user.uid), {
         last_login: dt,
       });
-
+      authModal.closeModal();
       console.log('User loged in');
     })
     .catch(error => {
