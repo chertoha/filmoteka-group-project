@@ -104,12 +104,12 @@ export default class LocalStorage {
     btn.classList.remove(`remove-${name}-js`);
     btn.classList.add(`${name}-js`);
   }
-  set themeBody(currentTheme) {
-    localStorage.setItem(
-      this.LOCAL_STORAGE_KEYS.theme,
-      JSON.stringify(currentTheme)
-    );
-  }
+  // set themeBody(currentTheme) {
+  //   localStorage.setItem(
+  //     this.LOCAL_STORAGE_KEYS.theme,
+  //     JSON.stringify(currentTheme)
+  //   );
+  // }
 
   addThemeToLocalStorage(currentTheme) {
     localStorage.setItem(
