@@ -1,23 +1,38 @@
+.notify {
+  z-index: 1;
+  opacity: 100%;
+  transition: opacity 1000ms var(--transition-timing);
+
+  &.failure,
+  &.success {
+    opacity: 100%;
+  }
+
+  &.invisible {
+    opacity: 0%;
+  }
+}
+
 .failure,
 .success {
   position: absolute;
   display: flex;
-  top: 220px;
+  top: 230px;
   right: 20px;
 
   width: 200px;
   padding: 10px;
   min-width: 100px;
-  min-height: 50px;
+  min-height: 40px;
   border-radius: 10px;
+
+  box-shadow: 5px 10px 10px 0px rgba(31, 29, 31, 0.48);
 
   font-size: 17px;
 
-  z-index: 1;
-
   @include mq('tablet') {
     width: 250px;
-    top: 100px;
+    top: 210px;
   }
 
   @include mq('desktop') {
@@ -27,15 +42,15 @@
 }
 
 .failure {
-  border: thick solid var(--header-white);
+  border: thin solid var(--secondary);
 
-  background-color: var(--attention);
+  background-color: var(--failure-notify);
   color: var(--header-white);
 }
 
 .success {
-  border: thick solid var(--accent-light);
+  border: thin solid var(--secondary);
 
-  background-color: var(--header-white);
-  color: var(--accent);
+  background-color: var(--success-notify);
+  color: var(--header-white);
 }

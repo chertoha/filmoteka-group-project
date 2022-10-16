@@ -1,4 +1,5 @@
 body {
+  height: 100%;
   background-color: var(--main-background-color);
   color: var(--main-text);
   font-family: var(--main-font);
@@ -12,7 +13,7 @@ body {
   }
 
   &.dark-theme {
-    $dark-theme: true;
+    --dots-color: #fff;
     --main-background-color: rgb(21, 21, 21);
     --modal-color: #373737;
     --main-text: rgb(202, 200, 200);
@@ -29,10 +30,13 @@ body {
 
   // SCROLL
   scrollbar-width: thin;
+
   /* полоса прокрутки (скроллбар) */
   ::-webkit-scrollbar {
-    width: 8px; /* ширина для вертикального скролла */
-    height: 8px; /* высота для горизонтального скролла */
+    width: 8px;
+    /* ширина для вертикального скролла */
+    height: 8px;
+    /* высота для горизонтального скролла */
     background-color: var(--backdrop-color);
     border-radius: 4px;
   }
@@ -103,5 +107,16 @@ body.modal-open {
 }
 
 html {
+  height: 100%;
   scroll-behavior: smooth;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }

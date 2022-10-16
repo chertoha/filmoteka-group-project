@@ -1,4 +1,4 @@
-import { create } from "handlebars";
+import { create } from 'handlebars';
 
 export default class LocalStorage {
   constructor() {
@@ -20,10 +20,10 @@ export default class LocalStorage {
   }
   getItemFromKeyStorage(key) {
     try {
-      const getItem = localStorage.getItem(key)
-      return getItem === null ? undefined: JSON.parse(getItem);
-    } catch(error) {
-      console.error("Get state error: ", error.message);
+      const getItem = localStorage.getItem(key);
+      return getItem === null ? undefined : JSON.parse(getItem);
+    } catch (error) {
+      console.error('Get state error: ', error.message);
     }
   }
   saveItemsForArrayAfterReload() {
@@ -42,7 +42,6 @@ export default class LocalStorage {
   removeItemFromKeyStorage(btn) {
     let currentArray = null;
     let currentRemoveKey = null;
-    let newArray = [];
     if (btn.classList.contains('remove-watched-js')) {
       currentArray = 'watchedItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.watch;
@@ -51,23 +50,19 @@ export default class LocalStorage {
       currentArray = 'queueItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.queue;
     }
-    this[currentArray].forEach(item => {
-      if (item.id !== this.currentFilm.id) {
-        newArray.push(item);
-      }
-    });
+    const newArray = this[currentArray].filter(
+      item => item.id !== this.currentFilm.id
+    );
     this.setFilms(currentRemoveKey, newArray);
     this[currentArray] = newArray;
-    newArray = [];
   }
   setFilms(keyName, values) {
     localStorage.removeItem(keyName);
-    let uniqueArray = [];
     let uniqueId = [];
-    values.forEach(value => {
+    const uniqueArray = values.filter(value => {
       if (!uniqueId.includes(value.id)) {
         uniqueId.push(value.id);
-        uniqueArray.push(value);
+        return value;
       }
     });
     localStorage.setItem(keyName, JSON.stringify(uniqueArray));
@@ -104,10 +99,15 @@ export default class LocalStorage {
     btn.classList.remove(`remove-${name}-js`);
     btn.classList.add(`${name}-js`);
   }
-  set themeBody(currentTheme) {
+
+  addThemeToLocalStorage(currentTheme) {
     localStorage.setItem(
       this.LOCAL_STORAGE_KEYS.theme,
       JSON.stringify(currentTheme)
     );
+  }
+
+  removeThemeFromLocalStorage() {
+    localStorage.removeItem(this.LOCAL_STORAGE_KEYS.theme);
   }
 }

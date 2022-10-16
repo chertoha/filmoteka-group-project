@@ -22,6 +22,13 @@ const spinnerRef = document.querySelector('.js-spinner');
 
 // Header
 const headerRef = document.querySelector('#header');
+
+// Library
+const headerButtonsContainerRef = document.querySelector('.header-buttons');
+
+const headerButtonsRef =
+ document.querySelectorAll('.header-button');
+
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //EXPORT
@@ -34,4 +41,6 @@ export {
   accordionRef,
   spinnerRef,
   headerRef,
+  headerButtonsContainerRef,
+  headerButtonsRef,
 };
