@@ -11,6 +11,7 @@ export default class LocalStorage {
       watch: 'watch',
       queue: 'queue',
       theme: 'theme',
+      currentPageValue: 'currentPageValue',
     };
     this.keyWords = {
       remove: 'remove',
@@ -122,4 +123,14 @@ export default class LocalStorage {
   removeThemeFromLocalStorage() {
     localStorage.removeItem(this.LOCAL_STORAGE_KEYS.theme);
   }
+
+addCurrentPageValue(key, value){
+    localStorage.setItem(key, value);
+  };
+  
+  getCurrentPageValue(key){
+    const serializedState = localStorage.getItem(key);
+    return serializedState;
+};
+
 }

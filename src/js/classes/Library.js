@@ -15,6 +15,8 @@ export default class Library {
   currentPage = 1;
   watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
   queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
+  currentPageKey = localSt.LOCAL_STORAGE_KEYS.currentPageValue;
+currentPageValue = localSt.getCurrentPageValue(this.currentPageValue);
   localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
   localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
   isLibraryPage =
@@ -31,7 +33,13 @@ export default class Library {
       return (this.localStArrayQueue = localSt.getItemFromKeyStorage(
         this.queueKey
       ));
+    };
+    if (value === this.currentPageValue) {
+      return (this.currentPageValue = localSt.getCurrentPageValue(
+        this.currentPageKey
+      ));
     }
+
   }
 
   currentPageRenderQueue() {
@@ -50,6 +58,50 @@ export default class Library {
       return;
     }
     this.tempRenderCards(null);
+  }
+
+currentPageRenderQueueUpdate() {
+  this.updateVar(this.queueKey);
+  this.updateVar(this.currentPageKey);
+    if (this.localStArrayQueue) {
+      let currentPage =this.currentPageValue;
+      let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
+      if (!moviesPars.length) {
+        currentPage -= 1;        
+      };
+      if (this.localStArrayQueue.length <= 20) {
+        currentPage = 1;
+      }
+      this.currentPageRender(this.localStArrayQueue, currentPage);
+      return;
+    }
+    this.tempRenderCards(null);
+  }
+
+  currentPageRenderWatchUpdate() {
+    this.updateVar(this.watchKey);
+    this.updateVar(this.currentPageKey);
+    if (this.localStArrayWatch) {
+      let currentPage =this.currentPageValue;
+      let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
+      if (!moviesPars.length) {
+        currentPage -= 1;        
+      };
+      if (this.localStArrayWatch.length <= 20) {
+        currentPage = 1;
+      }
+      this.currentPageRender(this.localStArrayWatch, currentPage);
+      return;
+    }
+    this.tempRenderCards(null);
+  }
+
+  currentPageRenderValue(localStArray, currentPage) {
+    const moviesPars = [];
+    for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
+      if (localStArray[index]) moviesPars.push(localStArray[index]);
+    }
+    return moviesPars;
   }
 
   currentPageRender(localStArray, currentPage) {
@@ -72,12 +124,15 @@ export default class Library {
       pagination.updateTotalItems(localStArray.length);
       pagination.goToPage(currentPage);
       pagination.render();
+      
     } else {
       containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
     }
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
+      localSt.addCurrentPageValue(this.currentPageValue, currentPage)
+      // localStorage.setItem("currentPageValue", currentPage);
       this.currentPageRender(localStArray, currentPage);
     });
   }
@@ -98,7 +153,7 @@ export default class Library {
         headerButtonsContainerRef.firstElementChild.classList.contains(
           'button--active'
         );
-      if (isBtnWatchActive) this.currentPageRenderWatch();
+      if (isBtnWatchActive) this.currentPageRenderWatchUpdate();
     }
   }
 
@@ -108,7 +163,7 @@ export default class Library {
         headerButtonsContainerRef.lastElementChild.classList.contains(
           'button--active'
         );
-      if (isBtnQueueActive) this.currentPageRenderQueue();
+      if (isBtnQueueActive) this.currentPageRenderQueueUpdate();
     }
   }
 }
