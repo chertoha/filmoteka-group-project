@@ -49,7 +49,6 @@ export default class Modal {
 
   onEscKeyDown = event => {
     if (event.code !== 'Escape') return;
-    console.log('esc', event);
     this.closeModal();
   };
 }
