@@ -8,19 +8,19 @@ export default class ModalBtn {
   onModalBtnClick(btn) {
     //add method
     if (
-      btn.classList.contains('queue-js') ||
-      btn.classList.contains('watched-js')
+      btn.classList.contains(localStorageFilms.keyClasses.addQueue) ||
+      btn.classList.contains(localStorageFilms.keyClasses.addWatched)
     ) {
       let currentArray = null;
       let currentKey = null;
-      if (btn.classList.contains('queue-js')) {
+      if (btn.classList.contains(localStorageFilms.keyClasses.addQueue)) {
         currentArray = localStorageFilms.queueItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.queue;
-        localStorageFilms.changeAddBtn('queue', btn, 'remove');
+        localStorageFilms.changeAddBtn(localStorageFilms.keyWords.queue, btn, localStorageFilms.keyWords.remove);
       } else {
         currentArray = localStorageFilms.watchedItems;
         currentKey = localStorageFilms.LOCAL_STORAGE_KEYS.watch;
-        localStorageFilms.changeAddBtn('watched', btn, 'remove');
+        localStorageFilms.changeAddBtn(localStorageFilms.keyWords.watched, btn, localStorageFilms.keyWords.remove);
       }
 
       localStorageFilms.addItemToKeyStorage(currentKey, currentArray); //записываем в LS фильм под нужным ключем
@@ -29,17 +29,17 @@ export default class ModalBtn {
     }
     //remove method
     if (
-      btn.classList.contains('remove-watched-js') ||
-      btn.classList.contains('remove-queue-js')
+      btn.classList.contains(localStorageFilms.keyClasses.removeWatched) ||
+      btn.classList.contains(localStorageFilms.keyClasses.removeQueue)
     ) {
-      if (btn.classList.contains('remove-watched-js')) {
+      if (btn.classList.contains(localStorageFilms.keyClasses.removeWatched)) {
         localStorageFilms.removeItemFromKeyStorage(btn);
-        localStorageFilms.changeAddBtn('watched', btn, 'add');
+        localStorageFilms.changeAddBtn(localStorageFilms.keyWords.watched, btn, localStorageFilms.keyWords.add);
         library.updateCardsWatch();
         return;
       }
       localStorageFilms.removeItemFromKeyStorage(btn);
-      localStorageFilms.changeAddBtn('queue', btn, 'add');
+      localStorageFilms.changeAddBtn(localStorageFilms.keyWords.queue, btn, localStorageFilms.keyWords.add);
       library.updateCardsQueue();
     }
   }
