@@ -16,7 +16,7 @@ export default class Library {
   watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
   queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
   currentPageKey = localSt.LOCAL_STORAGE_KEYS.currentPageValue;
-currentPageValue = localSt.getCurrentPageValue(this.currentPageValue);
+
   localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
   localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
   isLibraryPage =
@@ -34,8 +34,8 @@ currentPageValue = localSt.getCurrentPageValue(this.currentPageValue);
         this.queueKey
       ));
     };
-    if (value === this.currentPageValue) {
-      return (this.currentPageValue = localSt.getCurrentPageValue(
+    if (value === this.currentPageKey) {
+      return (localSt.getCurrentPageValue(
         this.currentPageKey
       ));
     }
@@ -62,9 +62,8 @@ currentPageValue = localSt.getCurrentPageValue(this.currentPageValue);
 
 currentPageRenderQueueUpdate() {
   this.updateVar(this.queueKey);
-  this.updateVar(this.currentPageKey);
     if (this.localStArrayQueue) {
-      let currentPage =this.currentPageValue;
+      let currentPage =this.updateVar(this.currentPageKey);
       let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
       if (!moviesPars.length) {
         currentPage -= 1;        
@@ -80,9 +79,8 @@ currentPageRenderQueueUpdate() {
 
   currentPageRenderWatchUpdate() {
     this.updateVar(this.watchKey);
-    this.updateVar(this.currentPageKey);
     if (this.localStArrayWatch) {
-      let currentPage =this.currentPageValue;
+      let currentPage =this.updateVar(this.currentPageKey);
       let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
       if (!moviesPars.length) {
         currentPage -= 1;        
@@ -114,25 +112,24 @@ currentPageRenderQueueUpdate() {
   }
 
   tempRenderCards(movies, localStArray, currentPage) {
+    if (!Array.isArray(movies)) {
+      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
+      return;
+}
     if (movies) {
       if (!movies.length) {
         containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
       } else {
         containerGallery.innerHTML = template({ movies, library: true });
       }
-
       pagination.updateTotalItems(localStArray.length);
       pagination.goToPage(currentPage);
       pagination.render();
-      
-    } else {
-      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
-    }
+    } 
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
-      localSt.addCurrentPageValue(this.currentPageValue, currentPage)
-      // localStorage.setItem("currentPageValue", currentPage);
+      localSt.addCurrentPageValue(this.currentPageKey, currentPage)
       this.currentPageRender(localStArray, currentPage);
     });
   }
