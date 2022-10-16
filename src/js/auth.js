@@ -2,13 +2,14 @@
 import Modal from './classes/Modal';
 
 import { initializeApp } from 'firebase/app';
-import { getDatabase, set, ref, update } from 'firebase/database';
+import { getDatabase, set, ref, update, get, child } from 'firebase/database';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 // Your web app's Firebase configuration
@@ -37,18 +38,29 @@ const refs = {
   formReg: document.querySelector('.js-form-reg'),
   goToRegBtn: document.querySelector('.js-btn-go-to-registration'),
   goToLoginBtn: document.querySelector('.js-btn-go-to-login'),
+  signInBtn: document.querySelector('[data-auth-modal-open]'),
   signOutBtn: document.querySelector('.js-signout'),
 };
 
 refs.goToRegBtn.addEventListener('click', () => {
-  refs.formLogin.classList.add('hidden');
-  refs.formReg.classList.remove('hidden');
+  switchToRegistrationForm();
 });
 
 refs.goToLoginBtn.addEventListener('click', () => {
-  refs.formReg.classList.add('hidden');
-  refs.formLogin.classList.remove('hidden');
+  switchToLoginForm();
 });
+
+function switchToLoginForm() {
+  refs.formLogin.classList.remove('hidden');
+  refs.formReg.classList.add('hidden');
+}
+
+function switchToRegistrationForm() {
+  refs.formLogin.classList.add('hidden');
+  refs.formReg.classList.remove('hidden');
+}
+
+let userTitle = 'LOGIN';
 ///// REFS==============================================
 
 // Initialize Firebase
@@ -64,27 +76,12 @@ refs.formReg.addEventListener('submit', e => {
   const email = form.email.value;
   const password = form.password.value;
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      // Signed in
-      const user = userCredential.user;
-
-      set(ref(database, 'users/' + user.uid), {
-        username: username,
-        email: email,
-      });
-
-      e.target.clear;
-
-      console.log('user created');
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    });
+  createUser(auth, username, email, password);
+  e.target.reset();
+  authModal.closeModal();
 });
 
+//SIGN IN===============================================
 refs.formLogin.addEventListener('submit', e => {
   e.preventDefault();
 
@@ -92,38 +89,29 @@ refs.formLogin.addEventListener('submit', e => {
   const email = form.email.value;
   const password = form.password.value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-      // Signed in
-      const user = userCredential.user;
-
-      const dt = new Date();
-      update(ref(database, 'users/' + user.uid), {
-        last_login: dt,
-      });
-      authModal.closeModal();
-      console.log('User loged in');
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    });
+  signIn(auth, email, password);
+  e.target.reset();
+  authModal.closeModal();
 });
+//SIGN IN===============================================
 
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
     console.log('user is loged now');
-    const uid = user.uid;
+    // const uid = user.uid;
+    console.log('user ->', user);
 
     refs.signOutBtn.classList.remove('hidden');
+
+    changeUserTitle(refreshUserTitle);
   } else {
     // User is signed out
-    // ...
-
     refs.signOutBtn.classList.add('hidden');
+
+    userTitle = 'LOGIN';
+    refreshUserTitle();
+
     console.log('user is sign out now');
   }
 });
@@ -139,3 +127,89 @@ refs.signOutBtn.addEventListener('click', e => {
       console.log(error);
     });
 });
+
+////////////////FIREBASE API FUNCTIONS =======================================
+
+//////Sign In User
+async function signIn(auth, email, password) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    const dt = new Date();
+    await update(ref(database, 'users/' + user.uid), {
+      last_login: dt,
+    });
+
+    await updateUserTitle(auth, user.uid);
+
+    console.log('User sign in');
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log('Error code: ', errorCode);
+    console.log('Error message: ', errorMessage);
+  }
+}
+//===========================================================================
+
+///////User Registration
+async function createUser(auth, username, email, password) {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = userCredential.user;
+
+    await set(ref(database, 'users/' + user.uid), {
+      username: username,
+      email: email,
+    });
+
+    signIn(auth, email, password);
+
+    console.log('user registered');
+  } catch (error) {
+    const errorMessage = error.message;
+    console.log(errorMessage);
+  }
+}
+//===========================================================================
+
+async function updateUserTitle(auth, userId) {
+  const dbRef = await ref(getDatabase());
+
+  const snapshot = await get(child(dbRef, 'users/' + userId));
+  let val = {};
+  if (snapshot.exists()) {
+    val = snapshot.val();
+  } else {
+    console.log('No data available');
+  }
+  const username = val.username;
+  await updateProfile(auth.currentUser, {
+    displayName: username,
+  });
+}
+
+async function changeUserTitle(callback) {
+  const auth = getAuth();
+  const userId = auth.currentUser.uid;
+
+  await updateUserTitle(auth, userId);
+  userTitle = auth.currentUser.displayName;
+  callback();
+}
+
+function refreshUserTitle() {
+  refs.signInBtn.innerText = userTitle;
+}
+
+////////////////FIREBASE API FUNCTIONS =======================================
