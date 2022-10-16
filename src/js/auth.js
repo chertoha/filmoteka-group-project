@@ -89,7 +89,7 @@ refs.formLogin.addEventListener('submit', e => {
   const email = form.email.value;
   const password = form.password.value;
 
-  signIn(auth, email, password);
+  signInUser(auth, email, password);
   e.target.reset();
   authModal.closeModal();
 });
@@ -116,22 +116,12 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-refs.signOutBtn.addEventListener('click', e => {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      console.log('user signed out');
-    })
-    .catch(error => {
-      // An error happened.
-      console.log(error);
-    });
-});
+refs.signOutBtn.addEventListener('click', signOutUser);
 
 ////////////////FIREBASE API FUNCTIONS =======================================
 
 //////Sign In User
-async function signIn(auth, email, password) {
+async function signInUser(auth, email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -173,7 +163,7 @@ async function createUser(auth, username, email, password) {
       email: email,
     });
 
-    signIn(auth, email, password);
+    signInUser(auth, email, password);
 
     console.log('user registered');
   } catch (error) {
@@ -199,6 +189,20 @@ async function updateUserTitle(auth, userId) {
   });
 }
 
+async function signOutUser() {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      console.log('user signed out');
+    })
+    .catch(error => {
+      // An error happened.
+      console.log(error);
+    });
+}
+
+////////////////FIREBASE API FUNCTIONS =======================================
+
 async function changeUserTitle(callback) {
   const auth = getAuth();
   const userId = auth.currentUser.uid;
@@ -211,5 +215,3 @@ async function changeUserTitle(callback) {
 function refreshUserTitle() {
   refs.signInBtn.innerText = userTitle;
 }
-
-////////////////FIREBASE API FUNCTIONS =======================================

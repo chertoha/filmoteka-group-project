@@ -11,14 +11,7 @@ const teamModal = new Modal({
   modal: '[data-team-modal]',
 });
 
-// const authModal = new Modal({
-//   openModalBtn: '[data-auth-modal-open]',
-//   closeModalBtn: '[data-auth-modal-close]',
-//   modal: '[data-auth-modal]',
-// });
-
 movieCardModal.addHandler();
 teamModal.addHandler();
-// authModal.addHandler();
 
 export { movieCardModal };
