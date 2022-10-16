@@ -12,6 +12,18 @@ export default class LocalStorage {
       queue: 'queue',
       theme: 'theme',
     };
+    this.keyWords = {
+      remove: 'remove',
+      add: 'add',
+      queue: 'queue',
+      watched: 'watched',
+    }
+    this.keyClasses = {
+        removeQueue: 'remove-queue-js',
+        removeWatched: 'remove-watched-js',
+        addQueue: 'queue-js',
+        addWatched: 'watched-js',
+      }
   }
   addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
@@ -42,11 +54,11 @@ export default class LocalStorage {
   removeItemFromKeyStorage(btn) {
     let currentArray = null;
     let currentRemoveKey = null;
-    if (btn.classList.contains('remove-watched-js')) {
+    if (btn.classList.contains(this.keyClasses.removeWatched)) {
       currentArray = 'watchedItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.watch;
     }
-    if (btn.classList.contains('remove-queue-js')) {
+    if (btn.classList.contains(this.keyClasses.removeQueue)) {
       currentArray = 'queueItems';
       currentRemoveKey = this.LOCAL_STORAGE_KEYS.queue;
     }
@@ -80,16 +92,16 @@ export default class LocalStorage {
   }
   onModalWatchedBtnChange(btn) {
     if (this.watchedItems.some(item => this.currentFilm.id === item.id)) {
-      this.changeAddBtn('watched', btn, 'remove');
+      this.changeAddBtn(this.keyWords.watched, btn, this.keyWords.remove);
     }
   }
   onModalQueueBtnChange(btn) {
     if (this.queueItems.some(item => this.currentFilm.id === item.id)) {
-      this.changeAddBtn('queue', btn, 'remove');
+      this.changeAddBtn(this.keyWords.queue, btn, this.keyWords.remove);
     }
   }
   changeAddBtn(name, btn, event) {
-    if (event === 'remove') {
+    if (event === this.keyWords.remove) {
       btn.textContent = `Remove from ${name}`;
       btn.classList.remove(`${name}-js`);
       btn.classList.add(`remove-${name}-js`);
