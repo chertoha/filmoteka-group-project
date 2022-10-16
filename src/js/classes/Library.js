@@ -9,32 +9,37 @@ const localSt = new LocalStorage();
 
 export default class Library {
   currentPage = 1;
-  localStArrayWatch = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch);
-  localStArrayQueue = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue);
+  watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
+  queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
+  localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
+  localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
+ 
 
   updateVar(value) {
-    if (value === localSt.LOCAL_STORAGE_KEYS.watch) {
-      return this.localStArrayWatch = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.watch);
-    } else if (value === localSt.LOCAL_STORAGE_KEYS.queue) {
-return  this.localStArrayQueue = localSt.getItemFromKeyStorage(localSt.LOCAL_STORAGE_KEYS.queue);
+    if (value === this.watchKey) {
+      return this.localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
+    } else if (value === this.queueKey) {
+return  this.localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
     }
    
   }
 
   currentPageRenderQueue() {
-    this.updateVar(localSt.LOCAL_STORAGE_KEYS.queue)
+    this.updateVar(this.queueKey)
     if (this.localStArrayQueue) {
+      console.log(this.localStArrayQueue)
       this.currentPageRender(
         this.localStArrayQueue,
         this.currentPage
       );
-    } else {
+    }
+    else {
       this.tempRenderCards(null);
     }
   }
 
   currentPageRenderWatch() {
-    this.updateVar(localSt.LOCAL_STORAGE_KEYS.watch)
+    this.updateVar(this.watchKey)
     if (this.localStArrayWatch) {
       
       this.currentPageRender(
@@ -60,25 +65,26 @@ return  this.localStArrayQueue = localSt.getItemFromKeyStorage(localSt.LOCAL_STO
   tempRenderCards(movies, localStArray, currentPage) {
     // console.log(movies);
     if (movies) {
-      containerGallery.innerHTML = template({ movies, library: true });
-
+      if (!movies.length) {
+        containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
+      } else {containerGallery.innerHTML = template({ movies, library: true });}
+      
       pagination.updateTotalItems(localStArray.length);
-      // console.log("asfdafsasf",currentPage);
       pagination.goToPage(currentPage);
       pagination.render();
     } else {
-      containerGallery.innerHTML = '';
+      // console.log("dasfasd")
+      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
     }
     pagination.on('aftermove', event => {
-      // console.log(event.page);
       currentPage = event.page;
       this.currentPageRender(localStArray, currentPage);
     });
   }
   updateCards(currentKey) {
-    if (currentKey === localSt.LOCAL_STORAGE_KEYS.watch) {
+    if (currentKey === this.watchKey) {
       this.updateCardsWatch();
-    } else if (currentKey === localSt.LOCAL_STORAGE_KEYS.queue) {
+    } else if (currentKey === this.queueKey) {
       this.updateCardsQueue();
     }
   }
