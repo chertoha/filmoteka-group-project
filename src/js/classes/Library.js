@@ -10,6 +10,7 @@ import {
 } from '../utils/refs';
 const pagination = new Pagination(containerPag);
 const localSt = new LocalStorage();
+
 export default class Library {
   currentPage = 1;
   watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
@@ -20,6 +21,7 @@ export default class Library {
   isLibraryPage =
     window.location.pathname === '/myLibrary.html' ||
     window.location.pathname === '/filmoteka-group-project/myLibrary.html';
+
   updateVar(value) {
     if (value === this.watchKey) {
       return (this.localStArrayWatch = localSt.getItemFromKeyStorage(
@@ -30,13 +32,12 @@ export default class Library {
       return (this.localStArrayQueue = localSt.getItemFromKeyStorage(
         this.queueKey
       ));
-    };
+    }
     if (value === this.currentPageKey) {
-      return (localSt.getCurrentPageValue(
-        this.currentPageKey
-      ));
+      return localSt.getCurrentPageValue(this.currentPageKey);
     }
   }
+
   currentPageRenderQueue() {
     this.updateVar(this.queueKey);
     if (this.localStArrayQueue) {
@@ -45,6 +46,7 @@ export default class Library {
     }
     this.tempRenderCards(null);
   }
+
   currentPageRenderWatch() {
     this.updateVar(this.watchKey);
     if (this.localStArrayWatch) {
@@ -53,14 +55,18 @@ export default class Library {
     }
     this.tempRenderCards(null);
   }
-currentPageRenderQueueUpdate() {
-  this.updateVar(this.queueKey);
+
+  currentPageRenderQueueUpdate() {
+    this.updateVar(this.queueKey);
     if (this.localStArrayQueue) {
-      let currentPage =this.updateVar(this.currentPageKey);
-      let moviesPars = this.currentPageRenderValue(this.localStArrayQueue, currentPage);
+      let currentPage = this.updateVar(this.currentPageKey);
+      let moviesPars = this.currentPageRenderValue(
+        this.localStArrayQueue,
+        currentPage
+      );
       if (!moviesPars.length) {
         currentPage -= 1;
-      };
+      }
       if (this.localStArrayQueue.length <= 20) {
         currentPage = 1;
       }
@@ -69,14 +75,18 @@ currentPageRenderQueueUpdate() {
     }
     this.tempRenderCards(null);
   }
+
   currentPageRenderWatchUpdate() {
     this.updateVar(this.watchKey);
     if (this.localStArrayWatch) {
-      let currentPage =this.updateVar(this.currentPageKey);
-      let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
+      let currentPage = this.updateVar(this.currentPageKey);
+      let moviesPars = this.currentPageRenderValue(
+        this.localStArrayWatch,
+        currentPage
+      );
       if (!moviesPars.length) {
         currentPage -= 1;
-      };
+      }
       if (this.localStArrayWatch.length <= 20) {
         currentPage = 1;
       }
@@ -85,6 +95,7 @@ currentPageRenderQueueUpdate() {
     }
     this.tempRenderCards(null);
   }
+
   currentPageRenderValue(localStArray, currentPage) {
     const moviesPars = [];
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
@@ -92,6 +103,7 @@ currentPageRenderQueueUpdate() {
     }
     return moviesPars;
   }
+
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
@@ -99,31 +111,30 @@ currentPageRenderQueueUpdate() {
     }
     this.tempRenderCards(moviesPars, localStArray, currentPage);
   }
+
   tempRenderCards(movies, localStArray, currentPage) {
     if (!Array.isArray(movies)) {
       containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
       pagination.updateTotalItems(0);
       pagination.render();
       // return;
-}
+    }
     if (movies) {
       if (!movies.length) {
-        
         containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
       } else {
-        
         containerGallery.innerHTML = template({ movies, library: true });
       }
-      
+
       pagination.updateTotalItems(localStArray.length);
       pagination.goToPage(currentPage);
       pagination.render();
     }
-      
+
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
-      localSt.addCurrentPageValue(this.currentPageKey, currentPage)
+      localSt.addCurrentPageValue(this.currentPageKey, currentPage);
       this.currentPageRender(localStArray, currentPage);
     });
   }
