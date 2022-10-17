@@ -53,7 +53,6 @@ export default class Library {
   }
 
   currentPageRender(localStArray, currentPage) {
-    console.log('localStArray', localStArray);
     if (!localStArray) return;
 
     const moviesPars = [];
@@ -65,7 +64,6 @@ export default class Library {
   }
 
   tempRenderCards(movies, localStArray, currentPage) {
-    console.log('tempRender', movies, localStArray, currentPage);
     if (movies) {
       if (!movies.length) {
         containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
@@ -84,7 +82,6 @@ export default class Library {
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
-      console.log('pagination', localStArray);
       this.currentPageRender(localStArray, currentPage);
     });
   }
