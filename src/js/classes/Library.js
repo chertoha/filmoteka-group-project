@@ -34,12 +34,12 @@ export default class Library {
       ));
     }
     if (value === this.currentPageKey) {
-      return localSt.getCurrentPageValue(this.currentPageKey);
+      return localSt.getCurrentPageValue();
     }
   }
 
   currentPageRenderQueue() {
-    localSt.addCurrentPageValue(this.currentPageKey, 1)
+    localSt.addCurrentPageValue(1)
     this.updateVar(this.queueKey);
     if (this.localStArrayQueue) {
       this.currentPageRender(this.localStArrayQueue, this.currentPage);
@@ -49,7 +49,7 @@ export default class Library {
   }
 
   currentPageRenderWatch() {
-    localSt.addCurrentPageValue(this.currentPageKey, 1)
+    localSt.addCurrentPageValue(1)
     this.updateVar(this.watchKey);
     if (this.localStArrayWatch) {
       this.currentPageRender(this.localStArrayWatch, this.currentPage);
@@ -136,7 +136,7 @@ export default class Library {
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
-      localSt.addCurrentPageValue(this.currentPageKey, currentPage);
+      localSt.addCurrentPageValue(currentPage);
       this.currentPageRender(localStArray, currentPage);
     });
   }
