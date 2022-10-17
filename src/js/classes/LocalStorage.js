@@ -17,13 +17,13 @@ export default class LocalStorage {
       add: 'add',
       queue: 'queue',
       watched: 'watched',
-    }
+    };
     this.keyClasses = {
-        removeQueue: 'remove-queue-js',
-        removeWatched: 'remove-watched-js',
-        addQueue: 'queue-js',
-        addWatched: 'watched-js',
-      }
+      removeQueue: 'remove-queue-js',
+      removeWatched: 'remove-watched-js',
+      addQueue: 'queue-js',
+      addWatched: 'watched-js',
+    };
   }
   addItemToKeyStorage(keyName, dataName) {
     //dataName- массив, куда нужно пушить объект с фильмом
