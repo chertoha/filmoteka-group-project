@@ -123,13 +123,15 @@ export default class LocalStorage {
   removeThemeFromLocalStorage() {
     localStorage.removeItem(this.LOCAL_STORAGE_KEYS.theme);
   }
+
+  addCurrentPageValue(key, value){
+    localStorage.setItem(key, value);
+  };
+
+  getCurrentPageValue(key){
+    const serializedState = localStorage.getItem(key);
+    return serializedState;
+};
+
 }
 
-// addCurrentPageValue(key, value){
-//     localStorage.setItem(key, value);
-//   };
-
-//   getCurrentPageValue(key){
-//     const serializedState = localStorage.getItem(key);
-//     return serializedState;
-// };
