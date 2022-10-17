@@ -39,6 +39,7 @@ export default class Library {
   }
 
   currentPageRenderQueue() {
+    localSt.addCurrentPageValue(this.currentPageKey, 1)
     this.updateVar(this.queueKey);
     if (this.localStArrayQueue) {
       this.currentPageRender(this.localStArrayQueue, this.currentPage);
@@ -48,6 +49,7 @@ export default class Library {
   }
 
   currentPageRenderWatch() {
+    localSt.addCurrentPageValue(this.currentPageKey, 1)
     this.updateVar(this.watchKey);
     if (this.localStArrayWatch) {
       this.currentPageRender(this.localStArrayWatch, this.currentPage);
