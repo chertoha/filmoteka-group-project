@@ -182,8 +182,6 @@ export default class Library {
   currentPage = 1;
   watchKey = localSt.LOCAL_STORAGE_KEYS.watch;
   queueKey = localSt.LOCAL_STORAGE_KEYS.queue;
-  currentPageKey = localSt.LOCAL_STORAGE_KEYS.currentPageValue;
-
   localStArrayWatch = localSt.getItemFromKeyStorage(this.watchKey);
   localStArrayQueue = localSt.getItemFromKeyStorage(this.queueKey);
   isLibraryPage =
@@ -200,13 +198,7 @@ export default class Library {
       return (this.localStArrayQueue = localSt.getItemFromKeyStorage(
         this.queueKey
       ));
-    };
-    if (value === this.currentPageKey) {
-      return (localSt.getCurrentPageValue(
-        this.currentPageKey
-      ));
     }
-
   }
 
   currentPageRenderQueue() {
@@ -227,48 +219,6 @@ export default class Library {
     this.tempRenderCards(null);
   }
 
-currentPageRenderQueueUpdate() {
-  this.updateVar(this.queueKey);
-    if (this.localStArrayQueue) {
-      let currentPage =this.updateVar(this.currentPageKey);
-      let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
-      if (!moviesPars.length) {
-        currentPage -= 1;        
-      };
-      if (this.localStArrayQueue.length <= 20) {
-        currentPage = 1;
-      }
-      this.currentPageRender(this.localStArrayQueue, currentPage);
-      return;
-    }
-    this.tempRenderCards(null);
-  }
-
-  currentPageRenderWatchUpdate() {
-    this.updateVar(this.watchKey);
-    if (this.localStArrayWatch) {
-      let currentPage =this.updateVar(this.currentPageKey);
-      let moviesPars = this.currentPageRenderValue(this.localStArrayWatch, currentPage);
-      if (!moviesPars.length) {
-        currentPage -= 1;        
-      };
-      if (this.localStArrayWatch.length <= 20) {
-        currentPage = 1;
-      }
-      this.currentPageRender(this.localStArrayWatch, currentPage);
-      return;
-    }
-    this.tempRenderCards(null);
-  }
-
-  currentPageRenderValue(localStArray, currentPage) {
-    const moviesPars = [];
-    for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
-      if (localStArray[index]) moviesPars.push(localStArray[index]);
-    }
-    return moviesPars;
-  }
-
   currentPageRender(localStArray, currentPage) {
     const moviesPars = [];
     for (let index = currentPage * 20 - 20; index < currentPage * 20; index++) {
@@ -279,24 +229,22 @@ currentPageRenderQueueUpdate() {
   }
 
   tempRenderCards(movies, localStArray, currentPage) {
-    if (!Array.isArray(movies)) {
-      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
-      return;
-}
     if (movies) {
       if (!movies.length) {
         containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
       } else {
         containerGallery.innerHTML = template({ movies, library: true });
       }
+
       pagination.updateTotalItems(localStArray.length);
       pagination.goToPage(currentPage);
       pagination.render();
-    } 
+    } else {
+      containerGallery.innerHTML = `<li>There is nothing added to storage</li>`;
+    }
     pagination.on('aftermove', event => {
       headerRef.scrollIntoView(top);
       currentPage = event.page;
-      localSt.addCurrentPageValue(this.currentPageKey, currentPage)
       this.currentPageRender(localStArray, currentPage);
     });
   }
@@ -317,7 +265,7 @@ currentPageRenderQueueUpdate() {
         headerButtonsContainerRef.firstElementChild.classList.contains(
           'button--active'
         );
-      if (isBtnWatchActive) this.currentPageRenderWatchUpdate();
+      if (isBtnWatchActive) this.currentPageRenderWatch();
     }
   }
 
@@ -327,7 +275,7 @@ currentPageRenderQueueUpdate() {
         headerButtonsContainerRef.lastElementChild.classList.contains(
           'button--active'
         );
-      if (isBtnQueueActive) this.currentPageRenderQueueUpdate();
+      if (isBtnQueueActive) this.currentPageRenderQueue();
     }
   }
 }
