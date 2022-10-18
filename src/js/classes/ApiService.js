@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-import {urls, API_KEY } from '../utils/config';
+import { urls, API_KEY } from '../utils/config';
 
 export default class ApiService {
   #moviesByNameSearchParams = {
@@ -21,6 +21,16 @@ export default class ApiService {
       api_key: API_KEY,
     },
   };
+
+  #moviesSearchParams = {
+    params: {
+      api_key: API_KEY,
+      page: 1,
+      include_adult: false,
+      // with_genres: '',
+    },
+  };
+
   constructor() {}
 
   async fetchGenres() {
@@ -72,6 +82,22 @@ export default class ApiService {
     const url = urls.BASE_URL + urls.GET_MOVIE_DETAILS_PATH_URL + id;
     try {
       const response = await axios.get(url, this.#getMovieDetailsSearchParams);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async fetchDiscoverMovies(genreId) {
+    const url =
+      urls.BASE_URL +
+      urls.GET_MOVIE_DISCOVER_URL +
+      urls.GET_MOVIE_DETAILS_PATH_URL;
+
+    this.#moviesSearchParams.params.with_genres = genreId;
+
+    try {
+      const response = await axios.get(url, this.#moviesSearchParams);
       return response.data;
     } catch (error) {
       console.error(error);
