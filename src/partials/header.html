@@ -1,5 +1,19 @@
 <header class="header" id="header">
   <div class="header-container">
+    <div class="auth-btns-wrapper">
+            <button
+              class="menu-item__link login-link"
+              href=""
+              data-auth-modal-open
+            >
+              LOGIN
+            </button>
+            <button class="signout-btn hidden js-signout">
+              <svg class="icon-exit">
+                <use href="/src/images/icons.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </div>
     <div class="nav-container">
       <a class="logo" href="./index.html">
         <svg class="icon" width="24" height="24">
@@ -15,16 +29,22 @@
         <li class="menu-item">
           <a class="menu-item__link" href="./myLibrary.html">MY LIBRARY</a>
         </li>
-        <li class="menu-item">
-          <button
-            class="menu-item__link login-link"
-            href=""
-            data-auth-modal-open
-          >
-            LOGIN
-          </button>
-          <button class="signout-btn hidden js-signout">signout</button>
-        </li>
+        <!-- <li class="menu-item">
+          <div class="auth-btns-wrapper">
+            <button
+              class="menu-item__link login-link"
+              href=""
+              data-auth-modal-open
+            >
+              LOGIN
+            </button>
+            <button class="signout-btn hidden js-signout">
+              <svg class="icon-exit">
+                <use href="/src/images/icons.svg#icon-exit"></use>
+              </svg>
+            </button>
+          </div>
+        </li> -->
       </ul>
     </div>
     <div class="form-container">
