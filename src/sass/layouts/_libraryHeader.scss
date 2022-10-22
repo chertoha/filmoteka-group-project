@@ -1,29 +1,19 @@
-.header {
-  @include mq('mobile-only') {
-    padding: 40px 20px 62px 20px;
-  }
-  @include mq('tablet') {
-    padding: 45px 32px 60px 32px;
-  }
-
-  @include mq('desktop') {
-    padding: 40px 32px 60px 32px;
-  }
-}
-
 .header-library {
   background-image: url(../images/header-img/background-lib-mob.jpg);
   background-position: center;
   background-size: cover;
-  height: 230px;
+  // height: 230px;
 
   @include mq('mobile-only') {
+    padding: 30px 20px 50px 20px;
     background-image: url(../images/header-img/background-lib-mob.jpg);
   }
   @include mq('tablet') {
+    padding: 30px 32px 40px 32px;
     background-image: url(../images/header-img/background-lib-tab.jpg);
   }
   @include mq('desktop') {
+    padding: 30px 32px 40px 32px;
     background-image: url(../images/header-img/background-lib-desk.jpg);
   }
 }
@@ -37,4 +27,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.header-buttons {
+  margin-top: 10px;
+}
+
+.theme-btn-library-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 10px;
 }

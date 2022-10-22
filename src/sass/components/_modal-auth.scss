@@ -50,7 +50,9 @@
 .auth-btns-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+  justify-content: end;
+  margin-bottom: 10px;
 }
 
 //header btns
@@ -58,8 +60,10 @@
 .signout-btn {
   cursor: pointer;
   display: flex;
-  width: 20px;
-  height: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
   padding: 15px;
   &.hidden {
     display: none;
@@ -67,12 +71,16 @@
 }
 
 .login-link {
-    @include mq('mobile-only') {
-        display: none;
-    }
+  max-width: 200px;
+  overflow-x: hidden;
+  margin: 0;
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
-.login-link,
 .signout-btn {
   cursor: pointer;
   margin: 0;

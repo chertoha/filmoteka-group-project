@@ -4,25 +4,24 @@
   background-size: cover;
 
   @include mq('mobile-only') {
-    padding: 41px 20px 91px 20px;
+    padding: 30px 20px 70px 20px;
     background-image: url(../images/header-img/header-background-mob.jpg);
-    height: 230px;
   }
   @include mq('tablet') {
-    padding: 40px 32px 81px 32px;
+    padding: 30px 32px 70px 32px;
     background-image: url(../images/header-img/header-background-tab.jpg);
-    height: 219px;
   }
 
   @include mq('desktop') {
-    padding: 45px 32px 80px 32px;
+    padding: 30px 32px 70px 32px;
     background-image: url(../images/header-img/header-background-desk.jpg);
-    height: 216px;
   }
 }
+
 .dark-image {
   background-image: url(../images/header-img/dark-header.jpg);
 }
+
 .header-container {
   height: 100%;
   display: flex;
@@ -35,6 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .logo {
@@ -83,7 +83,7 @@
   margin-left: 40px;
 }
 
-.menu-item__link  {
+.menu-item__link {
   // outline: solid 1 tomato;
   padding: 10px 10px;
   display: block;
@@ -92,6 +92,7 @@
   font-family: var(--main-font);
   font-weight: 500;
   font-size: 13px;
+  text-transform: uppercase;
 
   &:hover,
   &:focus {
