@@ -33,17 +33,14 @@ export default class Modal {
     event?.preventDefault();
     this.refs.modal.classList.remove('is-hidden');
     document.body.classList.add('modal-open');
-    document.addEventListener(
-      'keydown',
-      this.onEscKeyDown(this.closeModal.bind(this))
-    );
+    document.addEventListener('keydown', this.onEscKeyDown);
   }
 
-  closeModal() {
+  closeModal = () => {
     this.refs.modal.classList.add('is-hidden');
     document.body.classList.remove('modal-open');
     document.removeEventListener('keydown', this.onEscKeyDown);
-  }
+  };
 
   onBackdropClick(event) {
     if (event.target.closest('.js-modal')) return;
@@ -51,6 +48,7 @@ export default class Modal {
   }
 
   onEscKeyDown = event => {
+    console.log(event.target);
     if (event.code !== 'Escape') return;
     this.closeModal();
   };
