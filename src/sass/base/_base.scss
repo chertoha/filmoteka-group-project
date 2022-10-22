@@ -26,6 +26,10 @@ body {
     --movie-card-shadow: 0 1px 10px rgb(248, 246, 246),
       -23px 0 20px -23px rgba(255, 255, 255),
       23px 0 20px -23px rgba(209, 203, 203), 0 0 40px rgba(255, 240, 240);
+
+    --modal-input-border-color: rgba(202, 200, 200, 0.2);
+    --placeholder-text: rgba(202, 200, 200, 0.8);
+    --auth-modal-background: #373737;
   }
 
   // SCROLL
