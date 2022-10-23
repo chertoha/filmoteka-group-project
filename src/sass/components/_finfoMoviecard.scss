@@ -35,21 +35,19 @@
 
   @include mq('tablet') {
     width: 264px;
+    height: 374px;
     margin-right: 40px;
   }
 
   @include mq('desktop') {
     margin-right: 40px;
-    width: 320px;
+    width: 375px;
+    height: 478px;
   }
 
   transform: rotateY(0);
   transition: transform 0.8s;
   transform-style: preserve-3d;
-
-  // :hover & {
-  //   transform: rotateY(180deg);
-  // }
 
   &.is-flipped {
     transform: rotateY(180deg);
@@ -61,21 +59,13 @@
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 100%;
-  max-height: 100%;
+  width: auto;
+  height: 100%;
   object-fit: cover;
   backface-visibility: hidden;
   display: block;
   border-radius: 4px;
   margin: 0 auto;
-
-  @include mq('tablet') {
-    height: 374px;
-  }
-
-  @include mq('desktop') {
-    height: 478px;
-  }
 }
 
 .finfo-moviecard__name {
@@ -154,7 +144,7 @@
   overflow-y: scroll;
 
   @include mq('desktop') {
-    max-height: 260px;
+    max-height: 200px;
   }
 }
 
@@ -173,7 +163,7 @@
   position: absolute;
   top: 0;
   left: 50%;
-  width: 100%;
+  width: auto;
   height: 100%;
   overflow-y: scroll;
   padding: 10px;
