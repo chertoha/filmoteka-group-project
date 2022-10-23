@@ -13,11 +13,6 @@ $focus-ring: 0px 0px 0px 2px $dark;
 $speed: 250ms;
 
 .theme-btn {
-  // position: absolute;
-  // z-index: 10;
-  // top: 175px;
-  // right: 30px;
-
   align-items: center;
   border-radius: 100px;
   display: flex;
@@ -35,7 +30,6 @@ $speed: 250ms;
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
-  // position: absolute;
   white-space: nowrap;
   width: 1px;
 
@@ -53,17 +47,6 @@ $speed: 250ms;
 
 .toggle-track {
   position: relative;
-  // position: absolute;
-  // z-index: 10;
-  // top: 175px;
-  // right: 30px;
-
-  // background: linear-gradient(
-  //   to left,
-  //   #03001e,
-  //   var(--accent),
-  //   var(--accent-light)
-  // );
   background-color: transparent;
   border: 1px solid $track-border;
   border-radius: 100px;
@@ -83,7 +66,6 @@ $speed: 250ms;
 
 .toggle-indicator {
   align-items: center;
-  // background: $dark;
   background: $light;
   border-radius: $toggle-indicator-size;
   box-shadow: inset 5px -10px 15px 0 rgba(0, 0, 0, 0.5);
@@ -99,11 +81,28 @@ $speed: 250ms;
 }
 
 .toggle__input:checked + .toggle-track .toggle-indicator {
-  // background: $light;
   transform: translateX($track-width - $track-height);
 
   .checkMark {
     opacity: 1;
     transition: opacity $speed ease-in-out;
   }
+}
+
+.theme__icon {
+  fill: var(--theme-icon);
+}
+
+.theme__icon--moon {
+  body & {
+    display: none;
+  }
+
+  body.dark-theme & {
+    display: block;
+  }
+}
+
+body.dark-theme .theme__icon--sun {
+  display: none;
 }
