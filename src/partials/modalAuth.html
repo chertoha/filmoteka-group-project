@@ -9,14 +9,14 @@
       <form class="form-auth form-auth--login js-form-login">
         <div class="form-auth__input-wrapper">
           <h2 class="form-auth__input-title">Authorization</h2>
-          <!-- <input
-            class="form-auth__input"
-            type="text"
-            name="username"
-            placeholder="User Name"
-          /> -->
-          <input class="form-auth__input" type="email" name="email" placeholder="E-mail" />
-          <input class="form-auth__input" type="password" name="password" placeholder="Password" />
+          <label class="form-auth__label">
+            E-mail
+            <input class="form-auth__input" type="email" name="email" placeholder="E-mail" />
+          </label>
+          <label class="form-auth__label">
+            Password
+            <input class="form-auth__input" type="password" name="password" placeholder="Password" />
+          </label>
         </div>
 
         <div class="form-auth__button-wrapper">
@@ -33,9 +33,18 @@
       <form class="form-auth form-auth--registration js-form-reg hidden">
         <div class="form-auth__input-wrapper">
           <h2 class="form-auth__input-title">Registration</h2>
-          <input class="form-auth__input" type="text" name="username" placeholder="User Name" />
-          <input class="form-auth__input" type="email" name="email" placeholder="E-mail" />
-          <input class="form-auth__input" type="password" name="password" placeholder="Password" />
+          <label class="form-auth__label">
+            User Name
+            <input class="form-auth__input" type="text" name="username" placeholder="User Name" min="2" max="20" />
+          </label>
+          <label class="form-auth__label">
+            E-mail
+            <input class="form-auth__input" type="email" name="email" placeholder="E-mail" />
+          </label>
+          <label class="form-auth__label">
+            Password
+            <input class="form-auth__input" type="password" name="password" placeholder="Password" />
+          </label>
         </div>
 
         <div class="form-auth__button-wrapper">
