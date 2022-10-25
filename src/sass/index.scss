@@ -1,4 +1,3 @@
-@import './utils/fonts';
 @import './utils/mixin';
 @import './utils/variables';
 @import './utils/placeholders';
@@ -14,6 +13,8 @@
 @import './components/movieCard';
 @import './components/modal.scss';
 @import './components/finfoMoviecard';
+@import './components/modal-auth';
+@import './components/header-auth-btns';
 @import './components/spinner';
 @import './components/pagination';
 @import './components/team-card';
@@ -21,6 +22,7 @@
 @import './components/btn-close';
 @import './components/button-up';
 @import './components/notify';
+@import './components/filter';
 
 @import './layouts/header';
 @import './layouts/footer';

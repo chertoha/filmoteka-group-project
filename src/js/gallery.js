@@ -8,7 +8,7 @@ import template from '../templates/movieCard.hbs';
 import { NOTIFY_UNCORRECT_SEARCH } from './utils/config';
 import { containerGallery, containerPag, searchFormRef } from './utils/refs';
 import Notify from './classes/Notify';
-import GenreFilter from './classes/GenreFilter';
+import Filter from './classes/Filter';
 
 const apiService = new ApiService();
 const galleryHandler = new GalleryHandler();
@@ -19,7 +19,7 @@ const pagination = new Pagination(containerPag);
 const spinner = new Spinner();
 
 const notify = new Notify();
-const genreFilter = new GenreFilter();
+const genreFilter = new Filter();
 genreFilter.renderFilter();
 genreFilter.addHandler();
 

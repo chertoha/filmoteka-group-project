@@ -1,13 +1,21 @@
 import ApiService from './ApiService';
 import GenreTemplate from '../../templates/genre.hbs';
+import YearTemplate from '../../templates/year.hbs';
 import { gallery } from '../gallery';
 const api = new ApiService();
 const genreSelectRef = document.querySelector('#genre');
+const yearSelectRef = document.querySelector('#year');
 
-export default class GenreFilter {
+export default class Filter {
   async renderFilter() {
     const genres = await api.fetchGenres();
     genreSelectRef.insertAdjacentHTML('beforeend', GenreTemplate(genres));
+
+    const years = [];
+    for (let year = 1970; year <= 2022; year += 1) {
+      years.push(year);
+    }
+    yearSelectRef.insertAdjacentHTML('beforeend', YearTemplate(years));
   }
 
   addHandler() {
