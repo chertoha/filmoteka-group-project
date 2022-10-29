@@ -19,9 +19,7 @@ const pagination = new Pagination(containerPag);
 const spinner = new Spinner();
 
 const notify = new Notify();
-const genreFilter = new Filter();
-genreFilter.renderFilter();
-genreFilter.addHandler();
+const filter = new Filter();
 
 searchFormRef.addEventListener('submit', onSearchFormSubmit);
 
@@ -48,6 +46,8 @@ async function fetchMovies(page = 1) {
     pagination.updateTotalItems(movies.total_results);
     pagination.goToPage(page);
     pagination.render();
+    filter.renderFilter();
+    filter.addHandler();
   } catch (error) {
     console.error(error);
   }

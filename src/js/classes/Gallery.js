@@ -21,6 +21,7 @@ export default class Gallery {
     this.genres = await api.fetchGenres();
     const response = await api.fetchTrendingMovies(page);
 
+    localStorageFilms.addGenres(this.genres);
     return response.data;
   }
 

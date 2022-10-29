@@ -49,10 +49,14 @@
   padding: 4px;
   margin-left: 16px;
   outline: transparent;
+  background-color: transparent;
 
   border: 1px solid var(--modal-input-border-color);
   border-radius: 4px;
   transition: border-color 250ms var(--transition-timing);
+
+  color: var(--main-text);
+  background-color: vaR(--main-background-color);
 
   &:focus {
     border-color: var(--accent);

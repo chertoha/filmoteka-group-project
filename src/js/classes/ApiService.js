@@ -88,13 +88,14 @@ export default class ApiService {
     }
   }
 
-  async fetchDiscoverMovies(genreId) {
-    const url =
-      urls.BASE_URL +
-      urls.GET_MOVIE_DISCOVER_URL +
-      urls.GET_MOVIE_DETAILS_PATH_URL;
+  async fetchDiscoverMovies(genreId, year) {
+    const url = urls.BASE_URL + urls.GET_MOVIE_DISCOVER_URL;
 
-    this.#moviesSearchParams.params.with_genres = genreId;
+    if (genreId) this.#moviesSearchParams.params.with_genres = genreId;
+    if (year) this.#moviesSearchParams.params.primary_release_year = year;
+
+    if (!genreId) delete this.#moviesSearchParams.params.with_genres;
+    if (!year) delete this.#moviesSearchParams.params.primary_release_year;
 
     try {
       const response = await axios.get(url, this.#moviesSearchParams);
