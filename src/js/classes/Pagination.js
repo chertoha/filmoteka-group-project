@@ -166,6 +166,10 @@ export default class Pagination {
   }
 
   getLastPageNumber() {
-    return Math.ceil(Number(this.#totalItems) / Number(this.#perPage));
+    // return Math.ceil(Number(this.#totalItems) / Number(this.#perPage));
+    const lastPageNumber = Math.ceil(
+      Number(this.#totalItems) / Number(this.#perPage)
+    );
+    return lastPageNumber <= 500 ? lastPageNumber : 500;
   }
 }
