@@ -99,7 +99,6 @@ export default class ApiService {
 
     try {
       const response = await axios.get(url, this.#moviesSearchParams);
-      console.log('response.data', response.data);
       return response.data;
     } catch (error) {
       console.error(error);
