@@ -17,10 +17,12 @@
 .success {
   position: absolute;
   display: flex;
-  top: 230px;
-  right: 20px;
+  // top: 230px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
-  width: 200px;
+  width: 95%;
   padding: 10px;
   min-width: 100px;
   min-height: 40px;
@@ -31,13 +33,7 @@
   font-size: 17px;
 
   @include mq('tablet') {
-    width: 250px;
-    top: 210px;
-  }
-
-  @include mq('desktop') {
-    width: 360px;
-    top: 100px;
+    width: 400px;
   }
 }
 
@@ -53,4 +49,8 @@
 
   background-color: var(--success-notify);
   color: var(--header-white);
+}
+
+.failure.info {
+  background-color: var(--info-notify);
 }

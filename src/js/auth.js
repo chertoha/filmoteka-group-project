@@ -1,6 +1,4 @@
-// import authModal from './modal';
-import Modal from './classes/Modal';
-
+// import Modal from './classes/Modal';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, set, ref, update, get, child } from 'firebase/database';
 import {
@@ -11,6 +9,9 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import Notify from './classes/Notify';
+
+const notification = new Notify();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -78,7 +79,7 @@ function switchModal(isEnabled) {
 }
 //MODAL REFS=========================================
 
-///// REFS==============================================
+/// REFS==============================================
 const refs = {
   formLogin: document.querySelector('.js-form-login'),
   formReg: document.querySelector('.js-form-reg'),
@@ -86,7 +87,9 @@ const refs = {
   goToLoginBtn: document.querySelector('.js-btn-go-to-login'),
   signInBtn: document.querySelector('[data-auth-modal-open]'),
   signOutBtn: document.querySelector('.js-signout'),
+  libraryLinkRef: document.querySelector('.js-library-link'),
 };
+let isUserLoggedIn = false;
 
 refs.goToRegBtn.addEventListener('click', () => {
   switchToRegistrationForm();
@@ -95,6 +98,8 @@ refs.goToRegBtn.addEventListener('click', () => {
 refs.goToLoginBtn.addEventListener('click', () => {
   switchToLoginForm();
 });
+
+refs.libraryLinkRef.addEventListener('click', onLibraryLinkClick);
 
 function switchToLoginForm() {
   refs.formLogin.classList.remove('hidden');
@@ -107,7 +112,7 @@ function switchToRegistrationForm() {
 }
 
 let userTitle = 'LOGIN';
-///// REFS==============================================
+/// REFS==============================================
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -117,12 +122,9 @@ const auth = getAuth();
 refs.formReg.addEventListener('submit', e => {
   e.preventDefault();
 
-  const form = e.target.elements;
-  const username = form.username.value;
-  const email = form.email.value;
-  const password = form.password.value;
+  const { username, email, password } = e.target.elements;
 
-  createUser(auth, username, email, password);
+  createUser(auth, username.value, email.value, password.value);
   e.target.reset();
   // authModal.closeModal();
   closeModal();
@@ -133,11 +135,9 @@ refs.formReg.addEventListener('submit', e => {
 refs.formLogin.addEventListener('submit', e => {
   e.preventDefault();
 
-  const form = e.target.elements;
-  const email = form.email.value;
-  const password = form.password.value;
+  const { email, password } = e.target.elements;
 
-  signInUser(auth, email, password);
+  signInUser(auth, email.value, password.value);
   e.target.reset();
   // authModal.closeModal();
   closeModal();
@@ -147,30 +147,31 @@ refs.formLogin.addEventListener('submit', e => {
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in, see docs for a list of available properties
-    console.log('user is loged now');
-    // const uid = user.uid;
-    console.log('user ->', user);
-
+    // console.log('user is loged now');
+    // console.log('user ->', user);
+    isUserLoggedIn = true;
     refs.signOutBtn.classList.remove('hidden');
+    refs.libraryLinkRef.classList.remove('disabled');
 
     changeUserTitle(refreshUserTitle);
-
     modalRefs.openModalBtn.removeEventListener('click', onOpenBtn);
   } else {
     // User is signed out
+    isUserLoggedIn = false;
     refs.signOutBtn.classList.add('hidden');
+    refs.libraryLinkRef.classList.add('disabled');
     modalRefs.openModalBtn.addEventListener('click', onOpenBtn);
 
     userTitle = 'LOGIN';
     refreshUserTitle();
 
-    console.log('user is sign out now');
+    // console.log('user is sign out now');
   }
 });
 
 refs.signOutBtn.addEventListener('click', signOutUser);
 
-////////////////FIREBASE API FUNCTIONS =======================================
+//////////FIREBASE API FUNCTIONS =======================================
 
 //////Sign In User
 async function signInUser(auth, email, password) {
@@ -189,7 +190,7 @@ async function signInUser(auth, email, password) {
 
     await updateUserTitle();
 
-    console.log('User sign in');
+    // console.log('User sign in');
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -218,8 +219,7 @@ async function createUser(auth, username, email, password) {
     // await updateUserTitle();
     await changeUserTitle(refreshUserTitle);
     // signInUser(auth, email, password);
-
-    console.log('user registered success');
+    // console.log('user registered success');
   } catch (error) {
     const errorMessage = error.message;
     console.log(errorMessage);
@@ -235,7 +235,7 @@ async function updateUserTitle() {
 
   const snapshot = await get(child(dbRef, 'users/' + userId));
   let val = {};
-  console.log(snapshot);
+  // console.log(snapshot);
   if (snapshot.exists()) {
     val = snapshot.val();
   } else {
@@ -251,7 +251,7 @@ async function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
-      console.log('user signed out');
+      // console.log('user signed out');
     })
     .catch(error => {
       // An error happened.
@@ -272,4 +272,14 @@ async function changeUserTitle(callback) {
 
 function refreshUserTitle() {
   refs.signInBtn.innerText = userTitle;
+}
+
+function onLibraryLinkClick(event) {
+  if (!isUserLoggedIn) {
+    event.preventDefault();
+    notification.notifyFailure(
+      'Please, login or sign up to access Library, ',
+      true
+    );
+  }
 }

@@ -26,8 +26,11 @@ const headerRef = document.querySelector('#header');
 // Library
 const headerButtonsContainerRef = document.querySelector('.header-buttons');
 
-const headerButtonsRef =
- document.querySelectorAll('.header-button');
+const headerButtonsRef = document.querySelectorAll('.header-button');
+
+const filterFormRef = document.querySelector('#genres-form');
+const genreSelectRef = document.querySelector('#genre');
+const yearSelectRef = document.querySelector('#year');
 
 //----------------------------------------------------------------
 //----------------------------------------------------------------
@@ -43,4 +46,7 @@ export {
   headerRef,
   headerButtonsContainerRef,
   headerButtonsRef,
+  filterFormRef,
+  genreSelectRef,
+  yearSelectRef,
 };

@@ -5,6 +5,7 @@ const urls = {
   SEARCH_PATH_URL: 'search/movie',
   BASE_IMAGE_URL: 'https://image.tmdb.org/t/p/w500',
   GET_MOVIE_DETAILS_PATH_URL: 'movie/',
+  GET_MOVIE_DISCOVER_URL: 'discover/movie',
 };
 
 const API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';

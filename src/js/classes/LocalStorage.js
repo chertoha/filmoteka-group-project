@@ -12,6 +12,7 @@ export default class LocalStorage {
       queue: 'queue',
       theme: 'theme',
       currentPageValue: 'currentPageValue',
+      genres: 'genres',
     };
     this.keyWords = {
       remove: 'remove',
@@ -129,7 +130,16 @@ export default class LocalStorage {
   }
 
   getCurrentPageValue() {
-    const serializedState = localStorage.getItem(this.LOCAL_STORAGE_KEYS.currentPageValue);
+    const serializedState = localStorage.getItem(
+      this.LOCAL_STORAGE_KEYS.currentPageValue
+    );
     return serializedState;
+  }
+
+  addGenres(genres) {
+    localStorage.setItem(
+      this.LOCAL_STORAGE_KEYS.genres,
+      JSON.stringify(genres)
+    );
   }
 }
