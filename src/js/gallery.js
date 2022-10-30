@@ -126,16 +126,20 @@ function discoverMoviesByFilter(event) {
 }
 
 async function renderMoviesByChosenFilter(page) {
-  const moviesByFilter = await apiService.fetchDiscoverMovies(
-    filter.genreId,
-    filter.year,
-    page
-  );
-  gallery.renderCards(moviesByFilter.results);
+  try {
+    const moviesByFilter = await apiService.fetchDiscoverMovies(
+      filter.genreId,
+      filter.year,
+      page
+    );
+    gallery.renderCards(moviesByFilter.results);
 
-  pagination.updateTotalItems(moviesByFilter.total_results);
-  pagination.goToPage(page);
-  pagination.render();
+    pagination.updateTotalItems(moviesByFilter.total_results);
+    pagination.goToPage(page);
+    pagination.render();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export { apiService, gallery };
