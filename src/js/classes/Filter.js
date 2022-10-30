@@ -1,12 +1,25 @@
 import ApiService from './ApiService';
+import {
+  filterFormRef,
+  genreSelectRef,
+  yearSelectRef,
+  containerPag,
+} from '../utils/refs';
 import GenreTemplate from '../../templates/genre.hbs';
-import YearTemplate from '../../templates/year.hbs';
-import { gallery } from '../gallery';
-import { filterFormRef, genreSelectRef, yearSelectRef } from '../utils/refs';
 import { localStorageFilms } from './ModalBtn';
-const api = new ApiService();
+import Pagination from './Pagination';
+import YearTemplate from '../../templates/year.hbs';
 
-export default class Filter {
+const api = new ApiService();
+export const filterPagination = new Pagination(containerPag);
+
+export class Filter {
+  constructor() {
+    this.isEmpty = true;
+    this.genreId = null;
+    this.year = null;
+  }
+
   renderFilter() {
     const genres = localStorageFilms.getItemFromKeyStorage(
       localStorageFilms.LOCAL_STORAGE_KEYS.genres
@@ -18,20 +31,11 @@ export default class Filter {
       years.push(year);
     }
     yearSelectRef.insertAdjacentHTML('beforeend', YearTemplate(years));
+
+    this.isEmpty = false;
   }
 
-  addHandler() {
-    filterFormRef.addEventListener('change', this.onChange);
-  }
-
-  onChange = event => {
-    event.preventDefault();
-    const { genre, year } = event.currentTarget.elements;
-    this.renderMoviesByChosenGenre(+genre.value, +year.value);
-  };
-
-  async renderMoviesByChosenGenre(genreId, year) {
-    const moviesByFilter = await api.fetchDiscoverMovies(genreId, year);
-    gallery.renderCards(moviesByFilter.results);
+  addHandler(handler) {
+    filterFormRef.addEventListener('change', handler);
   }
 }

@@ -27,7 +27,6 @@ export default class ApiService {
       api_key: API_KEY,
       page: 1,
       include_adult: false,
-      // with_genres: '',
     },
   };
 
@@ -88,9 +87,10 @@ export default class ApiService {
     }
   }
 
-  async fetchDiscoverMovies(genreId, year) {
+  async fetchDiscoverMovies(genreId, year, page) {
     const url = urls.BASE_URL + urls.GET_MOVIE_DISCOVER_URL;
 
+    this.#moviesSearchParams.params.page = page;
     if (genreId) this.#moviesSearchParams.params.with_genres = genreId;
     if (year) this.#moviesSearchParams.params.primary_release_year = year;
 
@@ -99,6 +99,7 @@ export default class ApiService {
 
     try {
       const response = await axios.get(url, this.#moviesSearchParams);
+      console.log('response.data', response.data);
       return response.data;
     } catch (error) {
       console.error(error);

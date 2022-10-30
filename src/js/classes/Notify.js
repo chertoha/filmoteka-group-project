@@ -8,12 +8,12 @@ export default class Notify {
 
   constructor() {}
 
-  notifyFailure() {
+  notifyFailure(message = this.#MessageFailure) {
     if (this.#checkerFail) {
       this.#checkerFail = false;
       this.note.classList.add('failure');
       this.note.classList.remove('invisible', 'success');
-      this.note.innerHTML = `${this.#MessageFailure}`;
+      this.note.innerHTML = `${message}`;
 
       setTimeout(() => {
         if (this.#checkerSuccess) {

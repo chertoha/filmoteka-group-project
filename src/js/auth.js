@@ -11,6 +11,9 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import Notify from './classes/Notify';
+
+const notification = new Notify();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -86,7 +89,10 @@ const refs = {
   goToLoginBtn: document.querySelector('.js-btn-go-to-login'),
   signInBtn: document.querySelector('[data-auth-modal-open]'),
   signOutBtn: document.querySelector('.js-signout'),
+  libraryLinkRef: document.querySelector('.js-library-link'),
 };
+
+let userIsLoggedIn = false;
 
 refs.goToRegBtn.addEventListener('click', () => {
   switchToRegistrationForm();
@@ -95,6 +101,8 @@ refs.goToRegBtn.addEventListener('click', () => {
 refs.goToLoginBtn.addEventListener('click', () => {
   switchToLoginForm();
 });
+
+refs.libraryLinkRef.addEventListener('click', onLibraryLinkClick);
 
 function switchToLoginForm() {
   refs.formLogin.classList.remove('hidden');
@@ -150,15 +158,20 @@ onAuthStateChanged(auth, user => {
     console.log('user is loged now');
     // const uid = user.uid;
     console.log('user ->', user);
-
+    userIsLoggedIn = true;
+    console.log('userIsLoggedIn', userIsLoggedIn);
     refs.signOutBtn.classList.remove('hidden');
+    refs.libraryLinkRef.classList.remove('disabled');
 
     changeUserTitle(refreshUserTitle);
 
     modalRefs.openModalBtn.removeEventListener('click', onOpenBtn);
   } else {
     // User is signed out
+    userIsLoggedIn = false;
+    console.log('userIsLoggedIn', userIsLoggedIn);
     refs.signOutBtn.classList.add('hidden');
+    refs.libraryLinkRef.classList.add('disabled');
     modalRefs.openModalBtn.addEventListener('click', onOpenBtn);
 
     userTitle = 'LOGIN';
@@ -272,4 +285,14 @@ async function changeUserTitle(callback) {
 
 function refreshUserTitle() {
   refs.signInBtn.innerText = userTitle;
+}
+
+function onLibraryLinkClick(event) {
+  if (!userIsLoggedIn) {
+    console.log(event.target);
+    event.preventDefault();
+    notification.notifyFailure(
+      'To access the library, please, login or sign up'
+    );
+  }
 }

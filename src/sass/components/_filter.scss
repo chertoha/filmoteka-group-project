@@ -13,6 +13,9 @@
     justify-content: flex-end;
     align-items: center;
   }
+  &.is-hidden {
+    display: none;
+  }
 }
 
 .filter-form__label {

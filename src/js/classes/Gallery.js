@@ -15,13 +15,16 @@ export default class Gallery {
     this.#cardsTemplate = template;
     this.currentQuery = '';
     this.genres = null;
+    this.filterIsComplete = false;
   }
 
   async getPopularMovies(page) {
-    this.genres = await api.fetchGenres();
-    const response = await api.fetchTrendingMovies(page);
+    if (!this.genres) {
+      this.genres = await api.fetchGenres();
+      localStorageFilms.addGenres(this.genres);
+    }
 
-    localStorageFilms.addGenres(this.genres);
+    const response = await api.fetchTrendingMovies(page);
     return response.data;
   }
 

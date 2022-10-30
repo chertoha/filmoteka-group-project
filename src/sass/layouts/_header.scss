@@ -128,3 +128,9 @@
 .current::after {
   transform: scaleX(1);
 }
+
+.menu-item__link--library {
+  &.disabled {
+    color: var(--disabled);
+  }
+}
