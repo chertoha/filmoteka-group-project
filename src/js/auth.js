@@ -265,9 +265,13 @@ async function changeUserTitle(callback) {
   const auth = getAuth();
   const userId = auth.currentUser.uid;
 
-  await updateUserTitle(auth, userId);
-  userTitle = auth.currentUser.displayName;
-  callback();
+  try {
+    await updateUserTitle(auth, userId);
+    userTitle = auth.currentUser.displayName;
+    callback();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function refreshUserTitle() {
