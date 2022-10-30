@@ -8,7 +8,9 @@ export default class Notify {
 
   constructor() {}
 
-  notifyFailure(message = this.#MessageFailure) {
+  notifyFailure(message = this.#MessageFailure, info = false) {
+    if (info) this.note.classList.add('info');
+
     if (this.#checkerFail) {
       this.#checkerFail = false;
       this.note.classList.add('failure');
@@ -25,6 +27,7 @@ export default class Notify {
         if (this.#checkerSuccess) {
           this.note.classList.remove('failure');
           this.note.innerHTML = '';
+          if (info) this.note.classList.remove('info');
         }
       }, 4000);
     }

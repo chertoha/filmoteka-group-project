@@ -33,15 +33,8 @@
   font-size: 17px;
 
   @include mq('tablet') {
-    // width: 250px;
-    // top: 210px;
     width: 400px;
   }
-
-  // @include mq('desktop') {
-  //   width: 360px;
-  //   // top: 100px;
-  // }
 }
 
 .failure {
@@ -56,4 +49,8 @@
 
   background-color: var(--success-notify);
   color: var(--header-white);
+}
+
+.failure.info {
+  background-color: var(--info-notify);
 }

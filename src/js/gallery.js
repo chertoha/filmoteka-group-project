@@ -98,12 +98,12 @@ async function searchMovies(query, page = 1) {
 }
 
 function searchNotification(message) {
-  searchFormRef.dataset.message = message;
+  // searchFormRef.dataset.message = message;
   notify.notifyFailure();
 
-  setTimeout(() => {
-    searchFormRef.dataset.message = '';
-  }, 4000);
+  // setTimeout(() => {
+  //   searchFormRef.dataset.message = '';
+  // }, 4000);
 }
 
 function discoverMoviesByFilter(event) {
